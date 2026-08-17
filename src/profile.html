@@ -191,6 +191,11 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 .markets-stat .n.flags .code { font-family: var(--sans); font-weight: 700; font-size: 0.5em; letter-spacing: 0.06em; color: var(--cream); }
 .markets-stat .n.flags .sep-f { color: var(--cream-3); font-weight: 300; }
 
+/* world-travel flag strip */
+.travel-flags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.travel-flags img { width: 22px; height: 22px; border-radius: 50%; filter: grayscale(1) brightness(0.92) contrast(1.05); opacity: 0.65; transition: opacity .2s; }
+.travel-flags img:hover { opacity: 1; }
+
 /* spec-list: bullet-per-line in spec strip */
 .spec-list { display: flex; flex-direction: column; gap: 2px; }
 .spec-list span { display: block; line-height: 1.1; }
@@ -295,7 +300,17 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    SKILLS GRID
    ============================================ */
 .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
-.skill-col { background: var(--ink); padding: 28px 24px 26px; }
+/* skill-col -> competency */
+.skill-col { background: var(--ink); padding: 28px 24px 26px; position: relative; }
+.skill-col .skill-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.skill-col .skill-icon { width: 22px; height: 22px; color: var(--euc); flex-shrink: 0; }
+.skill-col .skill-icon svg { width: 100%; height: 100%; display: block; }
+.skill-col .skill-k { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: var(--cream); line-height: 1.2; }
+.skill-col .skill-k .ital { font-style: italic; color: var(--euc); font-weight: 400; }
+.skill-list { list-style: none; }
+.skill-list li { font-family: var(--serif); font-size: 14.5px; line-height: 1.45; color: var(--cream-2); padding: 5px 0 5px 16px; position: relative; }
+.skill-list li::before { content:''; position:absolute; left:0; top: 13px; width: 7px; height: 1px; background: var(--euc); }
+.skill-list li:hover { color: var(--cream); }
 .skill-k { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--euc); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--rule-2); }
 .skill-list { list-style: none; }
 .skill-list li { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--cream-2); padding: 4px 0 4px 16px; position: relative; }
@@ -515,6 +530,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .earlier { display: none !important; }
   .engage { padding: 0; }
   .engage li { font-size: 6pt; line-height: 1.1; padding: 1px 0 1px 12px; margin: 0; }
+  .engage li .engage-desc { display: none; }
   .engage li::before { top: 1px; }
   .engage li::before { top: 0; }
   .foot { padding: 1px 0 0; margin-top: 1px; }
@@ -637,57 +653,58 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     </div>
   </section>
 
-  <!-- ================= SKILLS (executive level) ================= -->
+  <!-- ================= EXECUTIVE COMPETENCIES ================= -->
   <section class="section" id="skills">
     <div class="section-head" data-reveal>
-      <h2>Skills, <span class="ital">at executive level.</span></h2>
+      <h2>Executive competencies, <span class="ital">what I own at C-level.</span></h2>
     </div>
     <div class="skills-grid" data-reveal>
       <div class="skill-col">
-        <div class="skill-k">Product &amp; customer</div>
+        <div class="skill-head">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
+          <div class="skill-k">Venture &amp; product <span class="ital">strategy</span></div>
+        </div>
         <ul class="skill-list">
-          <li>Product strategy &amp; roadmap</li>
-          <li>Concept-to-MVP-to-launch</li>
-          <li>Product reinvention</li>
-          <li>Customer &amp; user experience</li>
-          <li>Market &amp; competitor analysis</li>
-          <li>Metric-centric validation</li>
-          <li>Envisioning &amp; discovery workshops</li>
+          <li>0→1 venture building and product reinvention</li>
+          <li>Product vision, roadmap &amp; commercialisation</li>
+          <li>Problem–solution fit aligned to business goals</li>
+          <li>Founder &amp; growth-stage product leadership</li>
         </ul>
       </div>
       <div class="skill-col">
-        <div class="skill-k">Commercial &amp; finance</div>
+        <div class="skill-head">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+          <div class="skill-k">Commercial &amp; <span class="ital">P&amp;L stewardship</span></div>
+        </div>
         <ul class="skill-list">
-          <li>CFO / acting CFO</li>
-          <li>P&amp;L ownership</li>
+          <li>CFO / acting CFO &amp; capital stewardship</li>
           <li>Cashflow &amp; operating-model rebuild</li>
-          <li>Commercial planning</li>
-          <li>Budget &amp; financial management</li>
-          <li>ASX-listed executive</li>
-          <li>Pre-sales &amp; bid leadership</li>
+          <li>Commercial planning &amp; executive positioning</li>
+          <li>ASX-listed executive &amp; bid leadership</li>
         </ul>
       </div>
       <div class="skill-col">
-        <div class="skill-k">Operations &amp; delivery</div>
+        <div class="skill-head">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
+          <div class="skill-k">Operating-model <span class="ital">&amp; org design</span></div>
+        </div>
         <ul class="skill-list">
-          <li>Org design (10–50 scale)</li>
-          <li>Transformation working groups</li>
-          <li>Agile / scrum delivery</li>
-          <li>Stakeholder engagement</li>
-          <li>Multi-country delivery</li>
-          <li>Team build &amp; culture</li>
+          <li>Org design for the 10–50 growth-stage moment</li>
+          <li>Transformation working groups, not lone turnarounds</li>
+          <li>Delivery assurance &amp; multi-country team leadership</li>
+          <li>Empathy-led change with operating discipline</li>
         </ul>
       </div>
       <div class="skill-col">
-        <div class="skill-k">Architecture &amp; build</div>
+        <div class="skill-head">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
+          <div class="skill-k">Architecture &amp; <span class="ital">AI-native delivery</span></div>
+        </div>
         <ul class="skill-list">
-          <li>Solution architecture</li>
-          <li>Current/future-state modelling</li>
-          <li>Information architecture &amp; data</li>
-          <li>Cloud (AWS) &amp; DevOps</li>
-          <li>CI/CD &amp; automation testing</li>
-          <li>Enterprise SOA / integration</li>
-          <li>AI-native agent building</li>
+          <li>Solution architecture &amp; future-state modelling</li>
+          <li>AI-native agent orchestration (pi, Claude Code)</li>
+          <li>Build–measure–learn at delivery scale</li>
+          <li>Cloud, DevOps &amp; technical-debt governance</li>
         </ul>
       </div>
     </div>
@@ -883,7 +900,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="earlier-row"><div class="yr">2010–11</div><div class="desc"><strong>4impact — Solution Architect.</strong> Pre-sales bid architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.</div></div>
       <div class="earlier-row"><div class="yr">2009–10</div><div class="desc"><strong>Mastercard — Lead Developer, Payment Gateway.</strong> Built the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D-Secure), shipped PCI-compliant in four months.</div></div>
       <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
-      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.</div></div>
+      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/singapore.svg" alt="Singapore"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/malaysia.svg" alt="Malaysia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/thailand.svg" alt="Thailand"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/vietnam.svg" alt="Vietnam"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/hong-kong.svg" alt="Hong Kong"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/ireland.svg" alt="Ireland"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/united-kingdom.svg" alt="UK"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/greece.svg" alt="Greece"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/turkey.svg" alt="Turkey"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/france.svg" alt="France"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/netherlands.svg" alt="Netherlands"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/belgium.svg" alt="Belgium"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/italy.svg" alt="Italy"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/croatia.svg" alt="Croatia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/hungary.svg" alt="Hungary"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/slovakia.svg" alt="Slovakia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/poland.svg" alt="Poland"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/germany.svg" alt="Germany"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/czechia.svg" alt="Czechia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/austria.svg" alt="Austria"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/liechtenstein.svg" alt="Liechtenstein"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/switzerland.svg" alt="Switzerland"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/monaco.svg" alt="Monaco"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/spain.svg" alt="Spain"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/portugal.svg" alt="Portugal"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/egypt.svg" alt="Egypt"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/united-states.svg" alt="USA"></div></div></div>
       <div class="earlier-row"><div class="yr">2005–06</div><div class="desc"><strong>RHE &amp; Associates — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004–05</div><div class="desc"><strong>Provenco — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004</div><div class="desc"><strong>AXA New Zealand — Senior Software Engineer (contract).</strong></div></div>
