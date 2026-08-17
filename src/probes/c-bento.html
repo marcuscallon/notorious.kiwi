@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probe C — Modern Bento Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16181D;
+  --paper:#F5F2EC;
+  --paper-2:#EFEBE2;
+  --card:#FFFFFF;
+  --rule:#E0DACD;
+  --euc:#15463C;
+  --euc-2:#1C5A4E;
+  --signal:#D97757;     /* warm clay signal accent */
+  --slate:#71706B;
+  --sans:'Inter',-apple-system,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --shadow-sm:0 1px 2px rgba(22,24,29,.04),0 1px 3px rgba(22,24,29,.06);
+  --shadow-md:0 4px 12px rgba(22,24,29,.06),0 2px 4px rgba(22,24,29,.04);
+  --shadow-lg:0 12px 32px rgba(22,24,29,.08),0 4px 8px rgba(22,24,29,.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+
+/* subtle ambient gradient */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%,rgba(21,70,60,.06),transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 30%,rgba(217,119,87,.05),transparent 60%);
+}
+
+.page{max-width:1080px;margin:0 auto;padding:36px 40px 64px;position:relative;z-index:1}
+
+/* ---- top nav ---- */
+.topnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.topnav .brand{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
+.topnav .brand .mark{width:22px;height:22px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--sans);font-weight:800;font-size:11px;border-radius:5px}
+.topnav .links{display:flex;gap:22px}
+.topnav .links a{color:var(--slate);text-decoration:none;transition:color .2s}
+.topnav .links a:hover{color:var(--ink)}
+.cta-pdf{background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:6px;text-decoration:none;font-weight:500;transition:background .2s}
+.cta-pdf:hover{background:var(--euc)}
+
+/* ---- hero bento ---- */
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px}
+.hero-main{background:var(--ink);color:var(--paper);border-radius:18px;padding:40px 40px 36px;position:relative;overflow:hidden}
+.hero-main::after{content:'';position:absolute;right:-60px;bottom:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(21,70,60,.6),transparent 70%)}
+.hero-main .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.hero-main .eyebrow::before{content:'';width:24px;height:1px;background:var(--signal)}
+.hero-main h1{font-family:var(--sans);font-weight:800;font-size:72px;line-height:.96;letter-spacing:-.045em;margin-bottom:22px;position:relative;z-index:1}
+.hero-main .thesis{font-family:var(--serif);font-size:19px;font-weight:400;line-height:1.45;max-width:30em;color:rgba(245,242,236,.85);position:relative;z-index:1}
+.hero-main .thesis em{font-style:italic;color:#9DCBBE}
+.hero-main .contact{margin-top:26px;font-family:var(--mono);font-size:11px;color:rgba(245,242,236,.6);position:relative;z-index:1}
+.hero-main .contact a{color:rgba(245,242,236,.85);text-decoration:none;border-bottom:1px solid rgba(245,242,236,.2)}
+.hero-main .contact .sep{color:rgba(245,242,236,.3);margin:0 8px}
+
+.hero-portrait{background:var(--card);border-radius:18px;position:relative;overflow:hidden;box-shadow:var(--shadow-md)}
+.hero-portrait .accent-shape{position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--euc),var(--euc-2));opacity:.15}
+.hero-portrait .img{position:absolute;inset:0;background:linear-gradient(135deg,#EFEBE2,#D8D2C6);display:grid;place-items:center}
+.hero-portrait .img::after{content:'PORTRAIT \A 4:5';white-space:pre;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--slate);text-align:center;line-height:1.8}
+
+/* ---- stat bento row ---- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px}
+.stat{background:var(--card);border-radius:14px;padding:22px 22px 20px;box-shadow:var(--shadow-sm);transition:transform .25s ease,box-shadow .25s ease;border:1px solid var(--rule)}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.stat .n{font-family:var(--sans);font-weight:800;font-size:42px;line-height:1;letter-spacing:-.04em;color:var(--ink);margin-bottom:8px}
+.stat .n .u{font-size:24px;font-weight:700;color:var(--euc)}
+.stat .n .ac{color:var(--signal)}
+.stat .l{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);line-height:1.4}
+.stat.feature{background:var(--euc);color:var(--paper);border-color:var(--euc)}
+.stat.feature .n{color:var(--paper)}
+.stat.feature .n .u{color:#9DCBBE}
+.stat.feature .l{color:rgba(245,242,236,.65)}
+
+/* ---- stack bento ---- */
+.stack{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.tile{background:var(--card);border-radius:14px;padding:24px 22px 22px;box-shadow:var(--shadow-sm);transition:transform .25s ease,box-shadow .25s ease;border:1px solid var(--rule);position:relative}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.tile .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--euc);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tile .tag .num{color:var(--slate)}
+.tile h3{font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:-.02em;line-height:1.2;margin-bottom:10px}
+.tile p{font-family:var(--serif);font-size:13.5px;line-height:1.5;color:var(--ink)}
+.tile .ai{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--euc);background:rgba(21,70,60,.08);padding:5px 9px;border-radius:5px}
+.tile .ai .d{width:6px;height:6px;border-radius:50%;background:var(--signal)}
+
+@media(max-width:760px){
+  .page{padding:24px 18px 44px}
+  .topnav .links{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-main{padding:28px 24px}
+  .hero-main h1{font-size:48px}
+  .hero-main .thesis{font-size:16px}
+  .hero-portrait{aspect-ratio:4/5;min-height:280px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stack{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .stat:hover,.tile:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="topnav">
+    <div class="brand"><div class="mark">M</div> Marcus Callon</div>
+    <div class="links"><a href="#">Stack</a><a href="#">Experience</a><a href="#">Clients</a><a href="#">Contact</a></div>
+    <a class="cta-pdf" href="#">Download PDF ↓</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Executive Profile</div>
+      <h1>Marcus<br>Callon.</h1>
+      <p class="thesis">
+        The <em>translator</em> across finance, product and architecture —
+        an operator fluent in P&amp;L, customer and code. Fractional and interim
+        CXO mandates for founders and boards who need senior alignment across
+        the commercial, product and technical stack.
+      </p>
+      <div class="contact">
+        <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
+        <span class="sep">·</span>
+        <a href="#">notorious.kiwi</a>
+        <span class="sep">·</span>
+        <a href="#">linkedin</a>
+        <span class="sep">·</span>
+        Brisbane
+      </div>
+    </div>
+    <div class="hero-portrait"><div class="accent-shape"></div><div class="img"></div></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat feature"><div class="n">4<span class="u">×</span></div><div class="l">Co-founder<br>publishing &amp; martech</div></div>
+    <div class="stat"><div class="n">20<span class="u">+ yrs</span></div><div class="l">Building software,<br>teams &amp; products</div></div>
+    <div class="stat"><div class="n" style="font-size:34px">ASX<span class="u" style="font-size:18px"> :XPN</span></div><div class="l">Listed CCPO</div></div>
+    <div class="stat"><div class="n"><span class="ac">AU</span><span class="u"> · UK</span></div><div class="l">Markets served</div></div>
+  </section>
+
+  <section class="stack">
+    <div class="tile">
+      <div class="tag"><span class="num">01</span>Finance / CFO</div>
+      <h3>P&amp;L seat, not back office.</h3>
+      <p>Interim CFO for a cashflow-challenged, superficially profitable business. Rebuilt finance ops as part of the value stream.</p>
+    </div>
+    <div class="tile">
+      <div class="tag"><span class="num">02</span>Product / CPO</div>
+      <h3>Early-stage &amp; reinvention.</h3>
+      <p>ASX-listed CCPO. Four-time co-founder. Early-stage product and reinvention — problem–solution fit aligned to business goals.</p>
+    </div>
+    <div class="tile">
+      <div class="tag"><span class="num">03</span>Architecture / CTO</div>
+      <h3>Enterprise to AI-native.</h3>
+      <p>Enterprise architect (gov, financial services). Lead dev, Mastercard gateway. Today builds AI agents that execute the stack.</p>
+      <span class="ai"><span class="d"></span>pi · Claude Code</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
