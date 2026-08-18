@@ -1257,6 +1257,18 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     });
   })();
 
+  // ---- Smooth-scroll anchor links via Lenis ----
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      var target = id.length > 1 ? document.querySelector(id) : null;
+      if (target && typeof __lenis !== 'undefined') {
+        e.preventDefault();
+        __lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+      }
+    });
+  });
+
   // ---- Hero mark: subtle parallax on scroll ----
   var heroMark = document.querySelector('.hero-mark');
   if (heroMark) {
