@@ -486,7 +486,26 @@ def gen_footer(text):
     </div>
   </footer>'''
 
-# ---------------- assemble ----------------
+def gen_cta(text):
+    kv = {}
+    for ln in text.splitlines():
+        if ln.startswith('#') or not ln.strip():
+            continue
+        m = re.match(r'^(cta_\w+):\s*(.*)$', ln)
+        if m:
+            kv[m.group(1)] = m.group(2).strip()
+    heading = inline(kv.get('cta_heading', 'Start a conversation.'), ital_class=True)
+    body = inline(kv.get('cta_body', ''), ital_class=True)
+    btn = esc(kv.get('cta_button', 'Email'))
+    href = esc(kv.get('cta_href', 'mailto:marcus.callon@gmail.com'))
+    return {
+        'heading': heading,
+        'body': body,
+        'button': btn,
+        'href': href,
+    }
+
+
 
 tpl = open('template.html').read()
 meta_txt = open('content/meta.md').read()
@@ -524,6 +543,11 @@ out = out.replace('{{EARLIER_ROWS}}', gen_earlier(open('content/earlier.md').rea
 out = out.replace('{{ENGAGE_TITLE}}', section_heading('content/engage.md', 'How I engage'))
 out = out.replace('{{ENGAGE_UL}}', gen_engage(open('content/engage.md').read()))
 # signature section removed in v13.
+cta = gen_cta(open('content/cta.md').read())
+out = out.replace('{{CTA_HEADING}}', cta['heading'])
+out = out.replace('{{CTA_BODY}}', cta['body'])
+out = out.replace('{{CTA_BUTTON}}', cta['button'])
+out = out.replace('{{CTA_HREF}}', cta['href'])
 out = out.replace('{{FOOTER}}', gen_footer(open('content/footer.md').read()))
 
 def externalize_links(html):

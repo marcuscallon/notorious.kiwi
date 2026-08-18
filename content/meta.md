@@ -14,11 +14,11 @@ name_line2: Callon.
 thesis:
 - The *translator* across product, finance & architecture {mdash}
 - an operator who leads with product, fluent in customer, P&L and code.
-- Fractional & interim CXO mandates for founders & boards.
+- Fractional & interim CXO mandates for founders, executive leadership & boards.
 
 # Stats: value unit | label line 1 ; label line 2 [:: feature]
 stats:
-- 4 × | Co-founder across ; publishing & martech :: feature
+- 4 × | Co-founder across ; publishing, martech & consulting services :: feature
 - 20 + yrs | ·  Executive; · product; · finance; · commercial; · technical; · operations
 - ASX | Listed Chief Customer ; & Product Officer
 

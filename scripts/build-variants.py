@@ -15,6 +15,12 @@ def must(old, new, s, label):
         print(f"!! anchor not found: {label}", file=sys.stderr); sys.exit(1)
     return s.replace(old, new, 1)
 
+def soft_must(old, new, s, label):
+    """Replace if present; otherwise leave s unchanged (for optional / commented blocks)."""
+    if old not in s:
+        return s
+    return s.replace(old, new, 1)
+
 LUC = lambda paths: f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{paths}</svg>'
 ICONS = {
   'compass': LUC('<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>'),
@@ -54,7 +60,7 @@ eng = [('<strong>Fractional &amp; interim CXO.</strong>','briefcase'),
        ('<strong>Advisory Boards, Working groups, not lone turnarounds.</strong>','users'),
        ('<strong><em>AI-native</em> build-measure-learn.</strong>','bot')]
 for strong, ico in eng:
-    v3 = must(strong, f'<span class="eng-ico">{ICONS[ico]}</span>'+strong, v3, 'engage '+ico)
+    v3 = soft_must(strong, f'<span class="eng-ico">{ICONS[ico]}</span>'+strong, v3, 'engage '+ico)
 v3 = must('<summary>Clients &amp; employers</summary>',
           f'<summary><span class="summary-ico">{ICONS["users"]}</span>Clients &amp; employers</summary>', v3, 'clients summary')
 v3 = v3.replace('<title>', '<title>[ICON-RICH] ')
