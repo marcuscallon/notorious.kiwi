@@ -330,6 +330,31 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    CLIENT LOGO GRID
    ============================================ */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+/* marks mode: uniform logomark tiles, org name revealed on hover */
+.logo-grid.mode-marks .logo-cat { padding: 20px 20px 22px; }
+.logo-grid.mode-marks .logo-row { gap: 12px; }
+.logo-grid.mode-marks .logo {
+  position: relative; width: 54px; height: 54px; justify-content: center;
+  background: var(--ink-2); border: 1px solid var(--rule); border-radius: 9px;
+  opacity: 0.85;
+}
+.logo-grid.mode-marks .logo:hover { z-index: 5; }
+.logo-grid.mode-marks .logo svg { max-width: 34px; max-height: 30px; height: auto; }
+.logo-grid.mode-marks .logo svg text { font-size: 12px; }
+.logo-grid.mode-marks .logo .wm { font-size: 10px; letter-spacing: 0.08em; white-space: normal; text-align: center; line-height: 1.25; }
+.logo-grid.mode-marks .logo .wm.serif,
+.logo-grid.mode-marks .logo .wm.serif-up { font-size: 11px; letter-spacing: 0.01em; }
+.logo-grid.mode-marks .logo .wm.sans,
+.logo-grid.mode-marks .logo .wm.sans-track { font-size: 9.5px; letter-spacing: 0.14em; }
+.logo-grid.mode-marks .logo .lg-name {
+  position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%) translateY(4px);
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; white-space: nowrap;
+  color: var(--cream); background: var(--ink-2); border: 1px solid var(--rule);
+  padding: 5px 9px; border-radius: 5px; pointer-events: none;
+  opacity: 0; transition: opacity .25s ease, transform .25s ease;
+}
+.logo-grid.mode-marks .logo:hover .lg-name,
+.logo-grid.mode-marks .logo:focus-visible .lg-name { opacity: 1; transform: translateX(-50%) translateY(0); }
 .logo-cat { background: var(--ink); padding: 26px 24px 24px; }
 .logo-cat .cg-k { font-family: var(--sans); font-size: 9.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-3); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--rule-2); }
 .logo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 26px; }
@@ -347,8 +372,8 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 /* ============================================
    EXPERIENCE
    ============================================ */
-.role { display: grid; grid-template-columns: 92px 56px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--rule); align-items: start; }
-.role-logo { width: 64px; height: 64px; display: grid; place-items: center; color: var(--cream-2); background: var(--ink-2); border: 1px solid var(--rule); border-radius: 10px; padding: 9px; transition: transform .3s, border-color .3s; flex-shrink: 0; }
+.role { display: grid; grid-template-columns: 92px 92px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--rule); align-items: start; }
+.role-logo { width: 96px; height: 76px; display: grid; place-items: center; color: var(--cream-2); background: var(--ink-2); border: 1px solid var(--rule); border-radius: 10px; padding: 10px; transition: transform .3s, border-color .3s; flex-shrink: 0; position: relative; }
 .role:hover .role-logo { transform: translateY(-2px); border-color: var(--cream-3); }
 .role-logo svg { width: 100%; height: auto; max-height: 46px; display: block; color: var(--cream-2); }
 .role-logo .wm { color: inherit; }
@@ -358,7 +383,7 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .role-logo .wm.sans-track { font-family: var(--sans); font-weight: 600; font-size: 9.5px; letter-spacing: 0.14em; line-height: 1.35; }
 .role-logo img.rl {
   filter: grayscale(1) contrast(0.95) brightness(1.15);
-  max-width: 88%; max-height: 26px; object-fit: contain;
+  max-width: 68px; max-height: 46px; object-fit: contain;
   transition: filter 0.4s var(--ease);
 }
 .role:hover .role-logo img.rl { filter: none; }
@@ -408,35 +433,45 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 .signature .strengths { font-family: var(--serif); font-size: 14px; line-height: 1.8; color: var(--cream-2); }
 .signature .strengths strong { display: block; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
 
+/* ===========================================================
+   EDUCATION
+============================================================== */
+.edu-sec { border-top: 1px solid var(--rule); padding: 26px 0; }
+.edu-row { display: flex; align-items: center; gap: 22px; }
+.edu-logo { width: 46px; height: auto; filter: grayscale(1) brightness(1.6) opacity(.85); flex-shrink: 0; }
+.edu-lines p { font-family: var(--serif); font-size: 15px; color: var(--cream); line-height: 1.55; }
+
 /* ============================================
-   PEPEHA
+   PEPEHA (collapsed by default; expands to the full lines + photo)
 ===================================================================== */
 .pepeha {
-  border-top: 1px solid var(--rule); margin-top: 40px; padding: 28px 0 8px;
-  text-align: center; position: relative;
+  border-top: 1px solid var(--rule); margin-top: 40px; padding: 20px 0;
 }
-.pepeha .pp-label {
+.pepeha summary {
+  list-style: none; cursor: pointer; text-align: center;
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--cream-3); margin-bottom: 14px;
+  color: var(--cream-3); padding: 6px 0;
+}
+.pepeha summary::-webkit-details-marker { display: none; }
+.pepeha summary::before { content: '+'; color: var(--signal); margin-right: 9px; font-weight: 500; }
+.pepeha[open] summary::before { content: '–'; }
+.pepeha .pp-body {
+  display: grid; grid-template-columns: 1fr minmax(0, 340px); gap: 40px; align-items: center;
+  padding: 26px 0 14px; max-width: 880px; margin: 0 auto;
 }
 .pepeha .pp-lines {
-  font-family: var(--serif); font-size: 1.25rem; line-height: 1.7; color: var(--cream-2);
-  font-variation-settings: "opsz" 72;
+  font-family: var(--serif); font-size: 1.3rem; line-height: 1.75; color: var(--cream-2);
+  font-variation-settings: "opsz" 72; text-align: left;
 }
 .pepeha .pp-lines span { display: block; }
 .pepeha .pp-lines span + span { margin-top: 2px; }
-.pepeha .pp-imgwrap {
-  position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translate(-50%, 10px) scale(.97);
-  opacity: 0; pointer-events: none; z-index: 4;
-  transition: opacity .4s var(--ease), transform .4s var(--ease);
-  max-width: min(640px, 90vw);
-}
-.pepeha .pp-imgwrap img {
+.pepeha .pp-body img {
   display: block; width: 100%; height: auto; border: 1px solid var(--rule);
-  border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  border-radius: 6px; filter: grayscale(.2);
 }
-.pepeha:hover .pp-imgwrap,
-.pepeha:focus-within .pp-imgwrap { opacity: 1; transform: translate(-50%, 0) scale(1); }
+@media (max-width: 720px) {
+  .pepeha .pp-body { grid-template-columns: 1fr; gap: 22px; }
+}
 
 /* =====================================================================
    FOOTER
@@ -583,10 +618,10 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .skill-icon { display: none !important; }
   .engage li::before { top: 1px; }
   .foot { padding: 1px 0 0; margin-top: 1px; }
-  .foot .edu strong { display: none; }
-  .foot .edu p { font-size: 6.2pt; line-height: 1.15; display: inline; }
-  .foot .edu p + p { margin-top: 0; }
-  .foot .edu p + p::before { content: '  ·  '; font-family: var(--mono); color: var(--cream-3); }
+  .edu-sec { border: none; padding: 0; }
+  .edu-sec .cg-k, .edu-sec .edu-logo { display: none; }
+  .edu-lines p { font-size: 6.2pt; line-height: 1.15; display: inline; }
+  .edu-lines p + p::before { content: '  ·  '; font-family: var(--mono); color: #6b6f76; }
   .foot .meta { display: none; }
   /* Review H1: mobile 820px rules leak into print - re-pin grid layouts */
   .spec { grid-template-columns: repeat(5, 1fr) !important; }
@@ -783,52 +818,52 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= CLIENTS (optional) ================= -->
   <details class="signature-group clients-group" id="clients" open>
     <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients &amp; employers</summary>
-    <div class="clients-print" aria-hidden="true">BBC &middot; the Guardian &middot; ESPN &middot; The Times &middot; Financial Times &middot; HEARST &middot; Mastercard &middot; RACQ &middot; XPON &middot; Queensland Transport &middot; EQC &middot; Shorthand &middot; Holoscribe &middot; Immersive &middot; FOCAL LABS &middot; University of Otago</div>
-    <div class="logo-grid" data-reveal>
+    <div class="clients-print" aria-hidden="true">BBC &middot; the Guardian &middot; ESPN &middot; The Times &middot; Financial Times &middot; HEARST &middot; Mastercard &middot; RACQ &middot; XPON &middot; Queensland Transport &middot; EQC &middot; Shorthand &middot; Holoscribe &middot; Immersive &middot; FOCAL LABS &middot; University of Otago &middot; Wondaris</div>
+    <div class="logo-grid mode-marks" data-reveal>
       <div class="logo-cat">
         <div class="cg-k">Media &amp; publishing</div>
         <div class="logo-row">
-          <span class="logo feat" title="BBC"><svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></g><g fill="#15181C" font-family="Arial,sans-serif" font-weight="700" font-size="14" text-anchor="middle"><text x="13" y="21">B</text><text x="45" y="21">B</text><text x="77" y="21">C</text></g></svg></span>
-          <span class="logo" title="the Guardian"><span class="wm serif">the Guardian</span></span>
-          <span class="logo espn" title="ESPN"><span class="wm sans">ESPN</span></span>
-          <span class="logo" title="The Times"><span class="wm serif-up">The Times</span></span>
-          <span class="logo" title="Financial Times"><svg viewBox="0 0 44 30" fill="none" aria-label="Financial Times"><rect x="1" y="1" width="42" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/><text x="22" y="21" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="15" fill="currentColor">FT</text></svg></span>
-          <span class="logo" title="HEARST"><span class="wm sans-track">HEARST</span></span>
+          <span class="logo feat" title="BBC" tabindex="0"><svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></g><g fill="#15181C" font-family="Arial,sans-serif" font-weight="700" font-size="14" text-anchor="middle"><text x="13" y="21">B</text><text x="45" y="21">B</text><text x="77" y="21">C</text></g></svg><span class="lg-name">BBC</span></span>
+          <span class="logo" title="the Guardian" tabindex="0"><span class="wm serif">the Guardian</span><span class="lg-name">the Guardian</span></span>
+          <span class="logo espn" title="ESPN" tabindex="0"><span class="wm sans">ESPN</span><span class="lg-name">ESPN</span></span>
+          <span class="logo" title="The Times" tabindex="0"><span class="wm serif-up">The Times</span><span class="lg-name">The Times</span></span>
+          <span class="logo" title="Financial Times" tabindex="0"><svg viewBox="0 0 44 30" fill="none" aria-label="Financial Times"><rect x="1" y="1" width="42" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/><text x="22" y="21" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="15" fill="currentColor">FT</text></svg><span class="lg-name">Financial Times</span></span>
+          <span class="logo" title="HEARST" tabindex="0"><span class="wm sans-track">HEARST</span><span class="lg-name">HEARST</span></span>
         </div>
       </div>
       <div class="logo-cat">
         <div class="cg-k">Financial services</div>
         <div class="logo-row">
-          <span class="logo feat" title="Mastercard"><svg viewBox="0 0 48 30" aria-label="Mastercard"><circle cx="18" cy="15" r="11" fill="currentColor" opacity="0.55"/><circle cx="30" cy="15" r="11" fill="currentColor" opacity="0.55" style="mix-blend-mode:screen"/></svg></span>
+          <span class="logo feat" title="Mastercard" tabindex="0"><svg viewBox="0 0 48 30" aria-label="Mastercard"><circle cx="18" cy="15" r="11" fill="currentColor" opacity="0.55"/><circle cx="30" cy="15" r="11" fill="currentColor" opacity="0.55" style="mix-blend-mode:screen"/></svg><span class="lg-name">Mastercard</span></span>
         </div>
       </div>
       <div class="logo-cat">
         <div class="cg-k">Insurance &amp; listed</div>
         <div class="logo-row">
-          <span class="logo" title="RACQ"><span class="wm sans">RACQ</span></span>
-          <span class="logo" title="XPON"><span class="wm sans-track">XPON</span></span>
+          <span class="logo" title="RACQ" tabindex="0"><span class="wm sans">RACQ</span><span class="lg-name">RACQ</span></span>
+          <span class="logo" title="XPON" tabindex="0"><span class="wm sans-track">XPON</span><span class="lg-name">XPON</span></span>
         </div>
       </div>
       <div class="logo-cat">
         <div class="cg-k">Government</div>
         <div class="logo-row">
-          <span class="logo" title="Queensland Transport"><span class="wm serif-up">Queensland Transport</span></span>
-          <span class="logo" title="EQC"><span class="wm sans-track">EQC</span></span>
+          <span class="logo" title="Queensland Transport" tabindex="0"><span class="wm serif-up">Queensland Transport</span><span class="lg-name">Queensland Transport</span></span>
+          <span class="logo" title="EQC" tabindex="0"><span class="wm sans-track">EQC</span><span class="lg-name">EQC</span></span>
         </div>
       </div>
       <div class="logo-cat">
         <div class="cg-k">Ventures founded</div>
         <div class="logo-row">
-          <span class="logo feat" title="Shorthand"><span class="wm serif">Shorthand</span></span>
-          <span class="logo" title="Holoscribe"><span class="wm sans">Holoscribe</span></span>
-          <span class="logo" title="Immersive"><span class="wm serif">Immersive</span></span>
-          <span class="logo" title="FOCAL LABS"><span class="wm sans-track">FOCAL LABS</span></span>
+          <span class="logo feat" title="Shorthand" tabindex="0"><span class="wm serif">Shorthand</span><span class="lg-name">Shorthand</span></span>
+          <span class="logo" title="Holoscribe" tabindex="0"><span class="wm sans">Holoscribe</span><span class="lg-name">Holoscribe</span></span>
+          <span class="logo" title="Immersive" tabindex="0"><span class="wm serif">Immersive</span><span class="lg-name">Immersive</span></span>
+          <span class="logo" title="FOCAL LABS" tabindex="0"><span class="wm sans-track">FOCAL LABS</span><span class="lg-name">FOCAL LABS</span></span>
         </div>
       </div>
       <div class="logo-cat">
         <div class="cg-k">Education</div>
         <div class="logo-row">
-          <span class="logo" title="University of Otago"><span class="wm serif-up">University of Otago</span></span>
+          <span class="logo" title="University of Otago" tabindex="0"><span class="wm serif-up">University of Otago</span><span class="lg-name">University of Otago</span></span>
         </div>
       </div>
     </div>
@@ -897,7 +932,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2017<span class="dur">—2020</span></div>
-      <div class="role-logo" title="4impact"><svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg></div>
+      <div class="role-logo" title="4impact"><img class="rl" src="assets/4impact_logo.jpeg" style="filter: invert(1) grayscale(1);" alt="4impact" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="4impact"><svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg></span></div>
       <div class="role-body">
         <h4>Strategy, Innovation &amp; Transformation Advisor <span class="org">— 4impact</span></h4>
         <ul>
@@ -911,7 +946,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2019<span class="dur">2019</span></div>
-      <div class="role-logo" title="4impact"><svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg></div>
+      <div class="role-logo" title="4impact"><img class="rl" src="assets/4impact_logo.jpeg" style="filter: invert(1) grayscale(1);" alt="4impact" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="4impact"><svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg></span></div>
       <div class="role-body">
         <h4>Acting Chief Financial Officer <span class="org">— 4impact</span></h4>
         <ul>
@@ -925,7 +960,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2015<span class="dur">—2017</span></div>
-      <div class="role-logo" title="EQC New Zealand"><svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="currentColor">EQC</text></svg></div>
+      <div class="role-logo" title="EQC New Zealand"><img class="rl" src="assets/naturalhazardscommission_logo.jpeg" style="filter: grayscale(1) brightness(1.15); mix-blend-mode: screen;" alt="EQC New Zealand" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="EQC New Zealand"><svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="currentColor">EQC</text></svg></span></div>
       <div class="role-body">
         <h4>Engagement Project Manager <span class="org">— Earthquake Commission (EQC, NZ) via 4impact</span></h4>
         <p class="lede">Led the client stakeholder engagement for an end-to-end claims management system for New Zealand's Earthquake Commission.</p>
@@ -994,46 +1029,31 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span><strong><em>AI-native</em> build-measure-learn.</strong> <span class="engage-desc">Concept → validated solution → launch, with agents (pi, Claude Code) doing the heavy build and test loop alongside human judgement. Done means enough to solve the problem or prove the assumption — not perfect.</span></li>
     </ul>  </section>
 
-  <!-- ================= OPTIONAL SIGNATURE ================= -->
-  <details class="signature-group">
-    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Values &amp; signature</summary>
-    <section class="signature">
-      <blockquote class="sig-quote">
-        &#8220;I am a genius as I curiously and authentically encourage myself and others to explore and challenge the status quo to create solutions that matter.&#8221;
-        <cite>Personal signature</cite>
-      </blockquote>
-      <div class="strengths">
-        <strong>VIA Character Strengths</strong>
-        <ul class="strengths-list">
-          <li>Creativity &amp; ingenuity</li>
-          <li>Honesty &amp; authenticity</li>
-          <li>Curiosity</li>
-          <li>Judgement &amp; open-mindedness</li>
-          <li>Bravery</li>
-          <li>Zest &amp; energy</li>
-          <li>Hope &amp; future-mindedness</li>
-        </ul>
+  <!-- ================= EDUCATION + PEPEHA + FOOTER ================= -->
+<section class="edu-sec" data-reveal>
+    <div class="cg-k">Education</div>
+    <div class="edu-row">
+      <img class="edu-logo" src="assets/university-of-otago.svg" alt="University of Otago">
+      <div class="edu-lines">
+          <p>BCom — Accounting &amp; Finance, University of Otago</p>
+          <p>BSc — Computer Science &amp; Information Science, University of Otago</p>
       </div>
-    </section>
-  </details>
-  <!-- ================= FOOTER ================= -->
-<div class="pepeha" tabindex="0">
-      <div class="pp-label">Pepeha</div>
+    </div>
+  </section>
+<details class="pepeha">
+    <summary>Pepeha</summary>
+    <div class="pp-body">
       <div class="pp-lines">
-        <span>Ko Kopuwai te maunga.</span>
-        <span>Ko Mata-au te awa.</span>
-        <span>Ko Marcus tōku ingoa.</span>
+          <span>Ko Kopuwai te maunga.</span>
+          <span>Ko Mata-au te awa.</span>
+          <span>Ko Marcus tōku ingoa.</span>
       </div>
-      <div class="pp-imgwrap"><img src="assets/marcus-pepeha.jpg" alt="Pepeha — family at Kopuwai maunga by the Mata-au awa"></div>
+      <img src="assets/marcus-pepeha.jpg" alt="Pepeha — family at Kopuwai maunga by the Mata-au awa">
     </div>
+  </details>
   <footer class="foot">
-    <div class="edu" data-reveal>
-      <strong>Education</strong>
-      <div class="edu-line"><span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><p>BCom — Accounting &amp; Finance, University of Otago</p></div>
-      <div class="edu-line"><span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><p>BSc — Computer Science &amp; Information Science, University of Otago</p></div>
-    </div>
-    <div class="meta">
-      Marcus Callon · Brisbane, Australia<br>
+    <div class="meta" style="grid-column: 1 / -1; text-align: center; justify-self: center;">
+      Marcus Callon · Brisbane, Australia &middot;
       <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
     </div>
   </footer>

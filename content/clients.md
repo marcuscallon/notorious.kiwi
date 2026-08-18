@@ -8,6 +8,15 @@
 #         serif / serif-up / sans / sans-track
 # ============================================================
 
+# Display mode for the web logo wall:
+#   style: words  - serif/sans wordmarks inline (the editorial-wall look)
+#   style: marks  - uniform logomark tiles; org name appears on hover/focus
+style: marks
+
+# Print marquee (single line, shown only in the PDF) — order:
+# display names as listed above, then this extra token.
+marquee_extra: Wondaris
+
 ## Media & publishing
 - BBC = bbc +
 - the Guardian = serif
@@ -35,7 +44,3 @@
 
 ## Education
 - University of Otago = serif-up
-
-# Print marquee (single line, shown only in the PDF) — order:
-# display names as listed above, then this extra token.
-marquee_extra: Wondaris

@@ -330,6 +330,31 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    CLIENT LOGO GRID
    ============================================ */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+/* marks mode: uniform logomark tiles, org name revealed on hover */
+.logo-grid.mode-marks .logo-cat { padding: 20px 20px 22px; }
+.logo-grid.mode-marks .logo-row { gap: 12px; }
+.logo-grid.mode-marks .logo {
+  position: relative; width: 54px; height: 54px; justify-content: center;
+  background: var(--ink-2); border: 1px solid var(--rule); border-radius: 9px;
+  opacity: 0.85;
+}
+.logo-grid.mode-marks .logo:hover { z-index: 5; }
+.logo-grid.mode-marks .logo svg { max-width: 34px; max-height: 30px; height: auto; }
+.logo-grid.mode-marks .logo svg text { font-size: 12px; }
+.logo-grid.mode-marks .logo .wm { font-size: 10px; letter-spacing: 0.08em; white-space: normal; text-align: center; line-height: 1.25; }
+.logo-grid.mode-marks .logo .wm.serif,
+.logo-grid.mode-marks .logo .wm.serif-up { font-size: 11px; letter-spacing: 0.01em; }
+.logo-grid.mode-marks .logo .wm.sans,
+.logo-grid.mode-marks .logo .wm.sans-track { font-size: 9.5px; letter-spacing: 0.14em; }
+.logo-grid.mode-marks .logo .lg-name {
+  position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%) translateY(4px);
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; white-space: nowrap;
+  color: var(--cream); background: var(--ink-2); border: 1px solid var(--rule);
+  padding: 5px 9px; border-radius: 5px; pointer-events: none;
+  opacity: 0; transition: opacity .25s ease, transform .25s ease;
+}
+.logo-grid.mode-marks .logo:hover .lg-name,
+.logo-grid.mode-marks .logo:focus-visible .lg-name { opacity: 1; transform: translateX(-50%) translateY(0); }
 .logo-cat { background: var(--ink); padding: 26px 24px 24px; }
 .logo-cat .cg-k { font-family: var(--sans); font-size: 9.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-3); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--rule-2); }
 .logo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 26px; }
@@ -347,8 +372,8 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 /* ============================================
    EXPERIENCE
    ============================================ */
-.role { display: grid; grid-template-columns: 92px 56px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--rule); align-items: start; }
-.role-logo { width: 64px; height: 64px; display: grid; place-items: center; color: var(--cream-2); background: var(--ink-2); border: 1px solid var(--rule); border-radius: 10px; padding: 9px; transition: transform .3s, border-color .3s; flex-shrink: 0; }
+.role { display: grid; grid-template-columns: 92px 92px 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--rule); align-items: start; }
+.role-logo { width: 96px; height: 76px; display: grid; place-items: center; color: var(--cream-2); background: var(--ink-2); border: 1px solid var(--rule); border-radius: 10px; padding: 10px; transition: transform .3s, border-color .3s; flex-shrink: 0; position: relative; }
 .role:hover .role-logo { transform: translateY(-2px); border-color: var(--cream-3); }
 .role-logo svg { width: 100%; height: auto; max-height: 46px; display: block; color: var(--cream-2); }
 .role-logo .wm { color: inherit; }
@@ -358,7 +383,7 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .role-logo .wm.sans-track { font-family: var(--sans); font-weight: 600; font-size: 9.5px; letter-spacing: 0.14em; line-height: 1.35; }
 .role-logo img.rl {
   filter: grayscale(1) contrast(0.95) brightness(1.15);
-  max-width: 88%; max-height: 26px; object-fit: contain;
+  max-width: 68px; max-height: 46px; object-fit: contain;
   transition: filter 0.4s var(--ease);
 }
 .role:hover .role-logo img.rl { filter: none; }
@@ -408,35 +433,45 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 .signature .strengths { font-family: var(--serif); font-size: 14px; line-height: 1.8; color: var(--cream-2); }
 .signature .strengths strong { display: block; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
 
+/* ===========================================================
+   EDUCATION
+============================================================== */
+.edu-sec { border-top: 1px solid var(--rule); padding: 26px 0; }
+.edu-row { display: flex; align-items: center; gap: 22px; }
+.edu-logo { width: 46px; height: auto; filter: grayscale(1) brightness(1.6) opacity(.85); flex-shrink: 0; }
+.edu-lines p { font-family: var(--serif); font-size: 15px; color: var(--cream); line-height: 1.55; }
+
 /* ============================================
-   PEPEHA
+   PEPEHA (collapsed by default; expands to the full lines + photo)
 ===================================================================== */
 .pepeha {
-  border-top: 1px solid var(--rule); margin-top: 40px; padding: 28px 0 8px;
-  text-align: center; position: relative;
+  border-top: 1px solid var(--rule); margin-top: 40px; padding: 20px 0;
 }
-.pepeha .pp-label {
+.pepeha summary {
+  list-style: none; cursor: pointer; text-align: center;
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--cream-3); margin-bottom: 14px;
+  color: var(--cream-3); padding: 6px 0;
+}
+.pepeha summary::-webkit-details-marker { display: none; }
+.pepeha summary::before { content: '+'; color: var(--signal); margin-right: 9px; font-weight: 500; }
+.pepeha[open] summary::before { content: '–'; }
+.pepeha .pp-body {
+  display: grid; grid-template-columns: 1fr minmax(0, 340px); gap: 40px; align-items: center;
+  padding: 26px 0 14px; max-width: 880px; margin: 0 auto;
 }
 .pepeha .pp-lines {
-  font-family: var(--serif); font-size: 1.25rem; line-height: 1.7; color: var(--cream-2);
-  font-variation-settings: "opsz" 72;
+  font-family: var(--serif); font-size: 1.3rem; line-height: 1.75; color: var(--cream-2);
+  font-variation-settings: "opsz" 72; text-align: left;
 }
 .pepeha .pp-lines span { display: block; }
 .pepeha .pp-lines span + span { margin-top: 2px; }
-.pepeha .pp-imgwrap {
-  position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translate(-50%, 10px) scale(.97);
-  opacity: 0; pointer-events: none; z-index: 4;
-  transition: opacity .4s var(--ease), transform .4s var(--ease);
-  max-width: min(640px, 90vw);
-}
-.pepeha .pp-imgwrap img {
+.pepeha .pp-body img {
   display: block; width: 100%; height: auto; border: 1px solid var(--rule);
-  border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  border-radius: 6px; filter: grayscale(.2);
 }
-.pepeha:hover .pp-imgwrap,
-.pepeha:focus-within .pp-imgwrap { opacity: 1; transform: translate(-50%, 0) scale(1); }
+@media (max-width: 720px) {
+  .pepeha .pp-body { grid-template-columns: 1fr; gap: 22px; }
+}
 
 /* =====================================================================
    FOOTER
@@ -583,10 +618,10 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .skill-icon { display: none !important; }
   .engage li::before { top: 1px; }
   .foot { padding: 1px 0 0; margin-top: 1px; }
-  .foot .edu strong { display: none; }
-  .foot .edu p { font-size: 6.2pt; line-height: 1.15; display: inline; }
-  .foot .edu p + p { margin-top: 0; }
-  .foot .edu p + p::before { content: '  ·  '; font-family: var(--mono); color: var(--cream-3); }
+  .edu-sec { border: none; padding: 0; }
+  .edu-sec .cg-k, .edu-sec .edu-logo { display: none; }
+  .edu-lines p { font-size: 6.2pt; line-height: 1.15; display: inline; }
+  .edu-lines p + p::before { content: '  ·  '; font-family: var(--mono); color: #6b6f76; }
   .foot .meta { display: none; }
   /* Review H1: mobile 820px rules leak into print - re-pin grid layouts */
   .spec { grid-template-columns: repeat(5, 1fr) !important; }
@@ -675,9 +710,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     </div>
 {{ENGAGE_UL}}  </section>
 
-  <!-- ================= OPTIONAL SIGNATURE ================= -->
-{{SIGNATURE}}
-  <!-- ================= FOOTER ================= -->
+  <!-- ================= EDUCATION + PEPEHA + FOOTER ================= -->
 {{FOOTER}}
 </article>
 

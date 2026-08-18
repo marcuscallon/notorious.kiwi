@@ -10,19 +10,20 @@ content/            <-- EDIT THESE. Markdown + tiny frontmatter.
   meta.md               hero: name, thesis, stats, spec strip, contact
   stack.md              the 4 CXO pillar tiles
   competencies.md       the 4 executive-competency columns
-  clients.md            grouped client/employer logo wall + print marquee
+  clients.md            grouped client/employer logo wall + print marquee;
+                        `style: marks|words` toggles logomark tiles (hover
+                        to reveal the org name) vs inline wordmarks
   roles/*.md            one file per experience role (frontmatter: start,
                         end, title, org, logo, tags; body: lede + bullets)
   earlier.md            the 2000-2013 history rows
   engage.md             how-I-engage bullets
-  signature.md          quote + VIA strengths (collapsed on the site)
-  footer.md             education + footer contact
+  footer.md             education entries, pepeha lines + photo, footer contact
 
 template.html       <-- the design shell (do not edit content here;
                         only structural/style work belongs here)
 scripts/
   build.py            compiles content/*.md + template.html -> src/profile.html
-  build-variants.py   writes src/variants/v3-icon-rich.html + v4-real-logos.html
+  build-variants.py   writes src/variants/v3-icon-rich.html
 src/profile.html    <-- GENERATED. Do not hand-edit.
 src/variants/       <-- GENERATED comparisons (v3-icon-rich; v1/v2 are
                         older direction studies; v4-real-logos was promoted

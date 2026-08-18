@@ -213,9 +213,10 @@ def gen_competencies(text):
     out.append('    </div>')
     return '\n'.join(out)
 
-def client_mark(name, style, feat):
+def client_mark(name, style, feat, marks_mode=False):
     feat_cls = ' feat' if feat else ''
     t = esc(name)
+    label = f'<span class="lg-name">{t}</span>' if marks_mode else ''
     if style == 'bbc':
         svg = ('<svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor">'
                '<rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/>'
@@ -233,15 +234,16 @@ def client_mark(name, style, feat):
                  '<circle cx="18" cy="15" r="11" fill="currentColor" opacity="0.55"/>'
                  '<circle cx="30" cy="15" r="11" fill="currentColor" opacity="0.55" style="mix-blend-mode:screen"/></svg>')
     elif style == 'espn':
-        return f'          <span class="logo espn{feat_cls}" title="{t}"><span class="wm sans">{t}</span></span>'
+        return f'          <span class="logo espn{feat_cls}" title="{t}" tabindex="0"><span class="wm sans">{t}</span>{label}</span>'
     else:
-        return f'          <span class="logo{feat_cls}" title="{t}"><span class="wm {style}">{t}</span></span>'
-    return f'          <span class="logo{feat_cls}" title="{t}">{inner}</span>'
+        return f'          <span class="logo{feat_cls}" title="{t}" tabindex="0"><span class="wm {style}">{t}</span>{label}</span>'
+    return f'          <span class="logo{feat_cls}" title="{t}" tabindex="0">{inner}{label}</span>'
 
 def gen_clients(text):
     meta_lines, blocks = parse_sections(text)
-    # restore "# " heading lines were "## " blocks only at top-level groups...
     kv = parse_keyvals(meta_lines)
+    mode = kv.get('style', 'words')  # 'words' (wordmark wall) or 'marks' (tile + hover name)
+    marks_mode = (mode == 'marks')
     marquee_extra = kv.get('marquee_extra', '')
     names = []
     groups = []
@@ -255,7 +257,7 @@ def gen_clients(text):
                 if feat: ent = ent[:-2].strip()
                 nm, sty = ent.split(' = ', 1) if ' = ' in ent else (ent, 'sans')
                 names.append(nm)
-                rows.append(client_mark(nm.strip(), sty.strip(), feat))
+                rows.append(client_mark(nm.strip(), sty.strip(), feat, marks_mode))
         groups.append(f'''      <div class="logo-cat">
         <div class="cg-k">{esc(gname)}</div>
         <div class="logo-row">
@@ -265,10 +267,11 @@ def gen_clients(text):
     marquee = names[:]
     if marquee_extra: marquee.append(marquee_extra)
     marquee_html = ' &middot; '.join(esc(n) for n in marquee)
+    mode_cls = ' mode-marks' if marks_mode else ''
     return f'''  <details class="signature-group clients-group" id="clients" open>
     <summary>Clients &amp; employers</summary>
     <div class="clients-print" aria-hidden="true">{marquee_html}</div>
-    <div class="logo-grid" data-reveal>
+    <div class="logo-grid{mode_cls}" data-reveal>
 {os.linesep.join(groups)}
     </div>
   </details>'''
@@ -276,9 +279,9 @@ def gen_clients(text):
 ROLE_LOGOS = {
   'xpon': ('XPON Technologies (ASX:XPN)', 'assets/XPON_logomark_RGB-white@3x.png', '',
            '<svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg>'),
-  '4impact': ('4impact', None, '',
+  '4impact': ('4impact', 'assets/4impact_logo.jpeg', 'filter: invert(1) grayscale(1);',
               '<svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg>'),
-  'eqc': ('EQC New Zealand', None, '',
+  'eqc': ('EQC New Zealand', 'assets/naturalhazardscommission_logo.jpeg', 'filter: grayscale(1) brightness(1.15); mix-blend-mode: screen;',
           '<svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="currentColor">EQC</text></svg>'),
   'holoscribe': ('Holoscribe', 'assets/holoscribe-logo.png', '',
                  '<svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="currentColor">Holoscribe</text></svg>'),
@@ -432,29 +435,36 @@ def gen_footer(text):
             m = re.match(r'^(\w+):\s*(.*)$', ln)
             if m:
                 kv[m.group(1)] = m.group(2); cur_key = m.group(1)
-    edu_html = '\n'.join(f'      <p>{esc(e)}</p>' for e in lists.get('edu', []))
-    pp_html = ''
+    edu_html = '\n'.join(f'          <p>{esc(e)}</p>' for e in lists.get('edu', []))
+    edu_sec = f'''<section class="edu-sec" data-reveal>
+    <div class="cg-k">Education</div>
+    <div class="edu-row">
+      <img class="edu-logo" src="assets/university-of-otago.svg" alt="University of Otago">
+      <div class="edu-lines">
+{edu_html}
+      </div>
+    </div>
+  </section>
+'''
     pepeha = lists.get('pepeha', [])
+    pp_html = ''
     if pepeha:
-        pp_lines = '\n'.join(f'        <span>{esc(l)}</span>' for l in pepeha)
+        pp_lines = '\n'.join(f'          <span>{esc(l)}</span>' for l in pepeha)
         img, alt = kv.get('pepeha_img', ''), kv.get('pepeha_img_alt', '')
-        img_html = (f'      <div class="pp-imgwrap">'
-                    f'<img src="{esc(img)}" alt="{esc(alt)}"></div>') if img else ''
-        pp_html = f'''<div class="pepeha" tabindex="0">
-      <div class="pp-label">Pepeha</div>
+        img_html = f'<img src="{esc(img)}" alt="{esc(alt)}">' if img else ''
+        pp_html = f'''<details class="pepeha">
+    <summary>Pepeha</summary>
+    <div class="pp-body">
       <div class="pp-lines">
 {pp_lines}
       </div>
-{img_html}
+      {img_html}
     </div>
+  </details>
 '''
-    return pp_html + f'''  <footer class="foot">
-    <div class="edu" data-reveal>
-      <strong>Education</strong>
-{edu_html}
-    </div>
-    <div class="meta">
-      {esc(kv.get('meta_name',''))}<br>
+    return edu_sec + pp_html + f'''  <footer class="foot">
+    <div class="meta" style="grid-column: 1 / -1; text-align: center; justify-self: center;">
+      {esc(kv.get('meta_name',''))} &middot;
       <a href="{esc(kv.get('meta_link_href',''))}">{esc(kv.get('meta_link_label',''))}</a>
     </div>
   </footer>'''
@@ -492,7 +502,7 @@ out = out.replace('{{CLIENTS}}', gen_clients(open('content/clients.md').read()))
 out = out.replace('{{ROLES}}', gen_roles())
 out = out.replace('{{EARLIER_ROWS}}', gen_earlier(open('content/earlier.md').read()))
 out = out.replace('{{ENGAGE_UL}}', gen_engage(open('content/engage.md').read()))
-out = out.replace('{{SIGNATURE}}', gen_signature(open('content/signature.md').read()))
+# signature section removed in v13.
 out = out.replace('{{FOOTER}}', gen_footer(open('content/footer.md').read()))
 
 leftover = re.findall(r'\{\{[A-Z_]+\}\}', out)

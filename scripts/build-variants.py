@@ -57,17 +57,6 @@ for strong, ico in eng:
     v3 = must(strong, f'<span class="eng-ico">{ICONS[ico]}</span>'+strong, v3, 'engage '+ico)
 v3 = must('<summary>Clients &amp; employers</summary>',
           f'<summary><span class="summary-ico">{ICONS["users"]}</span>Clients &amp; employers</summary>', v3, 'clients summary')
-v3 = must('<summary>Values &amp; signature</summary>',
-          f'<summary><span class="summary-ico">{ICONS["star"]}</span>Values &amp; signature</summary>', v3, 'sig summary')
-old_edu = '''    <div class="edu" data-reveal>
-      <strong>Education</strong>
-      <p>BCom — Accounting &amp; Finance, University of Otago</p>
-      <p>BSc — Computer Science &amp; Information Science, University of Otago</p>'''
-new_edu = '''    <div class="edu" data-reveal>
-      <strong>Education</strong>
-      <div class="edu-line"><span class="edu-ico">'''+ICONS['grad-cap']+'''</span><p>BCom — Accounting &amp; Finance, University of Otago</p></div>
-      <div class="edu-line"><span class="edu-ico">'''+ICONS['grad-cap']+'''</span><p>BSc — Computer Science &amp; Information Science, University of Otago</p></div>'''
-v3 = must(old_edu, new_edu, v3, 'edu icons')
 v3 = v3.replace('<title>', '<title>[ICON-RICH] ')
 open('src/variants/v3-icon-rich.html','w').write(v3)
 print('v3-icon-rich.html written')
