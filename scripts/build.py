@@ -509,9 +509,27 @@ out = out.replace('{{ENGAGE_UL}}', gen_engage(open('content/engage.md').read()))
 # signature section removed in v13.
 out = out.replace('{{FOOTER}}', gen_footer(open('content/footer.md').read()))
 
+def externalize_links(html):
+    """Add target=_blank rel=noopener to external http(s) links only."""
+    def patch(m):
+        tag = m.group(0)
+        hm = re.search(r'href=["\']([^"\']+)["\']', tag, re.I)
+        if not hm:
+            return tag
+        href = hm.group(1)
+        if not re.match(r'^(https?:)?//', href, re.I):
+            return tag
+        # avoid duplicate attributes
+        tag = re.sub(r'\s+target=["\'][^"\']*["\']', '', tag, flags=re.I)
+        tag = re.sub(r'\s+rel=["\'][^"\']*["\']', '', tag, flags=re.I)
+        return tag.rstrip('>') + ' target="_blank" rel="noopener">'
+    return re.sub(r'<a\b[^>]*>', patch, html, flags=re.I)
+
 leftover = re.findall(r'\{\{[A-Z_]+\}\}', out)
 if leftover:
     print('!! leftover slots:', leftover, file=sys.stderr); sys.exit(1)
+
+out = externalize_links(out)
 
 open('src/profile.html', 'w').write(out)
 print('built src/profile.html (%d bytes)' % len(out))
