@@ -23,7 +23,7 @@
   --ink-3: #2A2F36;
   --cream: #F2EEE3;          /* aged film stock warmth */
   --cream-2: rgba(242,238,227,0.62);
-  --cream-3: rgba(242,238,227,0.38);
+  --cream-3: rgba(242,238,227,0.55);
   --rule: rgba(242,238,227,0.12);
   --rule-2: rgba(242,238,227,0.06);
   --euc: #3E9483;            /* eucalyptus, brightened for dark */
@@ -108,7 +108,9 @@ a:hover { color: var(--cream); border-color: var(--cream); }
   font-family: var(--mono); font-size: 10.5px;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--cream-2);
-  mix-blend-mode: difference;
+  background: rgba(26,29,34,0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .topnav .brand { display: flex; align-items: center; gap: 10px; color: var(--cream); font-weight: 500; }
 .topnav .brand .mark {
@@ -195,8 +197,11 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 
 /* spec-list: bullet-per-line in spec strip */
 .spec-list { display: flex; flex-direction: column; gap: 3px; }
-.spec-list span { display: block; line-height: 1.2; padding-left: 12px; position: relative; }
-.spec-list span::before { content:''; position: absolute; left: 0; top: 0.56em; width: 6px; height: 1px; background: var(--euc); }
+.spec-list > span { display: block; line-height: 1.2; padding-left: 12px; position: relative; }
+.spec-list > span::before { content:''; position: absolute; left: 0; top: 0.56em; width: 6px; height: 1px; background: var(--euc); }
+
+/* clients print marquee: hidden on screen, one-line strip in print */
+.clients-print { display: none; }
 
 /* strengths list */
 .strengths-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3px 20px; margin-top: 8px; }
@@ -305,18 +310,13 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
 /* skill-col -> competency */
 .skill-col { background: var(--ink); padding: 28px 24px 26px; position: relative; }
-.skill-col .skill-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
-.skill-col .skill-icon { width: 22px; height: 22px; color: var(--euc); flex-shrink: 0; }
+.skill-col .skill-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.skill-col .skill-icon { width: 20px; height: 20px; color: var(--euc); flex-shrink: 0; margin-top: 1px; }
 .skill-col .skill-icon svg { width: 100%; height: 100%; display: block; }
 .skill-col .skill-k { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: var(--cream); line-height: 1.2; }
 .skill-col .skill-k .ital { font-style: italic; color: var(--euc); font-weight: 400; }
 .skill-list { list-style: none; }
 .skill-list li { font-family: var(--serif); font-size: 14.5px; line-height: 1.45; color: var(--cream-2); padding: 5px 0 5px 16px; position: relative; }
-.skill-list li::before { content:''; position:absolute; left:0; top: 13px; width: 7px; height: 1px; background: var(--euc); }
-.skill-list li:hover { color: var(--cream); }
-.skill-k { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--euc); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--rule-2); }
-.skill-list { list-style: none; }
-.skill-list li { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--cream-2); padding: 4px 0 4px 16px; position: relative; }
 .skill-list li::before { content:''; position:absolute; left:0; top: 13px; width: 7px; height: 1px; background: var(--euc); }
 .skill-list li:hover { color: var(--cream); }
 
@@ -473,7 +473,11 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .mask-line { overflow: visible !important; }
   .mask-line > *, .hero h1 .ln .ch, .hero .thesis .ln .ch, .hero .thesis .ln .wd,
   .reveal, [data-reveal] { transform: none !important; opacity: 1 !important; clip-path: none !important; }
-  details.signature-group, details.clients-group { display: none !important; }
+  details.signature-group { display: none !important; }
+  details.clients-group { display: block !important; padding: 0 !important; border-top: none !important; }
+  details.clients-group > summary, details.clients-group .logo-groups, details.clients-group .client-group,
+  details.clients-group .client-groups, details.clients-group > div:not(.clients-print) { display: none !important; }
+  .clients-print { display: block !important; font-family: var(--mono); font-size: 6pt; letter-spacing: 0.06em; color: var(--cream-3); padding: 0 0 1px; }
   details > summary { display: none !important; }
   .hero { min-height: auto; padding: 0 0 6px; }
   .hero h1 { font-size: 19pt; margin-bottom: 3pt; letter-spacing: -0.04em; }
@@ -484,7 +488,6 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .hero .contact { font-size: 6.5pt; }
   .section { padding: 2px 0 3px; }
   .section-head { grid-template-columns: auto 1fr; gap: 8px; margin-bottom: 3px; padding-bottom: 1px; }
-  .section-head .num { font-size: 5.8pt; }
   .section-head h2 { font-size: 9.5pt; line-height: 1; }
   .stats { grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--rule); margin-top: 4px; }
   .stat { padding: 8px 9px 7px; border-right: 1px solid var(--rule); }
@@ -525,7 +528,6 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .role-body ul li { font-size: 6.3pt; line-height: 1.18; padding: 0 0 0 11px; }
   .role-body ul li::before { top: 4px; width: 5px; }
   .role-body .tags { font-size: 5pt; margin-top: 2px; display: none !important; }
-  .role-body p.lede { font-size: 6.6pt; line-height: 1.2; margin-bottom: 0.5px; display: none; }
   .role, .tile, .stat { break-inside: avoid; }
   .engage li { break-inside: avoid; }
   .engage, .engage + .signature-group, .engage + details { break-inside: avoid; }
@@ -535,33 +537,31 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .engage { padding: 0; }
   .engage li { font-size: 6pt; line-height: 1.1; padding: 1px 0 1px 12px; margin: 0; }
   .engage li .engage-desc { display: none; }
+  .skill-icon { display: none !important; }
   .engage li::before { top: 1px; }
-  .engage li::before { top: 0; }
   .foot { padding: 1px 0 0; margin-top: 1px; }
   .foot .edu strong { display: none; }
   .foot .edu p { font-size: 6.2pt; line-height: 1.15; display: inline; }
   .foot .edu p + p { margin-top: 0; }
   .foot .edu p + p::before { content: '  ·  '; font-family: var(--mono); color: var(--cream-3); }
   .foot .meta { display: none; }
+  /* Review H1: mobile 820px rules leak into print - re-pin grid layouts */
+  .spec { grid-template-columns: repeat(5, 1fr) !important; }
+  .spec-cell { border-right: none !important; border-bottom: none !important; grid-column: auto !important; }
+  .markets-stat .n.mkts { font-size: 9pt; }
 }
 
-/* ---- v4 real-logo additions ---- */
-.rl { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; display: block; }
-.rl-fb { display: none; }
-.role-logo .rl-fb { display: none; }
-.rl.xpon { background: transparent; padding: 4px; }
-.rl.wondaris { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; margin: 0 1px; border-radius: 4px; }
-.rl.holo-chip { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; margin: 0 1px; border-radius: 4px; }
-.rl.focal { height: 30px; width: auto; padding: 0; }
-.rl.immersive { background: #fff; padding: 3px; }
-.rl.qldt { width: 20px; height: 20px; display: inline-block; vertical-align: -4px; margin-right: 8px; }
-.rl.otago { width: 120px; height: auto; display: block; margin-bottom: 10px; }
-.cl-img { height: 24px; max-width: 96px; width: auto; object-fit: contain; display: block; border-radius: 4px; }
-.cl-img.focal { height: 20px; }
-.cl-img.immersive { background: #fff; padding: 2px; border-radius: 6px; }
+/* ---- v4 real-logo additions: role headers only, unified monochrome ---- */
+.role-logo img.rl { width: 40px; height: 40px; object-fit: contain; display: block;
+                    filter: grayscale(1) contrast(1.02) opacity(0.92); }
+.role-logo img.rl.focal { width: 64px; height: auto; }
+.role-logo img.rl.shorthand { filter: grayscale(1) invert(0.88) brightness(1.06) opacity(0.92); }
+.rl-fb { display: none !important; }
+.rl.qldt { width: 22px; height: 22px; display: inline-block; vertical-align: -4px; margin-right: 8px;
+           filter: grayscale(1) invert(0.88) brightness(1.05) opacity(0.85); border-radius: 50%; }
 @media print {
-  .role-logo img.rl, .logo img.cl-img, .rl.wondaris, .rl.holo-chip, .rl.qldt, .rl.otago { display: none !important; }
-  .rl-fb, .role-logo .rl-fb { display: block !important; }
+  .role-logo img.rl, .rl.qldt { display: none !important; }
+  .rl-fb { display: block !important; }
 }
 
 </style>
@@ -593,15 +593,15 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= HERO ================= -->
   <header class="hero">
     <div class="hero-mark" aria-hidden="true">mc</div>
-    <div class="eyebrow" data-reveal>Executive Profile — Brisbane, Australia <span class="flag">🇦🇺</span></div>
-    <h1 data-kinetic>
-      <span class="ln"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
-      <span class="ln"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">o</span><span class="ch">n</span><span class="period">.</span></span>
+    <div class="eyebrow" data-reveal>Executive Profile — Brisbane, Australia</div>
+    <h1 data-kinetic aria-label="Marcus Callon.">
+      <span class="ln" aria-hidden="true"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
+      <span class="ln" aria-hidden="true"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">o</span><span class="ch">n</span><span class="period">.</span></span>
     </h1>
-    <p class="thesis" data-thesis>
-      <span class="ln"><span class="wd">The</span> <span class="wd"><em>translator</em></span> <span class="wd">across</span> <span class="wd">product,</span> <span class="wd">finance</span> <span class="wd">&amp;</span> <span class="wd">architecture</span> <span class="period" style="color:var(--signal)">—</span></span>
-      <span class="ln"><span class="wd">an</span> <span class="wd">operator</span> <span class="wd">who</span> <span class="wd">leads</span> <span class="wd">with</span> <span class="wd">product,</span> <span class="wd">fluent</span> <span class="wd">in</span> <span class="wd">customer,</span> <span class="wd">P&amp;L</span> <span class="wd">and</span> <span class="wd">code.</span></span>
-      <span class="ln"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders</span> <span class="wd">&amp;</span> <span class="wd">boards.</span></span>
+    <p class="thesis" data-thesis aria-label="The translator across product, finance and architecture — an operator who leads with product, fluent in customer, P&L and code. Fractional & interim CXO mandates for founders & boards.">
+      <span class="ln" aria-hidden="true"><span class="wd">The</span> <span class="wd"><em>translator</em></span> <span class="wd">across</span> <span class="wd">product,</span> <span class="wd">finance</span> <span class="wd">&amp;</span> <span class="wd">architecture</span> <span class="period" style="color:var(--signal)">—</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">an</span> <span class="wd">operator</span> <span class="wd">who</span> <span class="wd">leads</span> <span class="wd">with</span> <span class="wd">product,</span> <span class="wd">fluent</span> <span class="wd">in</span> <span class="wd">customer,</span> <span class="wd">P&amp;L</span> <span class="wd">and</span> <span class="wd">code.</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders</span> <span class="wd">&amp;</span> <span class="wd">boards.</span></span>
     </p>
     <div class="contact" data-reveal>
       <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
@@ -610,7 +610,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <span class="sep">·</span>
       <a href="https://www.linkedin.com/in/marcuscallon">linkedin</a>
       <span class="sep">·</span>
-      Brisbane, Australia <span class="flag">🇦🇺</span>
+      Brisbane, Australia
     </div>
     <div class="scrolly" data-reveal aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
   </header>
@@ -732,13 +732,14 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   </section>
 
   <!-- ================= CLIENTS (optional) ================= -->
-  <details class="signature-group clients-group" id="clients">
-    <summary>Clients &amp; employers (optional)</summary>
+  <details class="signature-group clients-group" id="clients" open>
+    <summary>Clients &amp; employers</summary>
+    <div class="clients-print" aria-hidden="true">BBC · The Guardian · ESPN · The Times · Financial Times · Hearst · Mastercard · RACQ · Queensland Transport · EQC · Shorthand · Immersive · Holoscribe · Wondaris · Focal Labs · University of Otago</div>
     <div class="logo-grid" data-reveal>
       <div class="logo-cat">
         <div class="cg-k">Media &amp; publishing</div>
         <div class="logo-row">
-          <span class="logo feat" title="BBC"><svg viewBox="0 0 90 30" fill="currentColor" aria-label="BBC"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></svg></span>
+          <span class="logo feat" title="BBC"><svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></g><g fill="#15181C" font-family="Arial,sans-serif" font-weight="700" font-size="14" text-anchor="middle"><text x="13" y="21">B</text><text x="45" y="21">B</text><text x="77" y="21">C</text></g></svg></span>
           <span class="logo" title="The Guardian"><span class="wm serif">the Guardian</span></span>
           <span class="logo espn" title="ESPN"><span class="wm sans">ESPN</span></span>
           <span class="logo" title="The Times"><span class="wm serif-up">The Times</span></span>
@@ -756,7 +757,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
         <div class="cg-k">Insurance &amp; listed</div>
         <div class="logo-row">
           <span class="logo" title="RACQ Insurance"><span class="wm sans">RACQ</span></span>
-          <span class="logo" title="XPON Technologies (ASX:XPN)"><img class="cl-img" src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON" loading="lazy"></span>
+          <span class="logo" title="XPON Technologies (ASX:XPN)"><span class="wm sans-track">XPON</span></span>
         </div>
       </div>
       <div class="logo-cat">
@@ -769,10 +770,10 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="logo-cat">
         <div class="cg-k">Ventures founded</div>
         <div class="logo-row">
-          <span class="logo feat" title="Shorthand"><img class="cl-img" src="../assets/shorthand-logo-black.svg" alt="Shorthand" loading="lazy" style="filter:invert(0.88) brightness(1.06);"></span>
-          <span class="logo" title="Holoscribe"><img class="cl-img" src="../assets/holoscribe-logo.png" alt="Holoscribe" loading="lazy"></span>
-          <span class="logo" title="Immersive"><img class="cl-img immersive" src="../assets/immersive_logo.jpeg" alt="Immersive" loading="lazy"></span>
-          <span class="logo" title="Focal Labs"><img class="cl-img focal" src="../assets/focal-labs-australia-logo.png" alt="Focal Labs" loading="lazy"></span>
+          <span class="logo feat" title="Shorthand"><span class="wm serif">Shorthand</span></span>
+          <span class="logo" title="Holoscribe"><span class="wm sans">Holoscribe</span></span>
+          <span class="logo" title="Immersive"><span class="wm serif">Immersive</span></span>
+          <span class="logo" title="Focal Labs"><span class="wm sans-track">FOCAL LABS</span></span>
         </div>
       </div>
       <div class="logo-cat">
@@ -792,12 +793,12 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2024<span class="dur">—present</span></div>
-      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl xpon" src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
+      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl " src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
       <div class="role-body">
         <h4>Chief Customer &amp; Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
         <p class="lede">Executive leadership of customer and product for a next-generation customer-experience and data-platform business.</p>
         <ul>
-          <li>Owns product strategy and commercialisation across the Wondaris <img class="rl wondaris" src="../assets/Wondaris_logomark_RGB-white_large.png" alt="Wondaris"> data platform and Holoscribe <img class="rl holo-chip" src="../assets/holoscribe-logo.png" alt="Holoscribe"> digital-publishing products.</li>
+          <li>Owns product strategy and commercialisation across the Wondaris data platform and Holoscribe digital-publishing products.</li>
           <li>Aligns customer insight, product direction and commercial outcomes across the listed entity.</li>
         </ul>
         <div class="tags"><span>ASX-listed</span><span>Product</span><span>Customer</span></div>
@@ -806,12 +807,12 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2021<span class="dur">—2024</span></div>
-      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl xpon" src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
+      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl " src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
       <div class="role-body">
         <h4>Chief Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
-        <p class="lede">Product leadership across the group's two growth products — the Wondaris <img class="rl wondaris" src="../assets/Wondaris_logomark_RGB-white_large.png" alt="Wondaris"> customer-data platform and the Holoscribe <img class="rl holo-chip" src="../assets/holoscribe-logo.png" alt="Holoscribe"> digital-publishing platform.</p>
+        <p class="lede">Product leadership across the group's two growth products — the Wondaris customer-data platform and the Holoscribe digital-publishing platform.</p>
         <ul>
-          <li>Built and led the product function from the ground up across Wondaris <img class="rl wondaris" src="../assets/Wondaris_logomark_RGB-white_large.png" alt="Wondaris"> and Holoscribe <img class="rl holo-chip" src="../assets/holoscribe-logo.png" alt="Holoscribe">.</li>
+          <li>Built and led the product function from the ground up across Wondaris and Holoscribe.</li>
           <li>Drove product through the company's ASX listing and commercial scale-up phase.</li>
         </ul>
         <div class="tags"><span>0→1</span><span>Scale-up</span><span>Product</span></div>
@@ -892,7 +893,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2013<span class="dur">—2015</span></div>
-      <div class="role-logo" title="Shorthand"><img class="rl" src="../assets/shorthand-logo-black.svg" alt="Shorthand" loading="lazy" style="filter:invert(0.88) brightness(1.06);"><span class="rl-fb"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="#15181D">Shorthand</text></svg></span></div>
+      <div class="role-logo" title="Shorthand"><img class="rl shorthand" src="../assets/shorthand-logo-black.svg" alt="Shorthand" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="#15181D">Shorthand</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Product Lead <span class="org">— Shorthand</span></h4>
         <ul>
@@ -905,7 +906,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2014<span class="dur">—2015</span></div>
-      <div class="role-logo" title="Immersive"><img class="rl immersive" src="../assets/immersive_logo.jpeg" alt="Immersive" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="#15181D">Immersive</text></svg></span></div>
+      <div class="role-logo" title="Immersive"><img class="rl " src="../assets/immersive_logo.jpeg" alt="Immersive" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="#15181D">Immersive</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Product Lead <span class="org">— Immersive (later Shorthand Social)</span></h4>
         <ul>
@@ -922,8 +923,8 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="earlier-row"><div class="yr">2011–13</div><div class="desc"><strong>4impact — Delivery Manager.</strong> Assurance governance of solution delivery engagements; managed client &amp; consultant participation.</div></div>
       <div class="earlier-row"><div class="yr">2010–11</div><div class="desc"><strong>4impact — Solution Architect.</strong> Pre-sales bid architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.</div></div>
       <div class="earlier-row"><div class="yr">2009–10</div><div class="desc"><strong>Mastercard — Lead Developer, Payment Gateway.</strong> Built the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D-Secure), shipped PCI-compliant in four months.</div></div>
-      <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><img class="rl qldt" src="../assets/qld-transport.png" alt="Queensland Transport"><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
-      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sg.svg" alt="Singapore"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/my.svg" alt="Malaysia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/th.svg" alt="Thailand"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/vn.svg" alt="Vietnam"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hk.svg" alt="Hong Kong"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ie.svg" alt="Ireland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gb.svg" alt="UK"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gr.svg" alt="Greece"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/tr.svg" alt="Turkey"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/fr.svg" alt="France"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/nl.svg" alt="Netherlands"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/be.svg" alt="Belgium"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/it.svg" alt="Italy"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hr.svg" alt="Croatia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hu.svg" alt="Hungary"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sk.svg" alt="Slovakia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pl.svg" alt="Poland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/de.svg" alt="Germany"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/cz.svg" alt="Czechia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/at.svg" alt="Austria"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/li.svg" alt="Liechtenstein"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ch.svg" alt="Switzerland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/mc.svg" alt="Monaco"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/es.svg" alt="Spain"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pt.svg" alt="Portugal"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/eg.svg" alt="Egypt"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/us.svg" alt="USA"></div></div></div>
+      <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><img class="rl qldt" src="../assets/qld-transport.png" alt=""><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
+      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="assets/flags/sg.svg" alt="" loading="lazy"><img src="assets/flags/my.svg" alt="" loading="lazy"><img src="assets/flags/th.svg" alt="" loading="lazy"><img src="assets/flags/vn.svg" alt="" loading="lazy"><img src="assets/flags/hk.svg" alt="" loading="lazy"><img src="assets/flags/ie.svg" alt="" loading="lazy"><img src="assets/flags/gb.svg" alt="" loading="lazy"><img src="assets/flags/gr.svg" alt="" loading="lazy"><img src="assets/flags/tr.svg" alt="" loading="lazy"><img src="assets/flags/fr.svg" alt="" loading="lazy"><img src="assets/flags/nl.svg" alt="" loading="lazy"><img src="assets/flags/be.svg" alt="" loading="lazy"><img src="assets/flags/it.svg" alt="" loading="lazy"><img src="assets/flags/hr.svg" alt="" loading="lazy"><img src="assets/flags/hu.svg" alt="" loading="lazy"><img src="assets/flags/sk.svg" alt="" loading="lazy"><img src="assets/flags/pl.svg" alt="" loading="lazy"><img src="assets/flags/de.svg" alt="" loading="lazy"><img src="assets/flags/cz.svg" alt="" loading="lazy"><img src="assets/flags/at.svg" alt="" loading="lazy"><img src="assets/flags/li.svg" alt="" loading="lazy"><img src="assets/flags/ch.svg" alt="" loading="lazy"><img src="assets/flags/mc.svg" alt="" loading="lazy"><img src="assets/flags/es.svg" alt="" loading="lazy"><img src="assets/flags/pt.svg" alt="" loading="lazy"><img src="assets/flags/eg.svg" alt="" loading="lazy"><img src="assets/flags/us.svg" alt="" loading="lazy"></div></div></div>
       <div class="earlier-row"><div class="yr">2005–06</div><div class="desc"><strong>RHE &amp; Associates — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004–05</div><div class="desc"><strong>Provenco — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004</div><div class="desc"><strong>AXA New Zealand — Senior Software Engineer (contract).</strong></div></div>
@@ -946,7 +947,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
   <!-- ================= OPTIONAL SIGNATURE ================= -->
   <details class="signature-group">
-    <summary>Values &amp; signature (optional)</summary>
+    <summary>Values &amp; signature</summary>
     <section class="signature">
       <blockquote class="sig-quote">
         "I am a genius as I curiously and authentically encourage myself and others to explore and challenge the status quo to create solutions that matter."
@@ -970,7 +971,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= FOOTER ================= -->
   <footer class="foot">
     <div class="edu" data-reveal>
-      <img class="rl otago" src="../assets/university-of-otago.svg" alt="University of Otago" loading="lazy"><strong>Education</strong>
+      <strong>Education</strong>
       <p>BCom — Accounting &amp; Finance, University of Otago</p>
       <p>BSc — Computer Science &amp; Information Science, University of Otago</p>
     </div>
@@ -991,13 +992,21 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 (function () {
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Preloader ----
+  // ---- Preloader: gate the hero intro on its completion ----
+  var preloaderDone = false;
   function hidePreloader() {
+    if (preloaderDone) return;
+    preloaderDone = true;
     var p = document.getElementById('preloader');
     if (p) p.classList.add('done');
+    runHeroIntro();
   }
-  window.addEventListener('load', function () {
-    setTimeout(hidePreloader, 1400);
+  var heroIntroStarted = false;
+  function runHeroIntro() { /* defined below; preloader fires it */ }
+  document.addEventListener('DOMContentLoaded', function () {
+    var minDwell = new Promise(function (r) { setTimeout(r, 900); });
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    Promise.all([minDwell, fontsReady]).then(hidePreloader);
   });
   // Safety fallback
   setTimeout(hidePreloader, 4000);
@@ -1026,31 +1035,38 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   // Initial state for reveal elements (so they're hidden before animating)
   gsap.set('[data-reveal]', { opacity: 0, y: 24 });
 
-  // ---- Hero kinetic name: per-char rise + overshoot on load ----
-  var heroName = document.querySelector('[data-kinetic]');
-  if (heroName) {
-    var chars = heroName.querySelectorAll('.ch, .period');
-    gsap.set(chars, { yPercent: 120, opacity: 0, rotate: function () { return gsap.utils.random(-9, 9); } });
-    var tl = gsap.timeline({ delay: 1.0 });
-    tl.to(chars, {
-      yPercent: 0, opacity: 1, rotate: 0,
-      duration: 0.9, ease: 'back.out(1.7)',
-      stagger: { each: 0.035, from: 'start' }
-    });
-  }
-
-  // ---- Thesis: word-by-word mask reveal, slightly after name ----
-  var thesis = document.querySelector('[data-thesis]');
-  if (thesis) {
-    var words = thesis.querySelectorAll('.wd');
-    gsap.set(words, { yPercent: 115, opacity: 0 });
-    gsap.to(words, {
-      yPercent: 0, opacity: 1,
-      duration: 0.8, ease: 'expo.out',
-      stagger: 0.018,
-      delay: 1.6
-    });
-  }
+  // ---- Hero kinetic name + thesis: gated on preloader completion ----
+  var introChars = null, introWords = null;
+  (function prepIntro() {
+    var heroName = document.querySelector('[data-kinetic]');
+    if (heroName) {
+      introChars = heroName.querySelectorAll('.ch, .period');
+      gsap.set(introChars, { yPercent: 120, opacity: 0, rotate: function () { return gsap.utils.random(-9, 9); } });
+    }
+    var thesis = document.querySelector('[data-thesis]');
+    if (thesis) {
+      introWords = thesis.querySelectorAll('.wd');
+      gsap.set(introWords, { yPercent: 115, opacity: 0 });
+    }
+  })();
+  runHeroIntro = function () {
+    if (heroIntroStarted) return; heroIntroStarted = true;
+    if (introChars) {
+      gsap.to(introChars, {
+        yPercent: 0, opacity: 1, rotate: 0,
+        duration: 0.9, ease: 'back.out(1.7)',
+        stagger: { each: 0.035, from: 'start' }
+      });
+    }
+    if (introWords) {
+      gsap.to(introWords, {
+        yPercent: 0, opacity: 1,
+        duration: 0.8, ease: 'expo.out',
+        stagger: 0.012,
+        delay: 0.45
+      });
+    }
+  };
 
   // ---- Hero mark: subtle parallax on scroll ----
   var heroMark = document.querySelector('.hero-mark');
@@ -1122,6 +1138,23 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     if (mq.addEventListener) mq.addEventListener('change', cb);
     else if (mq.addListener) mq.addListener(cb);
   }
+
+  // ---- Details open/close shifts layout: refresh ScrollTrigger measurements ----
+  document.querySelectorAll('details').forEach(function (d) {
+    d.addEventListener('toggle', function () { ScrollTrigger.refresh(); });
+  });
+
+  // ---- Smooth nav anchors through Lenis ----
+  document.querySelectorAll('.topnav .links a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      var target = id.length > 1 ? document.querySelector(id) : null;
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -60 });
+      else target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
   // ---- Download button ----
   var btn = document.getElementById('dl');

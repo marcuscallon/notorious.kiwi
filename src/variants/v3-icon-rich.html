@@ -23,7 +23,7 @@
   --ink-3: #2A2F36;
   --cream: #F2EEE3;          /* aged film stock warmth */
   --cream-2: rgba(242,238,227,0.62);
-  --cream-3: rgba(242,238,227,0.38);
+  --cream-3: rgba(242,238,227,0.55);
   --rule: rgba(242,238,227,0.12);
   --rule-2: rgba(242,238,227,0.06);
   --euc: #3E9483;            /* eucalyptus, brightened for dark */
@@ -108,7 +108,9 @@ a:hover { color: var(--cream); border-color: var(--cream); }
   font-family: var(--mono); font-size: 10.5px;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--cream-2);
-  mix-blend-mode: difference;
+  background: rgba(26,29,34,0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .topnav .brand { display: flex; align-items: center; gap: 10px; color: var(--cream); font-weight: 500; }
 .topnav .brand .mark {
@@ -195,8 +197,11 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 
 /* spec-list: bullet-per-line in spec strip */
 .spec-list { display: flex; flex-direction: column; gap: 3px; }
-.spec-list span { display: block; line-height: 1.2; padding-left: 12px; position: relative; }
-.spec-list span::before { content:''; position: absolute; left: 0; top: 0.56em; width: 6px; height: 1px; background: var(--euc); }
+.spec-list > span { display: block; line-height: 1.2; padding-left: 12px; position: relative; }
+.spec-list > span::before { content:''; position: absolute; left: 0; top: 0.56em; width: 6px; height: 1px; background: var(--euc); }
+
+/* clients print marquee: hidden on screen, one-line strip in print */
+.clients-print { display: none; }
 
 /* strengths list */
 .strengths-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3px 20px; margin-top: 8px; }
@@ -305,18 +310,13 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
 /* skill-col -> competency */
 .skill-col { background: var(--ink); padding: 28px 24px 26px; position: relative; }
-.skill-col .skill-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
-.skill-col .skill-icon { width: 22px; height: 22px; color: var(--euc); flex-shrink: 0; }
+.skill-col .skill-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.skill-col .skill-icon { width: 20px; height: 20px; color: var(--euc); flex-shrink: 0; margin-top: 1px; }
 .skill-col .skill-icon svg { width: 100%; height: 100%; display: block; }
 .skill-col .skill-k { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: var(--cream); line-height: 1.2; }
 .skill-col .skill-k .ital { font-style: italic; color: var(--euc); font-weight: 400; }
 .skill-list { list-style: none; }
 .skill-list li { font-family: var(--serif); font-size: 14.5px; line-height: 1.45; color: var(--cream-2); padding: 5px 0 5px 16px; position: relative; }
-.skill-list li::before { content:''; position:absolute; left:0; top: 13px; width: 7px; height: 1px; background: var(--euc); }
-.skill-list li:hover { color: var(--cream); }
-.skill-k { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--euc); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--rule-2); }
-.skill-list { list-style: none; }
-.skill-list li { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--cream-2); padding: 4px 0 4px 16px; position: relative; }
 .skill-list li::before { content:''; position:absolute; left:0; top: 13px; width: 7px; height: 1px; background: var(--euc); }
 .skill-list li:hover { color: var(--cream); }
 
@@ -473,7 +473,11 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .mask-line { overflow: visible !important; }
   .mask-line > *, .hero h1 .ln .ch, .hero .thesis .ln .ch, .hero .thesis .ln .wd,
   .reveal, [data-reveal] { transform: none !important; opacity: 1 !important; clip-path: none !important; }
-  details.signature-group, details.clients-group { display: none !important; }
+  details.signature-group { display: none !important; }
+  details.clients-group { display: block !important; padding: 0 !important; border-top: none !important; }
+  details.clients-group > summary, details.clients-group .logo-groups, details.clients-group .client-group,
+  details.clients-group .client-groups, details.clients-group > div:not(.clients-print) { display: none !important; }
+  .clients-print { display: block !important; font-family: var(--mono); font-size: 6pt; letter-spacing: 0.06em; color: var(--cream-3); padding: 0 0 1px; }
   details > summary { display: none !important; }
   .hero { min-height: auto; padding: 0 0 6px; }
   .hero h1 { font-size: 19pt; margin-bottom: 3pt; letter-spacing: -0.04em; }
@@ -484,7 +488,6 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .hero .contact { font-size: 6.5pt; }
   .section { padding: 2px 0 3px; }
   .section-head { grid-template-columns: auto 1fr; gap: 8px; margin-bottom: 3px; padding-bottom: 1px; }
-  .section-head .num { font-size: 5.8pt; }
   .section-head h2 { font-size: 9.5pt; line-height: 1; }
   .stats { grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--rule); margin-top: 4px; }
   .stat { padding: 8px 9px 7px; border-right: 1px solid var(--rule); }
@@ -525,7 +528,6 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .role-body ul li { font-size: 6.3pt; line-height: 1.18; padding: 0 0 0 11px; }
   .role-body ul li::before { top: 4px; width: 5px; }
   .role-body .tags { font-size: 5pt; margin-top: 2px; display: none !important; }
-  .role-body p.lede { font-size: 6.6pt; line-height: 1.2; margin-bottom: 0.5px; display: none; }
   .role, .tile, .stat { break-inside: avoid; }
   .engage li { break-inside: avoid; }
   .engage, .engage + .signature-group, .engage + details { break-inside: avoid; }
@@ -535,37 +537,31 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .engage { padding: 0; }
   .engage li { font-size: 6pt; line-height: 1.1; padding: 1px 0 1px 12px; margin: 0; }
   .engage li .engage-desc { display: none; }
+  .skill-icon { display: none !important; }
   .engage li::before { top: 1px; }
-  .engage li::before { top: 0; }
   .foot { padding: 1px 0 0; margin-top: 1px; }
   .foot .edu strong { display: none; }
   .foot .edu p { font-size: 6.2pt; line-height: 1.15; display: inline; }
   .foot .edu p + p { margin-top: 0; }
   .foot .edu p + p::before { content: '  ·  '; font-family: var(--mono); color: var(--cream-3); }
   .foot .meta { display: none; }
+  /* Review H1: mobile 820px rules leak into print - re-pin grid layouts */
+  .spec { grid-template-columns: repeat(5, 1fr) !important; }
+  .spec-cell { border-right: none !important; border-bottom: none !important; grid-column: auto !important; }
+  .markets-stat .n.mkts { font-size: 9pt; }
 }
 
-/* ---- v3 icon-rich additions ---- */
-.sh-ico { width: 34px; height: 34px; color: var(--euc); align-self: center; opacity: 0.9; flex-shrink: 0; }
-.sh-ico svg { width: 100%; height: 100%; }
-.section-head { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; }
-.tile-ico { width: 26px; height: 26px; color: var(--euc); margin: 10px 0 2px; opacity: 0.95; }
+/* ---- v3 icon-rich additions (review-culled set) ---- */
+.tile-ico { width: 24px; height: 24px; color: var(--euc); margin: 12px 0 2px; opacity: 0.95; }
 .tile-ico svg { width: 100%; height: 100%; }
-.spec-k { display: flex; align-items: center; gap: 6px; }
-.spec-ico { width: 12px; height: 12px; color: var(--euc); flex-shrink: 0; }
-.spec-ico svg { width: 100%; height: 100%; }
 .engage li::before { content: none !important; }
-.eng-ico { width: 20px; height: 20px; color: var(--euc); flex-shrink: 0; margin-right: 12px; transform: translateY(1px); }
 .engage li { display: flex; align-items: flex-start; }
-.engage li .eng-ico { margin-top: 2px; }
-.c-ico { width: 13px; height: 13px; color: var(--euc); margin-right: 6px; transform: translateY(2px); display: inline-block; }
+.eng-ico { width: 20px; height: 20px; color: var(--euc); flex-shrink: 0; margin: 2px 12px 0 0; }
+.summary-ico { width: 13px; height: 13px; color: var(--euc); margin-right: 7px; transform: translateY(2px); display: inline-block; }
 .edu-line { display: flex; align-items: flex-start; gap: 8px; }
 .edu-ico { width: 15px; height: 15px; color: var(--cream-3); margin-top: 2px; flex-shrink: 0; }
-.summary-ico { width: 13px; height: 13px; color: var(--euc); margin-right: 7px; transform: translateY(2px); display: inline-block; }
-.hero .eyebrow .eb-ico { width: 12px; height: 12px; margin-left: 4px; transform: translateY(1.5px); display: inline-block; color: var(--euc); }
 @media print {
-  .sh-ico, .tile-ico, .spec-ico, .eng-ico, .c-ico, .edu-ico, .summary-ico, .eb-ico { display: none !important; }
-  .section-head { gap: 8px; }
+  .tile-ico, .eng-ico, .summary-ico, .edu-ico { display: none !important; }
 }
 
 </style>
@@ -597,24 +593,24 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= HERO ================= -->
   <header class="hero">
     <div class="hero-mark" aria-hidden="true">mc</div>
-    <div class="eyebrow" data-reveal>Executive Profile — Brisbane, Australia <span class="flag">🇦🇺</span></div>
-    <h1 data-kinetic>
-      <span class="ln"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
-      <span class="ln"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">o</span><span class="ch">n</span><span class="period">.</span></span>
+    <div class="eyebrow" data-reveal>Executive Profile — Brisbane, Australia</div>
+    <h1 data-kinetic aria-label="Marcus Callon.">
+      <span class="ln" aria-hidden="true"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
+      <span class="ln" aria-hidden="true"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">o</span><span class="ch">n</span><span class="period">.</span></span>
     </h1>
-    <p class="thesis" data-thesis>
-      <span class="ln"><span class="wd">The</span> <span class="wd"><em>translator</em></span> <span class="wd">across</span> <span class="wd">product,</span> <span class="wd">finance</span> <span class="wd">&amp;</span> <span class="wd">architecture</span> <span class="period" style="color:var(--signal)">—</span></span>
-      <span class="ln"><span class="wd">an</span> <span class="wd">operator</span> <span class="wd">who</span> <span class="wd">leads</span> <span class="wd">with</span> <span class="wd">product,</span> <span class="wd">fluent</span> <span class="wd">in</span> <span class="wd">customer,</span> <span class="wd">P&amp;L</span> <span class="wd">and</span> <span class="wd">code.</span></span>
-      <span class="ln"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders</span> <span class="wd">&amp;</span> <span class="wd">boards.</span></span>
+    <p class="thesis" data-thesis aria-label="The translator across product, finance and architecture — an operator who leads with product, fluent in customer, P&L and code. Fractional & interim CXO mandates for founders & boards.">
+      <span class="ln" aria-hidden="true"><span class="wd">The</span> <span class="wd"><em>translator</em></span> <span class="wd">across</span> <span class="wd">product,</span> <span class="wd">finance</span> <span class="wd">&amp;</span> <span class="wd">architecture</span> <span class="period" style="color:var(--signal)">—</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">an</span> <span class="wd">operator</span> <span class="wd">who</span> <span class="wd">leads</span> <span class="wd">with</span> <span class="wd">product,</span> <span class="wd">fluent</span> <span class="wd">in</span> <span class="wd">customer,</span> <span class="wd">P&amp;L</span> <span class="wd">and</span> <span class="wd">code.</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders</span> <span class="wd">&amp;</span> <span class="wd">boards.</span></span>
     </p>
     <div class="contact" data-reveal>
-      <a href="mailto:marcus.callon@gmail.com"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>marcus.callon@gmail.com</a>
+      <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
       <span class="sep">·</span>
-      <a href="https://notorious.kiwi"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>notorious.kiwi</a>
+      <a href="https://notorious.kiwi">notorious.kiwi</a>
       <span class="sep">·</span>
-      <a href="https://www.linkedin.com/in/marcuscallon"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>linkedin</a>
+      <a href="https://www.linkedin.com/in/marcuscallon">linkedin</a>
       <span class="sep">·</span>
-      Brisbane, Australia <span class="flag">🇦🇺</span>
+      Brisbane, Australia
     </div>
     <div class="scrolly" data-reveal aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
   </header>
@@ -640,42 +636,41 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       </div>
     </div>
     <div class="spec" data-reveal aria-label="Spec">
-      <div class="spec-cell"><div class="spec-k"><span class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>Location</div><div class="spec-v">Brisbane, AU</div></div>
-      <div class="spec-cell"><div class="spec-k"><span class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="15" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>Founded</div><div class="spec-v spec-list"><span class="ac">4 ventures</span><span>Holoscribe</span><span>Shorthand</span><span>Immersive</span><span>Focal Labs</span></div></div>
-      <div class="spec-cell"><div class="spec-k"><span class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>Stack</div><div class="spec-v spec-list"><span><span class="ac">CPO</span></span><span>CFO</span><span>COO</span><span>CTO</span></div></div>
-      <div class="spec-cell"><div class="spec-k"><span class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg></span>AI-native</div><div class="spec-v">pi · Claude Code</div></div>
-      <div class="spec-cell"><div class="spec-k"><span class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>Industries</div><div class="spec-v spec-list"><span>Publishing</span><span>Martech</span><span>Fintech</span><span>Insurance</span><span>Telco</span><span>Gov</span></div></div>
+      <div class="spec-cell"><div class="spec-k">Location</div><div class="spec-v">Brisbane, AU</div></div>
+      <div class="spec-cell"><div class="spec-k">Founded</div><div class="spec-v spec-list"><span class="ac">4 ventures</span><span>Holoscribe</span><span>Shorthand</span><span>Immersive</span><span>Focal Labs</span></div></div>
+      <div class="spec-cell"><div class="spec-k">Stack</div><div class="spec-v spec-list"><span><span class="ac">CPO</span></span><span>CFO</span><span>COO</span><span>CTO</span></div></div>
+      <div class="spec-cell"><div class="spec-k">AI-native</div><div class="spec-v">pi · Claude Code</div></div>
+      <div class="spec-cell"><div class="spec-k">Industries</div><div class="spec-v spec-list"><span>Publishing</span><span>Martech</span><span>Fintech</span><span>Insurance</span><span>Telco</span><span>Gov</span></div></div>
     </div>
   </section>
 
   <!-- ================= THE STACK ================= -->
   <section class="section" id="stack">
     <div class="section-head" data-reveal>
-      <span class="sh-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
       <h2>Product, finance, architecture <span class="ital">&amp; operations.</span></h2>
     </div>
     <div class="stack">
       <div class="tile tile-feature" data-reveal>
         <div class="tag"><span class="num">01</span>Product / CPO</div>
-        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
         <h3>Early-stage product <span class="ital">&amp; reinvention.</span></h3>
         <p>ASX-listed Chief Customer &amp; Product Officer. Four-time co-founder. Specialist in early-stage product and product reinvention — connecting customer problems to solutions that fit the business and its goals, from discovery through to commercial launch. Leads with product, always.</p>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">02</span>Finance / CFO</div>
-        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
         <h3>The P&amp;L seat, <span class="ital">not the back office.</span></h3>
         <p>Held the CFO role as an interim engagement for a cashflow-challenged business that was superficially profitable. Rebuilt finance ops <em>as part of the value stream</em> — a CFO/COO hybrid, not a back-office reporting function. Commercial, financials and executive positioning across the board.</p>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">03</span>Operations / COO</div>
-        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
         <h3>Operating-model <span class="ital">design &amp; delivery.</span></h3>
         <p>Turnaround and growth-stage org design (most alive in the 10–50 person moment). Leads transformation working groups that challenge the status quo with empathy and care — design-and-build, not axe-wielding cost-cutting. Delivery assurance across multi-country teams.</p>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">04</span>Architecture / CTO</div>
-        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M9 2v2"/><path d="M9 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/></svg></div>
+        <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M9 2v2"/><path d="M9 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/></svg></div>
         <h3>Enterprise to <span class="ital">AI-native build.</span></h3>
         <p>Enterprise Solution Architect across government and financial services. Pre-sales bid architect (won a record RACQ engagement); lead dev on the Mastercard payment gateway. Today builds AI-native agents (pi, Claude Code) that execute across the tech, product and P&amp;L stack — not just advise.</p>
         <span class="ai"><span class="d"></span>pi · Claude Code</span>
@@ -686,7 +681,6 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= EXECUTIVE COMPETENCIES ================= -->
   <section class="section" id="skills">
     <div class="section-head" data-reveal>
-      <span class="sh-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
       <h2>Executive competencies, <span class="ital">what I own at C-level.</span></h2>
     </div>
     <div class="skills-grid" data-reveal>
@@ -742,13 +736,14 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   </section>
 
   <!-- ================= CLIENTS (optional) ================= -->
-  <details class="signature-group clients-group" id="clients">
-    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients &amp; employers (optional)</summary>
+  <details class="signature-group clients-group" id="clients" open>
+    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients &amp; employers</summary>
+    <div class="clients-print" aria-hidden="true">BBC · The Guardian · ESPN · The Times · Financial Times · Hearst · Mastercard · RACQ · Queensland Transport · EQC · Shorthand · Immersive · Holoscribe · Wondaris · Focal Labs · University of Otago</div>
     <div class="logo-grid" data-reveal>
       <div class="logo-cat">
         <div class="cg-k">Media &amp; publishing</div>
         <div class="logo-row">
-          <span class="logo feat" title="BBC"><svg viewBox="0 0 90 30" fill="currentColor" aria-label="BBC"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></svg></span>
+          <span class="logo feat" title="BBC"><svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></g><g fill="#15181C" font-family="Arial,sans-serif" font-weight="700" font-size="14" text-anchor="middle"><text x="13" y="21">B</text><text x="45" y="21">B</text><text x="77" y="21">C</text></g></svg></span>
           <span class="logo" title="The Guardian"><span class="wm serif">the Guardian</span></span>
           <span class="logo espn" title="ESPN"><span class="wm sans">ESPN</span></span>
           <span class="logo" title="The Times"><span class="wm serif-up">The Times</span></span>
@@ -797,7 +792,6 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= EXPERIENCE (sorted by end date desc) ================= -->
   <section class="section" id="experience">
     <div class="section-head" data-reveal>
-      <span class="sh-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
       <h2>Experience</h2>
     </div>
 
@@ -934,7 +928,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="earlier-row"><div class="yr">2010–11</div><div class="desc"><strong>4impact — Solution Architect.</strong> Pre-sales bid architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.</div></div>
       <div class="earlier-row"><div class="yr">2009–10</div><div class="desc"><strong>Mastercard — Lead Developer, Payment Gateway.</strong> Built the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D-Secure), shipped PCI-compliant in four months.</div></div>
       <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
-      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sg.svg" alt="Singapore"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/my.svg" alt="Malaysia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/th.svg" alt="Thailand"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/vn.svg" alt="Vietnam"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hk.svg" alt="Hong Kong"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ie.svg" alt="Ireland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gb.svg" alt="UK"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gr.svg" alt="Greece"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/tr.svg" alt="Turkey"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/fr.svg" alt="France"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/nl.svg" alt="Netherlands"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/be.svg" alt="Belgium"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/it.svg" alt="Italy"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hr.svg" alt="Croatia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hu.svg" alt="Hungary"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sk.svg" alt="Slovakia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pl.svg" alt="Poland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/de.svg" alt="Germany"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/cz.svg" alt="Czechia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/at.svg" alt="Austria"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/li.svg" alt="Liechtenstein"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ch.svg" alt="Switzerland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/mc.svg" alt="Monaco"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/es.svg" alt="Spain"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pt.svg" alt="Portugal"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/eg.svg" alt="Egypt"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/us.svg" alt="USA"></div></div></div>
+      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="assets/flags/sg.svg" alt="" loading="lazy"><img src="assets/flags/my.svg" alt="" loading="lazy"><img src="assets/flags/th.svg" alt="" loading="lazy"><img src="assets/flags/vn.svg" alt="" loading="lazy"><img src="assets/flags/hk.svg" alt="" loading="lazy"><img src="assets/flags/ie.svg" alt="" loading="lazy"><img src="assets/flags/gb.svg" alt="" loading="lazy"><img src="assets/flags/gr.svg" alt="" loading="lazy"><img src="assets/flags/tr.svg" alt="" loading="lazy"><img src="assets/flags/fr.svg" alt="" loading="lazy"><img src="assets/flags/nl.svg" alt="" loading="lazy"><img src="assets/flags/be.svg" alt="" loading="lazy"><img src="assets/flags/it.svg" alt="" loading="lazy"><img src="assets/flags/hr.svg" alt="" loading="lazy"><img src="assets/flags/hu.svg" alt="" loading="lazy"><img src="assets/flags/sk.svg" alt="" loading="lazy"><img src="assets/flags/pl.svg" alt="" loading="lazy"><img src="assets/flags/de.svg" alt="" loading="lazy"><img src="assets/flags/cz.svg" alt="" loading="lazy"><img src="assets/flags/at.svg" alt="" loading="lazy"><img src="assets/flags/li.svg" alt="" loading="lazy"><img src="assets/flags/ch.svg" alt="" loading="lazy"><img src="assets/flags/mc.svg" alt="" loading="lazy"><img src="assets/flags/es.svg" alt="" loading="lazy"><img src="assets/flags/pt.svg" alt="" loading="lazy"><img src="assets/flags/eg.svg" alt="" loading="lazy"><img src="assets/flags/us.svg" alt="" loading="lazy"></div></div></div>
       <div class="earlier-row"><div class="yr">2005–06</div><div class="desc"><strong>RHE &amp; Associates — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004–05</div><div class="desc"><strong>Provenco — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004</div><div class="desc"><strong>AXA New Zealand — Senior Software Engineer (contract).</strong></div></div>
@@ -946,19 +940,18 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= HOW I ENGAGE ================= -->
   <section class="section engage" id="engage">
     <div class="section-head" data-reveal>
-      <span class="sh-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
       <h2>How I engage</h2>
     </div>
     <ul>
-      <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><strong>Fractional &amp; interim CXO.</strong> <span class="engage-desc">Senior coverage across the CFO, COO, CPO and CTO remits for founders and boards — without a full-time hire.</span></li>
-      <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><strong>Transformation working groups, not lone turnarounds.</strong> <span class="engage-desc">Design-and-build with cross-functional teams, challenging the status quo with empathy and care.</span></li>
-      <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span><strong><em>AI-native</em> build-measure-learn.</strong> <span class="engage-desc">Concept → validated solution → launch, with agents (pi, Claude Code) doing the heavy build and test loop alongside human judgement. Done means enough to solve the problem or prove the assumption — not perfect.</span></li>
+      <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><strong>Fractional &amp; interim CXO.</strong> <span class="engage-desc">Senior coverage across the CFO, COO, CPO and CTO remits for founders and boards — without a full-time hire.</span></li>
+      <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><strong>Transformation working groups, not lone turnarounds.</strong> <span class="engage-desc">Design-and-build with cross-functional teams, challenging the status quo with empathy and care.</span></li>
+      <li data-reveal><span class="eng-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span><strong><em>AI-native</em> build-measure-learn.</strong> <span class="engage-desc">Concept → validated solution → launch, with agents (pi, Claude Code) doing the heavy build and test loop alongside human judgement. Done means enough to solve the problem or prove the assumption — not perfect.</span></li>
     </ul>
   </section>
 
   <!-- ================= OPTIONAL SIGNATURE ================= -->
   <details class="signature-group">
-    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Values &amp; signature (optional)</summary>
+    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Values &amp; signature</summary>
     <section class="signature">
       <blockquote class="sig-quote">
         "I am a genius as I curiously and authentically encourage myself and others to explore and challenge the status quo to create solutions that matter."
@@ -983,8 +976,8 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <footer class="foot">
     <div class="edu" data-reveal>
       <strong>Education</strong>
-      <div class="edu-line"><span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><p>BCom — Accounting &amp; Finance, University of Otago</p></div>
-      <div class="edu-line"><span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><p>BSc — Computer Science &amp; Information Science, University of Otago</p></div>
+      <div class="edu-line"><span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><p>BCom — Accounting &amp; Finance, University of Otago</p></div>
+      <div class="edu-line"><span class="edu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><p>BSc — Computer Science &amp; Information Science, University of Otago</p></div>
     </div>
     <div class="meta">
       Marcus Callon · Brisbane, Australia<br>
@@ -1003,13 +996,21 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 (function () {
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Preloader ----
+  // ---- Preloader: gate the hero intro on its completion ----
+  var preloaderDone = false;
   function hidePreloader() {
+    if (preloaderDone) return;
+    preloaderDone = true;
     var p = document.getElementById('preloader');
     if (p) p.classList.add('done');
+    runHeroIntro();
   }
-  window.addEventListener('load', function () {
-    setTimeout(hidePreloader, 1400);
+  var heroIntroStarted = false;
+  function runHeroIntro() { /* defined below; preloader fires it */ }
+  document.addEventListener('DOMContentLoaded', function () {
+    var minDwell = new Promise(function (r) { setTimeout(r, 900); });
+    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    Promise.all([minDwell, fontsReady]).then(hidePreloader);
   });
   // Safety fallback
   setTimeout(hidePreloader, 4000);
@@ -1038,31 +1039,38 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   // Initial state for reveal elements (so they're hidden before animating)
   gsap.set('[data-reveal]', { opacity: 0, y: 24 });
 
-  // ---- Hero kinetic name: per-char rise + overshoot on load ----
-  var heroName = document.querySelector('[data-kinetic]');
-  if (heroName) {
-    var chars = heroName.querySelectorAll('.ch, .period');
-    gsap.set(chars, { yPercent: 120, opacity: 0, rotate: function () { return gsap.utils.random(-9, 9); } });
-    var tl = gsap.timeline({ delay: 1.0 });
-    tl.to(chars, {
-      yPercent: 0, opacity: 1, rotate: 0,
-      duration: 0.9, ease: 'back.out(1.7)',
-      stagger: { each: 0.035, from: 'start' }
-    });
-  }
-
-  // ---- Thesis: word-by-word mask reveal, slightly after name ----
-  var thesis = document.querySelector('[data-thesis]');
-  if (thesis) {
-    var words = thesis.querySelectorAll('.wd');
-    gsap.set(words, { yPercent: 115, opacity: 0 });
-    gsap.to(words, {
-      yPercent: 0, opacity: 1,
-      duration: 0.8, ease: 'expo.out',
-      stagger: 0.018,
-      delay: 1.6
-    });
-  }
+  // ---- Hero kinetic name + thesis: gated on preloader completion ----
+  var introChars = null, introWords = null;
+  (function prepIntro() {
+    var heroName = document.querySelector('[data-kinetic]');
+    if (heroName) {
+      introChars = heroName.querySelectorAll('.ch, .period');
+      gsap.set(introChars, { yPercent: 120, opacity: 0, rotate: function () { return gsap.utils.random(-9, 9); } });
+    }
+    var thesis = document.querySelector('[data-thesis]');
+    if (thesis) {
+      introWords = thesis.querySelectorAll('.wd');
+      gsap.set(introWords, { yPercent: 115, opacity: 0 });
+    }
+  })();
+  runHeroIntro = function () {
+    if (heroIntroStarted) return; heroIntroStarted = true;
+    if (introChars) {
+      gsap.to(introChars, {
+        yPercent: 0, opacity: 1, rotate: 0,
+        duration: 0.9, ease: 'back.out(1.7)',
+        stagger: { each: 0.035, from: 'start' }
+      });
+    }
+    if (introWords) {
+      gsap.to(introWords, {
+        yPercent: 0, opacity: 1,
+        duration: 0.8, ease: 'expo.out',
+        stagger: 0.012,
+        delay: 0.45
+      });
+    }
+  };
 
   // ---- Hero mark: subtle parallax on scroll ----
   var heroMark = document.querySelector('.hero-mark');
@@ -1134,6 +1142,23 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     if (mq.addEventListener) mq.addEventListener('change', cb);
     else if (mq.addListener) mq.addListener(cb);
   }
+
+  // ---- Details open/close shifts layout: refresh ScrollTrigger measurements ----
+  document.querySelectorAll('details').forEach(function (d) {
+    d.addEventListener('toggle', function () { ScrollTrigger.refresh(); });
+  });
+
+  // ---- Smooth nav anchors through Lenis ----
+  document.querySelectorAll('.topnav .links a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      var target = id.length > 1 ? document.querySelector(id) : null;
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -60 });
+      else target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
   // ---- Download button ----
   var btn = document.getElementById('dl');
