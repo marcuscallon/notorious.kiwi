@@ -197,7 +197,7 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 .markets-stat .n.mkts { font-family: var(--sans); font-weight: 600; font-size: clamp(21px, 2vw, 27px); letter-spacing: 0.06em; }
 
 /* world-travel flag strip */
-.travel-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; max-width: 340px; }
+.travel-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
 .travel-flags img { width: 22px; height: 22px; border-radius: 50%; filter: grayscale(1) brightness(0.95) contrast(1.02); opacity: 0.6; transition: opacity .2s; }
 .travel-flags img:hover { opacity: 1; }
 
@@ -454,6 +454,22 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--cream-3); padding: 6px 0;
 }
+.pepeha summary { position: relative; }
+.pepeha summary .pp-what {
+  position: absolute; left: 50%; bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(5px);
+  width: max-content; max-width: min(340px, 80vw);
+  padding: 10px 14px;
+  background: var(--bg2); border: 1px solid var(--rule); border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+  font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.5;
+  letter-spacing: 0; text-transform: none;
+  color: var(--cream-2); white-space: normal; text-align: center;
+  opacity: 0; pointer-events: none; z-index: 7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.pepeha summary:hover .pp-what { opacity: 1; transform: translateX(-50%) translateY(0); }
+.pepeha summary::after { content: none; }
 .pepeha summary::-webkit-details-marker { display: none; }
 .pepeha summary::before { content: '+'; color: var(--signal); margin-right: 9px; font-weight: 500; }
 .pepeha[open] summary::before { content: '–'; }
@@ -1035,7 +1051,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     </div>
   </section>
 <details class="pepeha">
-    <summary>Pepeha</summary>
+    <summary>Pepeha<span class="pp-what" aria-hidden="true">A Pepeha is a traditional Māori way of introducing yourself by connecting your identity to your ancestral landmarks, rivers, and origins.</span></summary>
     <div class="pp-body">
       <div class="pp-lines" tabindex="0">
           <span>Ko Kopuwai te maunga.</span>

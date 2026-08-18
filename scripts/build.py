@@ -453,8 +453,10 @@ def gen_footer(text):
         img, alt = kv.get('pepeha_img', ''), kv.get('pepeha_img_alt', '')
         img_html = (f'<div class="pp-imgwrap" aria-hidden="true">'
                     f'<img src="{esc(img)}" alt="{esc(alt)}"></div>') if img else ''
+        what = kv.get('pepeha_what', '')
+        what_html = f'<span class="pp-what" aria-hidden="true">{esc(what)}</span>' if what else ''
         pp_html = f'''<details class="pepeha">
-    <summary>Pepeha</summary>
+    <summary>Pepeha{what_html}</summary>
     <div class="pp-body">
       <div class="pp-lines" tabindex="0">
 {pp_lines}
