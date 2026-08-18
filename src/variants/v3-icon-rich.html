@@ -442,10 +442,12 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 .edu-lines p { font-family: var(--serif); font-size: 15px; color: var(--cream); line-height: 1.55; }
 
 /* ============================================
-   PEPEHA (collapsed by default; expands to the full lines + photo)
+   PEPEHA (collapsed by default; expand shows the lines, hovering the
+   lines reveals the full photo version)
 ===================================================================== */
 .pepeha {
   border-top: 1px solid var(--rule); margin-top: 40px; padding: 20px 0;
+  position: relative;
 }
 .pepeha summary {
   list-style: none; cursor: pointer; text-align: center;
@@ -456,21 +458,31 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 .pepeha summary::before { content: '+'; color: var(--signal); margin-right: 9px; font-weight: 500; }
 .pepeha[open] summary::before { content: '–'; }
 .pepeha .pp-body {
-  display: grid; grid-template-columns: 1fr minmax(0, 340px); gap: 40px; align-items: center;
+  display: flex; flex-direction: column; align-items: center;
   padding: 26px 0 14px; max-width: 880px; margin: 0 auto;
+  position: relative;
 }
 .pepeha .pp-lines {
   font-family: var(--serif); font-size: 1.3rem; line-height: 1.75; color: var(--cream-2);
-  font-variation-settings: "opsz" 72; text-align: left;
+  font-variation-settings: "opsz" 72; text-align: center;
+  cursor: default; outline: none;
 }
 .pepeha .pp-lines span { display: block; }
 .pepeha .pp-lines span + span { margin-top: 2px; }
-.pepeha .pp-body img {
-  display: block; width: 100%; height: auto; border: 1px solid var(--rule);
-  border-radius: 6px; filter: grayscale(.2);
+.pepeha .pp-imgwrap {
+  position: absolute; left: 50%; bottom: calc(100% + 16px);
+  transform: translateX(-50%) translateY(10px);
+  width: min(420px, 82vw);
+  opacity: 0; pointer-events: none; z-index: 6;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
-@media (max-width: 720px) {
-  .pepeha .pp-body { grid-template-columns: 1fr; gap: 22px; }
+.pepeha .pp-lines:hover ~ .pp-imgwrap,
+.pepeha .pp-lines:focus ~ .pp-imgwrap,
+.pepeha .pp-lines:active ~ .pp-imgwrap,
+.pepeha .pp-imgwrap:hover { opacity: 1; transform: translateX(-50%) translateY(0); }
+.pepeha .pp-imgwrap img {
+  display: block; width: 100%; height: auto; border: 1px solid var(--rule);
+  border-radius: 6px; box-shadow: 0 26px 70px rgba(0,0,0,0.6);
 }
 
 /* =====================================================================
@@ -1043,12 +1055,12 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 <details class="pepeha">
     <summary>Pepeha</summary>
     <div class="pp-body">
-      <div class="pp-lines">
+      <div class="pp-lines" tabindex="0">
           <span>Ko Kopuwai te maunga.</span>
           <span>Ko Mata-au te awa.</span>
           <span>Ko Marcus tōku ingoa.</span>
       </div>
-      <img src="assets/marcus-pepeha.jpg" alt="Pepeha — family at Kopuwai maunga by the Mata-au awa">
+      <div class="pp-imgwrap" aria-hidden="true"><img src="assets/marcus-pepeha.jpg" alt="Pepeha — family at Kopuwai maunga by the Mata-au awa"></div>
     </div>
   </details>
   <footer class="foot">
