@@ -185,20 +185,23 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 .scrolly svg { display: block; opacity: 0.5; animation: bob 2.2s ease-in-out infinite; }
 @keyframes bob { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(4px); } }
 .flag { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif; font-style: normal; font-weight: 400; }
-.markets-stat .n.flags { display: flex; align-items: center; gap: 14px; font-size: 0.8em; flex-wrap: wrap; }
-.markets-stat .n.flags .flag-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.markets-stat .n.flags .flag-svg { width: 46px; height: 46px; border-radius: 50%; display: block; filter: grayscale(1) brightness(0.92) contrast(1.05); opacity: 0.88; image-rendering: -webkit-optimize-contrast; }
-.markets-stat .n.flags .code { font-family: var(--sans); font-weight: 700; font-size: 0.5em; letter-spacing: 0.06em; color: var(--cream); }
-.markets-stat .n.flags .sep-f { color: var(--cream-3); font-weight: 300; }
+/* markets stat — text treatment (no flags) */
+.markets-stat .n.mkts { font-family: var(--sans); font-weight: 600; font-size: clamp(21px, 2vw, 27px); letter-spacing: 0.06em; }
 
 /* world-travel flag strip */
-.travel-flags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-.travel-flags img { width: 22px; height: 22px; border-radius: 50%; filter: grayscale(1) brightness(0.92) contrast(1.05); opacity: 0.65; transition: opacity .2s; }
+.travel-flags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; max-width: 340px; }
+.travel-flags img { width: 22px; height: 22px; border-radius: 50%; filter: grayscale(1) brightness(0.95) contrast(1.02); opacity: 0.6; transition: opacity .2s; }
 .travel-flags img:hover { opacity: 1; }
 
 /* spec-list: bullet-per-line in spec strip */
-.spec-list { display: flex; flex-direction: column; gap: 2px; }
-.spec-list span { display: block; line-height: 1.1; }
+.spec-list { display: flex; flex-direction: column; gap: 3px; }
+.spec-list span { display: block; line-height: 1.2; padding-left: 12px; position: relative; }
+.spec-list span::before { content:''; position: absolute; left: 0; top: 0.56em; width: 6px; height: 1px; background: var(--euc); }
+
+/* strengths list */
+.strengths-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3px 20px; margin-top: 8px; }
+.strengths-list li { padding-left: 14px; position: relative; }
+.strengths-list li::before { content:''; position: absolute; left: 0; top: 0.62em; width: 7px; height: 1px; background: var(--euc); }
 
 /* ============================================
    SECTION SCAFFOLD
@@ -487,6 +490,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .stat { padding: 8px 9px 7px; border-right: 1px solid var(--rule); }
   .stat:last-child { border-right: none; }
   .stat .n { font-size: 16pt; margin-bottom: 2px; }
+  .markets-stat .n.mkts { font-size: 9pt; }
   .stat .n .u { font-size: 9pt; }
   .stat .l { font-size: 6pt; }
   .stat.feature { background: var(--euc-2); }
@@ -534,9 +538,10 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .engage li::before { top: 1px; }
   .engage li::before { top: 0; }
   .foot { padding: 1px 0 0; margin-top: 1px; }
-  .edu strong { display: none; }
-  .foot .edu p { font-size: 6.2pt; line-height: 1.1; }
+  .foot .edu strong { display: none; }
+  .foot .edu p { font-size: 6.2pt; line-height: 1.15; display: inline; }
   .foot .edu p + p { margin-top: 0; }
+  .foot .edu p + p::before { content: '  ·  '; font-family: var(--mono); color: var(--cream-3); }
   .foot .meta { display: none; }
 }
 </style>
@@ -606,17 +611,13 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
         <div class="l">Listed Chief Customer<br>&amp; Product Officer</div>
       </div>
       <div class="stat markets-stat">
-        <div class="n flags">
-          <span class="flag-block"><img class="flag-svg" src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/australia.svg" alt="Australia" loading="lazy"><span class="code">AU</span></span>
-          <span class="flag-block"><img class="flag-svg" src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/new-zealand.svg" alt="New Zealand" loading="lazy"><span class="code">NZ</span></span>
-          <span class="flag-block"><img class="flag-svg" src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/united-kingdom.svg" alt="United Kingdom" loading="lazy"><span class="code">UK</span></span>
-        </div>
-        <div class="l">Markets served</div>
+        <div class="n mkts"><span class="ac">AU</span> · NZ · UK</div>
+        <div class="l">Markets served<br>Australia · New Zealand · United Kingdom</div>
       </div>
     </div>
     <div class="spec" data-reveal aria-label="Spec">
       <div class="spec-cell"><div class="spec-k">Location</div><div class="spec-v">Brisbane, AU</div></div>
-      <div class="spec-cell"><div class="spec-k">Founded</div><div class="spec-v">4 ventures</div></div>
+      <div class="spec-cell"><div class="spec-k">Founded</div><div class="spec-v spec-list"><span class="ac">4 ventures</span><span>Holoscribe</span><span>Shorthand</span><span>Immersive</span><span>Focal Labs</span></div></div>
       <div class="spec-cell"><div class="spec-k">Stack</div><div class="spec-v spec-list"><span><span class="ac">CPO</span></span><span>CFO</span><span>COO</span><span>CTO</span></div></div>
       <div class="spec-cell"><div class="spec-k">AI-native</div><div class="spec-v">pi · Claude Code</div></div>
       <div class="spec-cell"><div class="spec-k">Industries</div><div class="spec-v spec-list"><span>Publishing</span><span>Martech</span><span>Fintech</span><span>Insurance</span><span>Telco</span><span>Gov</span></div></div>
@@ -788,8 +789,9 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="role-logo" title="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></div>
       <div class="role-body">
         <h4>Chief Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
+        <p class="lede">Product leadership across the group's two growth products — the Wondaris customer-data platform and the Holoscribe digital-publishing platform.</p>
         <ul>
-          <li>Built and led the product function from the ground up.</li>
+          <li>Built and led the product function from the ground up across Wondaris and Holoscribe.</li>
           <li>Drove product through the company's ASX listing and commercial scale-up phase.</li>
         </ul>
         <div class="tags"><span>0→1</span><span>Scale-up</span><span>Product</span></div>
@@ -807,6 +809,20 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
           <li>Owned concept-to-MVP-to-launch and commercial validation for portfolio ventures.</li>
         </ul>
         <div class="tags"><span>Founder</span><span>0→1</span><span>Venture studio</span></div>
+      </div>
+    </div>
+
+<div class="role" data-reveal>
+      <div class="role-yr">2015<span class="dur">—2020</span></div>
+      <div class="role-logo" title="Holoscribe"><svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="#15181D">Holoscribe</text></svg></div>
+      <div class="role-body">
+        <h4>Co-founder &amp; Chief Product Officer <span class="org">— Holoscribe</span></h4>
+        <p class="lede">Co-founded an early-stage digital-publishing and immersive-reality venture from concept through seed funding. <strong>Exit 2020 — acquired by XPON Group.</strong></p>
+        <ul>
+          <li>Led product, people and innovation across venture-building.</li>
+          <li>Took the venture from concept through seed funding to acquisition.</li>
+        </ul>
+        <div class="tags"><span>Founder</span><span>0→1</span><span>Exit — acquired</span></div>
       </div>
     </div>
 
@@ -838,20 +854,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       </div>
     </div>
 
-    <div class="role" data-reveal>
-      <div class="role-yr">2015<span class="dur">—2019</span></div>
-      <div class="role-logo" title="Holoscribe"><svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="#15181D">Holoscribe</text></svg></div>
-      <div class="role-body">
-        <h4>Co-founder &amp; Chief Product Officer <span class="org">— Holoscribe</span></h4>
-        <p class="lede">Co-founded an early-stage digital-publishing and immersive-reality venture from concept through seed funding. <strong>Exit 2019 — acquired by XPON Group.</strong></p>
-        <ul>
-          <li>Led product, people and innovation across venture-building.</li>
-          <li>Took the venture from concept through seed funding to acquisition.</li>
-        </ul>
-        <div class="tags"><span>Founder</span><span>0→1</span><span>Exit — acquired</span></div>
-      </div>
-    </div>
-
+    
     <div class="role" data-reveal>
       <div class="role-yr">2015<span class="dur">—2017</span></div>
       <div class="role-logo" title="EQC New Zealand"><svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="#15181D" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="#15181D">EQC</text></svg></div>
@@ -900,7 +903,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="earlier-row"><div class="yr">2010–11</div><div class="desc"><strong>4impact — Solution Architect.</strong> Pre-sales bid architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.</div></div>
       <div class="earlier-row"><div class="yr">2009–10</div><div class="desc"><strong>Mastercard — Lead Developer, Payment Gateway.</strong> Built the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D-Secure), shipped PCI-compliant in four months.</div></div>
       <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
-      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/singapore.svg" alt="Singapore"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/malaysia.svg" alt="Malaysia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/thailand.svg" alt="Thailand"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/vietnam.svg" alt="Vietnam"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/hong-kong.svg" alt="Hong Kong"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/ireland.svg" alt="Ireland"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/united-kingdom.svg" alt="UK"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/greece.svg" alt="Greece"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/turkey.svg" alt="Turkey"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/france.svg" alt="France"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/netherlands.svg" alt="Netherlands"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/belgium.svg" alt="Belgium"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/italy.svg" alt="Italy"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/croatia.svg" alt="Croatia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/hungary.svg" alt="Hungary"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/slovakia.svg" alt="Slovakia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/poland.svg" alt="Poland"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/germany.svg" alt="Germany"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/czechia.svg" alt="Czechia"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/austria.svg" alt="Austria"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/liechtenstein.svg" alt="Liechtenstein"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/switzerland.svg" alt="Switzerland"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/monaco.svg" alt="Monaco"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/spain.svg" alt="Spain"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/portugal.svg" alt="Portugal"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/egypt.svg" alt="Egypt"><img src="https://raw.githubusercontent.com/hatscripts/circle-flags/main/flags/united-states.svg" alt="USA"></div></div></div>
+      <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sg.svg" alt="Singapore"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/my.svg" alt="Malaysia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/th.svg" alt="Thailand"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/vn.svg" alt="Vietnam"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hk.svg" alt="Hong Kong"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ie.svg" alt="Ireland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gb.svg" alt="UK"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gr.svg" alt="Greece"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/tr.svg" alt="Turkey"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/fr.svg" alt="France"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/nl.svg" alt="Netherlands"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/be.svg" alt="Belgium"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/it.svg" alt="Italy"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hr.svg" alt="Croatia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hu.svg" alt="Hungary"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sk.svg" alt="Slovakia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pl.svg" alt="Poland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/de.svg" alt="Germany"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/cz.svg" alt="Czechia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/at.svg" alt="Austria"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/li.svg" alt="Liechtenstein"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ch.svg" alt="Switzerland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/mc.svg" alt="Monaco"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/es.svg" alt="Spain"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pt.svg" alt="Portugal"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/eg.svg" alt="Egypt"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/us.svg" alt="USA"></div></div></div>
       <div class="earlier-row"><div class="yr">2005–06</div><div class="desc"><strong>RHE &amp; Associates — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004–05</div><div class="desc"><strong>Provenco — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004</div><div class="desc"><strong>AXA New Zealand — Senior Software Engineer (contract).</strong></div></div>
@@ -915,9 +918,9 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <h2>How I engage</h2>
     </div>
     <ul>
-      <li data-reveal><strong>Fractional &amp; interim CXO.</strong> Senior coverage across the CFO, COO, CPO and CTO remits for founders and boards — without a full-time hire.</li>
-      <li data-reveal><strong>Transformation working groups, not lone turnarounds.</strong> Design-and-build with cross-functional teams, challenging the status quo with empathy and care.</li>
-      <li data-reveal><strong><em>AI-native</em> build-measure-learn.</strong> Concept → validated solution → launch, with agents (pi, Claude Code) doing the heavy build and test loop alongside human judgement. Done means enough to solve the problem or prove the assumption — not perfect.</li>
+      <li data-reveal><strong>Fractional &amp; interim CXO.</strong> <span class="engage-desc">Senior coverage across the CFO, COO, CPO and CTO remits for founders and boards — without a full-time hire.</span></li>
+      <li data-reveal><strong>Transformation working groups, not lone turnarounds.</strong> <span class="engage-desc">Design-and-build with cross-functional teams, challenging the status quo with empathy and care.</span></li>
+      <li data-reveal><strong><em>AI-native</em> build-measure-learn.</strong> <span class="engage-desc">Concept → validated solution → launch, with agents (pi, Claude Code) doing the heavy build and test loop alongside human judgement. Done means enough to solve the problem or prove the assumption — not perfect.</span></li>
     </ul>
   </section>
 
@@ -931,7 +934,15 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       </blockquote>
       <div class="strengths">
         <strong>VIA Character Strengths</strong>
-        Creativity &amp; ingenuity · Honesty &amp; authenticity · Curiosity · Judgement &amp; open-mindedness · Bravery · Zest &amp; energy · Hope &amp; future-mindedness.
+        <ul class="strengths-list">
+          <li>Creativity &amp; ingenuity</li>
+          <li>Honesty &amp; authenticity</li>
+          <li>Curiosity</li>
+          <li>Judgement &amp; open-mindedness</li>
+          <li>Bravery</li>
+          <li>Zest &amp; energy</li>
+          <li>Hope &amp; future-mindedness</li>
+        </ul>
       </div>
     </section>
   </details>
