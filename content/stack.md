@@ -5,7 +5,7 @@
 # Body paragraphs follow. Optional "chip: TEXT" adds the mono pill.
 # ============================================================
 
-heading: Product, finance, architecture *& operations.*
+heading: *Product,* finance, *architecture* & operations.
 
 ## 01 :: Product / CPO :: feature
 ### Early-stage product *& reinvention.*

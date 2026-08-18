@@ -2,7 +2,7 @@
 start: 2021
 end: 2024
 title: Chief Product Officer
-org: XPON Technologies Group (ASX:XPN)
+org: XPON Platforms - XPON Technologies Group (ASX:XPN)
 logo: xpon
 tags: 0→1, Scale-up, Product
 ---
