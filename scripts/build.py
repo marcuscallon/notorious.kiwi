@@ -365,8 +365,9 @@ def gen_earlier(text):
             if m:
                 kv_raw[m.group(1)] = m.group(2)
     heading = kv_raw.get('heading', 'Earlier')
-    out = [f'''    <div class="earlier" data-reveal>
-      <div class="cg-k">{esc(heading)}</div>''']
+    out = [f'''    <details class="earlier" data-reveal>
+      <summary class="cg-k">{esc(heading)}</summary>
+''']
     for row in rows:
         yrs, desc = row.split(' | ', 1)
         desc = inline(desc)
@@ -374,7 +375,7 @@ def gen_earlier(text):
             flags = ''.join(f'<img src="assets/flags/{c}.svg" alt="" loading="lazy">' for c in TRAVEL_FLAGS)
             desc = desc.replace('{travelflags}', f'<div class="travel-flags" aria-hidden="true">{flags}</div>')
         out.append(f'      <div class="earlier-row"><div class="yr">{esc(yrs)}</div><div class="desc">{desc}</div></div>')
-    out.append('')
+    out.append('    </details>')
     return '\n'.join(out)
 
 def gen_engage(text):
