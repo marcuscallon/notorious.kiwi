@@ -7,9 +7,9 @@
 heading: Earlier — architecture, build & world travel (2000–2013)
 
 rows:
-- 2011–13 | **4impact — Delivery Manager.** Assurance governance of solution delivery engagements; managed client & consultant participation.
-- 2010–11 | **4impact — Solution Architect.** Pre-sales bid architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.
-- 2009–10 | **Mastercard — Lead Developer, Payment Gateway.** Built the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D Secure), shipped PCI-compliant in four months.
+- 2011–13 | **4impact — Heady of Delivery .** Assurance governance and leadership of the solution delivery function for porfolio of clients and exec sponsor across key customer engagements.
+- 2010–11 | **4impact — Solution Architect.** Pre-sales bid architect and then lead architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.
+- 2009–10 | **Mastercard — Lead Developer, Payment Gateway.** Solution architecture and lead developer of the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D Secure), shipped PCI-compliant in four months.
 - 2007–08 | **Queensland Transport — Enterprise Solution Architect & Lead Analyst/Developer.** Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration & licensing.
 - 2006–07 | **World travel.** Extended travel sabbatical. {travelflags}
 - 2005–06 | **RHE & Associates — Senior Software Engineer (contract).**

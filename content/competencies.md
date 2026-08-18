@@ -1,9 +1,11 @@
 # ============================================================
-# EXECUTIVE COMPETENCIES — 4 columns.
+# EXECUTIVE CAPABILITIES — 4 columns.
 # "## ICON :: Heading with *italic part*" starts a column.
 # Icons: compass / trending-up / layers / terminal / cpu /
 #        briefcase / users / bot / sparkles / star / building
 # ============================================================
+
+heading: Executive capabilities, *what I own at C-level.*
 
 ## compass :: Venture & product *strategy*
 - 0→1 venture building and product reinvention

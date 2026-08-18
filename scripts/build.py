@@ -59,6 +59,18 @@ def parse_sections(text):
         blocks.append(('## ' + lines[0], lines[1:]))
     return meta_lines, blocks
 
+def section_heading(path, default=''):
+    """Read the 'heading:' key from a markdown content file, inline-format it."""
+    return heading_from_text(open(os.path.join(ROOT, path)).read(), default)
+
+def heading_from_text(text, default=''):
+    """Find first 'heading:' line and inline-format it."""
+    for ln in text.splitlines():
+        m = re.match(r'^heading:\s*(.*)$', ln)
+        if m:
+            return inline(m.group(1).strip(), ital_class=True)
+    return inline(default, ital_class=True)
+
 ICON_PATHS = {
   'compass': '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
   'trending-up': '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
@@ -268,8 +280,9 @@ def gen_clients(text):
     if marquee_extra: marquee.append(marquee_extra)
     marquee_html = ' &middot; '.join(esc(n) for n in marquee)
     mode_cls = ' mode-marks' if marks_mode else ''
+    summary_title = heading_from_text(text, 'Clients & employers')
     return f'''  <details class="signature-group clients-group" id="clients" open>
-    <summary>Clients &amp; employers</summary>
+    <summary>{summary_title}</summary>
     <div class="clients-print" aria-hidden="true">{marquee_html}</div>
     <div class="logo-grid{mode_cls}" data-reveal>
 {os.linesep.join(groups)}
@@ -500,11 +513,15 @@ out = out.replace('{{NAME}}', gen_name(meta_kv))
 out = out.replace('{{THESIS}}', gen_thesis(meta_kv))
 out = out.replace('{{CONTACT}}', gen_contact(meta_kv))
 out = out.replace('{{HERO_FACTS}}', gen_hero_facts(meta_kv))
+out = out.replace('{{STACK_TITLE}}', section_heading('content/stack.md', 'Product, finance, architecture *& operations.*'))
 out = out.replace('{{STACK}}', gen_stack(open('content/stack.md').read()))
+out = out.replace('{{COMPETENCIES_TITLE}}', section_heading('content/competencies.md', 'Executive competencies, *what I own at C-level.*'))
 out = out.replace('{{COMPETENCIES}}', gen_competencies(open('content/competencies.md').read()))
 out = out.replace('{{CLIENTS}}', gen_clients(open('content/clients.md').read()))
+out = out.replace('{{EXPERIENCE_TITLE}}', section_heading('content/experience.md', 'Experience'))
 out = out.replace('{{ROLES}}', gen_roles())
 out = out.replace('{{EARLIER_ROWS}}', gen_earlier(open('content/earlier.md').read()))
+out = out.replace('{{ENGAGE_TITLE}}', section_heading('content/engage.md', 'How I engage'))
 out = out.replace('{{ENGAGE_UL}}', gen_engage(open('content/engage.md').read()))
 # signature section removed in v13.
 out = out.replace('{{FOOTER}}', gen_footer(open('content/footer.md').read()))

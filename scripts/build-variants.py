@@ -51,7 +51,7 @@ for num, ico in [('01</span>Product / CPO','compass'), ('02</span>Finance / CFO'
     a = f'        <div class="tag"><span class="num">{num}</div>\n'
     v3 = must(a, a + f'        <div class="tile-ico">{ICONS[ico]}</div>\n', v3, 'tile '+num)
 eng = [('<strong>Fractional &amp; interim CXO.</strong>','briefcase'),
-       ('<strong>Transformation working groups, not lone turnarounds.</strong>','users'),
+       ('<strong>Advisory Boards, Working groups, not lone turnarounds.</strong>','users'),
        ('<strong><em>AI-native</em> build-measure-learn.</strong>','bot')]
 for strong, ico in eng:
     v3 = must(strong, f'<span class="eng-ico">{ICONS[ico]}</span>'+strong, v3, 'engage '+ico)

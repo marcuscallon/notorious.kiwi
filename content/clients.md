@@ -13,6 +13,9 @@
 #   style: marks  - uniform logomark tiles; org name appears on hover/focus
 style: marks
 
+# Display heading for the section (both web and print marquee context)
+heading: Clients & employers
+
 # Print marquee (single line, shown only in the PDF) — order:
 # display names as listed above, then this extra token.
 marquee_extra: Wondaris

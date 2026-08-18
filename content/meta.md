@@ -19,7 +19,7 @@ thesis:
 # Stats: value unit | label line 1 ; label line 2 [:: feature]
 stats:
 - 4 × | Co-founder across ; publishing & martech :: feature
-- 20 + yrs | Executive · product · finance ; commercial · technical · operations
+- 20 + yrs | ·  Executive; · product; · finance; · commercial; · technical; · operations
 - ASX | Listed Chief Customer ; & Product Officer
 
 # Spec strip cells.
