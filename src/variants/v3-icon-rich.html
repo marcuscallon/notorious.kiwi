@@ -137,11 +137,17 @@ a:hover { color: var(--cream); border-color: var(--cream); }
   padding: 120px 0 60px; position: relative; overflow: hidden;
 }
 .hero-mark {
-  position: absolute; right: -4vw; top: 50%; transform: translateY(-50%);
-  font-family: var(--serif); font-style: italic; font-weight: 300;
-  font-size: clamp(320px, 52vw, 760px); line-height: 0.8; letter-spacing: -0.08em;
-  color: var(--cream); opacity: 0.04; pointer-events: none; z-index: 0;
-  font-variation-settings: "opsz" 144; user-select: none; white-space: nowrap;
+  position: absolute; right: -2vw; top: 50%; transform: translateY(-50%);
+  height: clamp(420px, 64vh, 640px); pointer-events: none; z-index: 0; user-select: none;
+}
+.hero-mark img {
+  height: 100%; width: auto; display: block;
+  filter: grayscale(1) contrast(1.06) brightness(0.82);
+  opacity: 0.4;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%), linear-gradient(0deg, transparent 0, #000 12%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent 0, #000 38%), linear-gradient(0deg, transparent 0, #000 12%);
+  mask-composite: intersect;
 }
 .hero > *:not(.hero-mark) { position: relative; z-index: 1; }
 .hero .eyebrow {
@@ -350,6 +356,13 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .role-logo .wm.sans { font-family: var(--sans); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; }
 .role-logo .wm.mono { font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; }
 .role-logo .wm.sans-track { font-family: var(--sans); font-weight: 600; font-size: 9.5px; letter-spacing: 0.14em; line-height: 1.35; }
+.role-logo img.rl {
+  filter: grayscale(1) contrast(0.95) brightness(1.15);
+  max-width: 88%; max-height: 26px; object-fit: contain;
+  transition: filter 0.4s var(--ease);
+}
+.role:hover .role-logo img.rl { filter: none; }
+.role-logo .rl-fb { display: none; }
 .role:first-of-type { border-top: none; }
 .role-yr { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--signal); padding-top: 4px; line-height: 1.3; }
 .role-yr .dur { display: block; font-size: 10px; color: var(--cream-3); margin-top: 4px; font-weight: 400; }
@@ -396,6 +409,36 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 .signature .strengths strong { display: block; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); margin-bottom: 12px; }
 
 /* ============================================
+   PEPEHA
+===================================================================== */
+.pepeha {
+  border-top: 1px solid var(--rule); margin-top: 40px; padding: 28px 0 8px;
+  text-align: center; position: relative;
+}
+.pepeha .pp-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cream-3); margin-bottom: 14px;
+}
+.pepeha .pp-lines {
+  font-family: var(--serif); font-size: 1.25rem; line-height: 1.7; color: var(--cream-2);
+  font-variation-settings: "opsz" 72;
+}
+.pepeha .pp-lines span { display: block; }
+.pepeha .pp-lines span + span { margin-top: 2px; }
+.pepeha .pp-imgwrap {
+  position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translate(-50%, 10px) scale(.97);
+  opacity: 0; pointer-events: none; z-index: 4;
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+  max-width: min(640px, 90vw);
+}
+.pepeha .pp-imgwrap img {
+  display: block; width: 100%; height: auto; border: 1px solid var(--rule);
+  border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+}
+.pepeha:hover .pp-imgwrap,
+.pepeha:focus-within .pp-imgwrap { opacity: 1; transform: translate(-50%, 0) scale(1); }
+
+/* =====================================================================
    FOOTER
    ============================================ */
 .foot { display: grid; grid-template-columns: 1fr auto; gap: 32px; padding: 44px 0 64px; align-items: end; border-top: 1px solid var(--rule); margin-top: 24px; }
@@ -467,7 +510,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   }
   body { background: #fff; font-size: 8pt; line-height: 1.36; overflow: visible; }
   body::before, body::after { display: none; }
-  .preloader, .topnav, .download-btn, .scrolly, .hero-mark { display: none !important; }
+  .preloader, .topnav, .download-btn, .scrolly, .hero-mark, .pepeha { display: none !important; }
   .cv { max-width: none; padding: 0; }
   /* Flatten all motion */
   .mask-line { overflow: visible !important; }
@@ -592,7 +635,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
   <!-- ================= HERO ================= -->
   <header class="hero">
-    <div class="hero-mark" aria-hidden="true">mc</div>
+    <div class="hero-mark" aria-hidden="true"><img src="assets/marcus-headshot.png" alt=""></div>
     <div class="eyebrow" data-reveal>Executive Profile — Brisbane, Australia</div>
     <h1 data-kinetic aria-label="Marcus Callon.">
       <span class="ln" aria-hidden="true"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
@@ -798,7 +841,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2024<span class="dur">—present</span></div>
-      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></div>
+      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl" src="assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
       <div class="role-body">
         <h4>Chief Customer &amp; Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
         <p class="lede">Executive leadership of customer and product for a next-generation customer-experience and data-platform business.</p>
@@ -812,7 +855,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2021<span class="dur">—2024</span></div>
-      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></div>
+      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl" src="assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
       <div class="role-body">
         <h4>Chief Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
         <p class="lede">Product leadership across the group's two growth products — the Wondaris customer-data platform and the Holoscribe digital-publishing platform.</p>
@@ -826,7 +869,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2013<span class="dur">—2020</span></div>
-      <div class="role-logo" title="Focal Labs"><svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="currentColor">FOCAL LABS</text></svg></div>
+      <div class="role-logo" title="Focal Labs"><img class="rl" src="assets/focal-labs-australia-logo.png" style="mix-blend-mode: screen;" alt="Focal Labs" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Focal Labs"><svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="currentColor">FOCAL LABS</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Chief Product Officer <span class="org">— Focal Labs</span></h4>
         <p class="lede">The "product guy aka CPO" — co-founded a service-based startup enabler supporting MVP development and commercial momentum for early-stage concepts.</p>
@@ -840,7 +883,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2015<span class="dur">—2020</span></div>
-      <div class="role-logo" title="Holoscribe"><svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="currentColor">Holoscribe</text></svg></div>
+      <div class="role-logo" title="Holoscribe"><img class="rl" src="assets/holoscribe-logo.png" alt="Holoscribe" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Holoscribe"><svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="currentColor">Holoscribe</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Chief Product Officer <span class="org">— Holoscribe</span></h4>
         <p class="lede">Co-founded an early-stage digital-publishing and immersive-reality venture from concept through seed funding. <strong>Exit 2020 — acquired by XPON Group.</strong></p>
@@ -897,7 +940,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2013<span class="dur">—2015</span></div>
-      <div class="role-logo" title="Shorthand"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="currentColor">Shorthand</text></svg></div>
+      <div class="role-logo" title="Shorthand"><img class="rl" src="assets/shorthand-logo-black.svg" style="filter: invert(0.88) grayscale(1);" alt="Shorthand" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Shorthand"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="currentColor">Shorthand</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Product Lead <span class="org">— Shorthand</span></h4>
         <p class="lede">Co-founded, built the team and led product for an enterprise digital-publishing platform taken from concept to international commercialisation.</p>
@@ -910,7 +953,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2014<span class="dur">—2015</span></div>
-      <div class="role-logo" title="Immersive"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="currentColor">Immersive</text></svg></div>
+      <div class="role-logo" title="Immersive"><img class="rl" src="assets/immersive_logo.jpeg" style="filter: invert(1); border-radius: 3px;" alt="Immersive" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Immersive"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="currentColor">Immersive</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Product Lead <span class="org">— Immersive (later Shorthand Social)</span></h4>
         <p class="lede">Co-founded and launched an innovative publishing platform for journalists and freelance storytellers.</p>
@@ -972,7 +1015,17 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
         </ul>
       </div>
     </section>
+  </details>
   <!-- ================= FOOTER ================= -->
+<div class="pepeha" tabindex="0">
+      <div class="pp-label">Pepeha</div>
+      <div class="pp-lines">
+        <span>Ko Kopuwai te maunga.</span>
+        <span>Ko Mata-au te awa.</span>
+        <span>Ko Marcus tōku ingoa.</span>
+      </div>
+      <div class="pp-imgwrap"><img src="assets/marcus-pepeha.jpg" alt="Pepeha — family at Kopuwai maunga by the Mata-au awa"></div>
+    </div>
   <footer class="foot">
     <div class="edu" data-reveal>
       <strong>Education</strong>
@@ -983,6 +1036,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       Marcus Callon · Brisbane, Australia<br>
       <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
     </div>
+  </footer>
 </article>
 
 <!-- ================= SCRIPTS: GSAP + Lenis + SplitText ================= -->
@@ -1032,6 +1086,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
+    window.__lenis = lenis; /* exposed for print hooks and test harnesses */
   }
 
   // Initial state for reveal elements (so they're hidden before animating)

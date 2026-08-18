@@ -24,8 +24,10 @@ scripts/
   build.py            compiles content/*.md + template.html -> src/profile.html
   build-variants.py   writes src/variants/v3-icon-rich.html + v4-real-logos.html
 src/profile.html    <-- GENERATED. Do not hand-edit.
-src/variants/       <-- GENERATED comparisons.
-assets/             logos, vendored flag icons
+src/variants/       <-- GENERATED comparisons (v3-icon-rich; v1/v2 are
+                        older direction studies; v4-real-logos was promoted
+                        into the canonical site in v12 and retired).
+assets/             logos, headshot, pepeha photo, vendored flag icons
 ```
 
 ## Workflow
@@ -47,5 +49,6 @@ Or directly: `python3 scripts/build.py --variants --pdf`
   special tokens documented at the top of their sections.
 - New role? Add `content/roles/NN-name.md` — logo key must be one of:
   xpon, 4impact, eqc, holoscribe, shorthand, immersive, focallabs
-  (wordmark SVGs live in `scripts/build.py` ROLE_LOGOS).
+  (real logo files preferred; wordmark SVG fallbacks live in
+  `scripts/build.py` ROLE_LOGOS along with per-logo dark-tile filters).
 - After big content changes, check the PDF still fits 2 pages.

@@ -274,19 +274,19 @@ def gen_clients(text):
   </details>'''
 
 ROLE_LOGOS = {
-  'xpon': ('XPON Technologies (ASX:XPN)',
+  'xpon': ('XPON Technologies (ASX:XPN)', 'assets/XPON_logomark_RGB-white@3x.png', '',
            '<svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg>'),
-  '4impact': ('4impact',
+  '4impact': ('4impact', None, '',
               '<svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg>'),
-  'eqc': ('EQC New Zealand',
+  'eqc': ('EQC New Zealand', None, '',
           '<svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="currentColor">EQC</text></svg>'),
-  'holoscribe': ('Holoscribe',
+  'holoscribe': ('Holoscribe', 'assets/holoscribe-logo.png', '',
                  '<svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="currentColor">Holoscribe</text></svg>'),
-  'shorthand': ('Shorthand',
+  'shorthand': ('Shorthand', 'assets/shorthand-logo-black.svg', 'filter: invert(0.88) grayscale(1);',
                 '<svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="currentColor">Shorthand</text></svg>'),
-  'immersive': ('Immersive',
+  'immersive': ('Immersive', 'assets/immersive_logo.jpeg', 'filter: invert(1); border-radius: 3px;',
                 '<svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="currentColor">Immersive</text></svg>'),
-  'focallabs': ('Focal Labs',
+  'focallabs': ('Focal Labs', 'assets/focal-labs-australia-logo.png', 'mix-blend-mode: screen;',
                 '<svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="currentColor">FOCAL LABS</text></svg>'),
 }
 
@@ -321,7 +321,15 @@ def gen_roles():
         start, end = r['start'], r['end']
         dur = '—present' if end == 'present' else (end if end == start else f'—{end}')
         logo_key = r.get('logo', '')
-        title_attr, logo_svg = ROLE_LOGOS[logo_key]
+        title_attr, logo_file, logo_fx, logo_svg = ROLE_LOGOS[logo_key]
+        if logo_file and os.path.exists(logo_file):
+            inner = (f'<img class="rl" src="{logo_file}"' +
+                     (f' style="{logo_fx}"' if logo_fx else '') +
+                     f' alt="{title_attr}" loading="lazy"'
+                     f' onerror="this.remove()">'
+                     f'<span class="rl-fb" aria-label="{title_attr}">{logo_svg}</span>')
+        else:
+            inner = logo_svg
         lede_html = f'\n        <p class="lede">{inline(r["lede"])}</p>' if r['lede'] else ''
         bullets_html = ''
         if r['bullets']:
@@ -331,7 +339,7 @@ def gen_roles():
         tags_html = f'\n        <div class="tags">{tags}</div>' if tags else ''
         out.append(f'''    <div class="role" data-reveal>
       <div class="role-yr">{esc(start)}<span class="dur">{esc(dur)}</span></div>
-      <div class="role-logo" title="{title_attr}">{logo_svg}</div>
+      <div class="role-logo" title="{title_attr}">{inner}</div>
       <div class="role-body">
         <h4>{inline(r["title"])} <span class="org">— {inline(r["org"])}</span></h4>{lede_html}{bullets_html}{tags_html}
       </div>
@@ -409,22 +417,38 @@ def gen_signature(text):
 {s_lis}
         </ul>
       </div>
-    </section>'''
+    </section>
+  </details>'''
 
 def gen_footer(text):
     kv = {}
-    edu = []
+    lists = {}
     cur_key = None
     for ln in text.splitlines():
         if ln.startswith('#') or not ln.strip(): continue
         if ln.startswith('- '):
-            if cur_key == 'edu': edu.append(ln[2:].strip())
+            lists.setdefault(cur_key, []).append(ln[2:].strip())
         else:
             m = re.match(r'^(\w+):\s*(.*)$', ln)
             if m:
                 kv[m.group(1)] = m.group(2); cur_key = m.group(1)
-    edu_html = '\n'.join(f'      <p>{esc(e)}</p>' for e in edu)
-    return f'''  <footer class="foot">
+    edu_html = '\n'.join(f'      <p>{esc(e)}</p>' for e in lists.get('edu', []))
+    pp_html = ''
+    pepeha = lists.get('pepeha', [])
+    if pepeha:
+        pp_lines = '\n'.join(f'        <span>{esc(l)}</span>' for l in pepeha)
+        img, alt = kv.get('pepeha_img', ''), kv.get('pepeha_img_alt', '')
+        img_html = (f'      <div class="pp-imgwrap">'
+                    f'<img src="{esc(img)}" alt="{esc(alt)}"></div>') if img else ''
+        pp_html = f'''<div class="pepeha" tabindex="0">
+      <div class="pp-label">Pepeha</div>
+      <div class="pp-lines">
+{pp_lines}
+      </div>
+{img_html}
+    </div>
+'''
+    return pp_html + f'''  <footer class="foot">
     <div class="edu" data-reveal>
       <strong>Education</strong>
 {edu_html}
@@ -432,7 +456,8 @@ def gen_footer(text):
     <div class="meta">
       {esc(kv.get('meta_name',''))}<br>
       <a href="{esc(kv.get('meta_link_href',''))}">{esc(kv.get('meta_link_label',''))}</a>
-    </div>'''
+    </div>
+  </footer>'''
 
 # ---------------- assemble ----------------
 

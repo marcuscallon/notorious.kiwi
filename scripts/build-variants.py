@@ -72,48 +72,5 @@ v3 = v3.replace('<title>', '<title>[ICON-RICH] ')
 open('src/variants/v3-icon-rich.html','w').write(v3)
 print('v3-icon-rich.html written')
 
-# ---------------- v4 real logos (role headers only, grayscale-unified) ----------------
-v4 = s
-v4_css = '''
-/* ---- v4 real-logo additions: role headers only, unified monochrome ---- */
-.role-logo img.rl { width: 40px; height: 40px; object-fit: contain; display: block;
-                    filter: grayscale(1) contrast(1.02) opacity(0.92); }
-.role-logo img.rl.focal { width: 64px; height: auto; }
-.role-logo img.rl.shorthand { filter: grayscale(1) invert(0.88) brightness(1.06) opacity(0.92); }
-.rl-fb { display: none !important; }
-.rl.qldt { width: 22px; height: 22px; display: inline-block; vertical-align: -4px; margin-right: 8px;
-           filter: grayscale(1) invert(0.88) brightness(1.05) opacity(0.85); border-radius: 50%; }
-@media print {
-  .role-logo img.rl, .rl.qldt { display: none !important; }
-  .rl-fb { display: block !important; }
-}
-'''
-v4 = must('</style>', v4_css + '\n</style>', v4, 'style close')
-
-role_files = {
-  'XPON Technologies': '../assets/XPON_logomark_RGB-white@3x.png',
-  'Focal Labs': '../assets/focal-labs-australia-logo.png',
-  'Holoscribe': '../assets/holoscribe-logo.png',
-  'Shorthand': '../assets/shorthand-logo-black.svg',
-  'Immersive': '../assets/immersive_logo.jpeg',
-}
-def extra_cls(t):
-    if 'Shorthand' in t: return 'shorthand'
-    if 'Focal' in t: return 'focal'
-    return ''
-pattern = re.compile(r'(<div class="role-logo" title="([^"]+)">)(<svg[^>]*>.*?</svg>)(</div>)', re.S)
-def repl(m):
-    title, svg = m.group(2), m.group(3)
-    key = next((k for k in role_files if k.lower() in title.lower()), None)
-    if not key: return m.group(0)
-    img = f'<img class="rl {extra_cls(title)}" src="{role_files[key]}" alt="{title}" loading="lazy">'
-    return m.group(1) + img + f'<span class="rl-fb">{svg}</span>' + m.group(4)
-v4, n = pattern.subn(repl, v4)
-print('role-logo swaps:', n)
-
-v4 = must('<strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong>',
-          '<img class="rl qldt" src="../assets/qld-transport.png" alt=""><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong>', v4, 'qldt crest')
-v4 = v4.replace('<title>', '<title>[REAL-LOGOS] ')
-open('src/variants/v4-real-logos.html','w').write(v4)
-print('v4-real-logos.html written')
-print('OK')
+# NOTE: v4-real-logos was promoted into the canonical site in v12
+# (assets-aware role marks emitted by scripts/build.py).
