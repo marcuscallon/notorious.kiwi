@@ -1,6 +1,6 @@
 ---
 start: 2019
-end: 2019
+end: 2020
 title: Acting Chief Financial Officer
 org: 4impact
 logo: 4impact
