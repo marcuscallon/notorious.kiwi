@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marcus Callon — Executive Profile</title>
+<title>[REAL-LOGOS] Marcus Callon — Executive Profile</title>
 <meta name="description" content="Marcus Callon — the translator across finance, product and architecture. Fractional/interim CXO, 4× founder, ASX-listed Chief Customer & Product Officer. Brisbane, Australia.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -305,8 +305,8 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
 /* skill-col -> competency */
 .skill-col { background: var(--ink); padding: 28px 24px 26px; position: relative; }
-.skill-col .skill-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
-.skill-col .skill-icon { width: 20px; height: 20px; color: var(--euc); flex-shrink: 0; margin-top: 1px; }
+.skill-col .skill-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.skill-col .skill-icon { width: 22px; height: 22px; color: var(--euc); flex-shrink: 0; }
 .skill-col .skill-icon svg { width: 100%; height: 100%; display: block; }
 .skill-col .skill-k { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: var(--cream); line-height: 1.2; }
 .skill-col .skill-k .ital { font-style: italic; color: var(--euc); font-weight: 400; }
@@ -544,6 +544,26 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .foot .edu p + p::before { content: '  ·  '; font-family: var(--mono); color: var(--cream-3); }
   .foot .meta { display: none; }
 }
+
+/* ---- v4 real-logo additions ---- */
+.rl { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; display: block; }
+.rl-fb { display: none; }
+.role-logo .rl-fb { display: none; }
+.rl.xpon { background: transparent; padding: 4px; }
+.rl.wondaris { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; margin: 0 1px; border-radius: 4px; }
+.rl.holo-chip { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; margin: 0 1px; border-radius: 4px; }
+.rl.focal { height: 30px; width: auto; padding: 0; }
+.rl.immersive { background: #fff; padding: 3px; }
+.rl.qldt { width: 20px; height: 20px; display: inline-block; vertical-align: -4px; margin-right: 8px; }
+.rl.otago { width: 120px; height: auto; display: block; margin-bottom: 10px; }
+.cl-img { height: 24px; max-width: 96px; width: auto; object-fit: contain; display: block; border-radius: 4px; }
+.cl-img.focal { height: 20px; }
+.cl-img.immersive { background: #fff; padding: 2px; border-radius: 6px; }
+@media print {
+  .role-logo img.rl, .logo img.cl-img, .rl.wondaris, .rl.holo-chip, .rl.qldt, .rl.otago { display: none !important; }
+  .rl-fb, .role-logo .rl-fb { display: block !important; }
+}
+
 </style>
 </head>
 <body>
@@ -736,7 +756,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
         <div class="cg-k">Insurance &amp; listed</div>
         <div class="logo-row">
           <span class="logo" title="RACQ Insurance"><span class="wm sans">RACQ</span></span>
-          <span class="logo" title="XPON Technologies (ASX:XPN)"><span class="wm sans-track">XPON</span></span>
+          <span class="logo" title="XPON Technologies (ASX:XPN)"><img class="cl-img" src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON" loading="lazy"></span>
         </div>
       </div>
       <div class="logo-cat">
@@ -749,10 +769,10 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="logo-cat">
         <div class="cg-k">Ventures founded</div>
         <div class="logo-row">
-          <span class="logo feat" title="Shorthand"><span class="wm serif">Shorthand</span></span>
-          <span class="logo" title="Holoscribe"><span class="wm sans">Holoscribe</span></span>
-          <span class="logo" title="Immersive"><span class="wm serif">Immersive</span></span>
-          <span class="logo" title="Focal Labs"><span class="wm sans-track">FOCAL LABS</span></span>
+          <span class="logo feat" title="Shorthand"><img class="cl-img" src="../assets/shorthand-logo-black.svg" alt="Shorthand" loading="lazy" style="filter:invert(0.88) brightness(1.06);"></span>
+          <span class="logo" title="Holoscribe"><img class="cl-img" src="../assets/holoscribe-logo.png" alt="Holoscribe" loading="lazy"></span>
+          <span class="logo" title="Immersive"><img class="cl-img immersive" src="../assets/immersive_logo.jpeg" alt="Immersive" loading="lazy"></span>
+          <span class="logo" title="Focal Labs"><img class="cl-img focal" src="../assets/focal-labs-australia-logo.png" alt="Focal Labs" loading="lazy"></span>
         </div>
       </div>
       <div class="logo-cat">
@@ -772,12 +792,12 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2024<span class="dur">—present</span></div>
-      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></div>
+      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl xpon" src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
       <div class="role-body">
         <h4>Chief Customer &amp; Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
         <p class="lede">Executive leadership of customer and product for a next-generation customer-experience and data-platform business.</p>
         <ul>
-          <li>Owns product strategy and commercialisation across the Wondaris data platform and Holoscribe digital-publishing products.</li>
+          <li>Owns product strategy and commercialisation across the Wondaris <img class="rl wondaris" src="../assets/Wondaris_logomark_RGB-white_large.png" alt="Wondaris"> data platform and Holoscribe <img class="rl holo-chip" src="../assets/holoscribe-logo.png" alt="Holoscribe"> digital-publishing products.</li>
           <li>Aligns customer insight, product direction and commercial outcomes across the listed entity.</li>
         </ul>
         <div class="tags"><span>ASX-listed</span><span>Product</span><span>Customer</span></div>
@@ -786,12 +806,12 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2021<span class="dur">—2024</span></div>
-      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></div>
+      <div class="role-logo" title="XPON Technologies (ASX:XPN)"><img class="rl xpon" src="../assets/XPON_logomark_RGB-white@3x.png" alt="XPON Technologies (ASX:XPN)" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 60 30" fill="#15181D" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg></span></div>
       <div class="role-body">
         <h4>Chief Product Officer <span class="org">— XPON Technologies Group (ASX:XPN)</span></h4>
-        <p class="lede">Product leadership across the group's two growth products — the Wondaris customer-data platform and the Holoscribe digital-publishing platform.</p>
+        <p class="lede">Product leadership across the group's two growth products — the Wondaris <img class="rl wondaris" src="../assets/Wondaris_logomark_RGB-white_large.png" alt="Wondaris"> customer-data platform and the Holoscribe <img class="rl holo-chip" src="../assets/holoscribe-logo.png" alt="Holoscribe"> digital-publishing platform.</p>
         <ul>
-          <li>Built and led the product function from the ground up across Wondaris and Holoscribe.</li>
+          <li>Built and led the product function from the ground up across Wondaris <img class="rl wondaris" src="../assets/Wondaris_logomark_RGB-white_large.png" alt="Wondaris"> and Holoscribe <img class="rl holo-chip" src="../assets/holoscribe-logo.png" alt="Holoscribe">.</li>
           <li>Drove product through the company's ASX listing and commercial scale-up phase.</li>
         </ul>
         <div class="tags"><span>0→1</span><span>Scale-up</span><span>Product</span></div>
@@ -800,7 +820,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2013<span class="dur">—2020</span></div>
-      <div class="role-logo" title="Focal Labs"><svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="#15181D">FOCAL LABS</text></svg></div>
+      <div class="role-logo" title="Focal Labs"><img class="rl focal" src="../assets/focal-labs-australia-logo.png" alt="Focal Labs" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="#15181D">FOCAL LABS</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Chief Product Officer <span class="org">— Focal Labs</span></h4>
         <p class="lede">The “product guy aka CPO” — co-founded a service-based startup enabler supporting MVP development and commercial momentum for early-stage concepts.</p>
@@ -814,7 +834,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
 <div class="role" data-reveal>
       <div class="role-yr">2015<span class="dur">—2020</span></div>
-      <div class="role-logo" title="Holoscribe"><svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="#15181D">Holoscribe</text></svg></div>
+      <div class="role-logo" title="Holoscribe"><img class="rl " src="../assets/holoscribe-logo.png" alt="Holoscribe" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="#15181D">Holoscribe</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Chief Product Officer <span class="org">— Holoscribe</span></h4>
         <p class="lede">Co-founded an early-stage digital-publishing and immersive-reality venture from concept through seed funding. <strong>Exit 2020 — acquired by XPON Group.</strong></p>
@@ -872,7 +892,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2013<span class="dur">—2015</span></div>
-      <div class="role-logo" title="Shorthand"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="#15181D">Shorthand</text></svg></div>
+      <div class="role-logo" title="Shorthand"><img class="rl" src="../assets/shorthand-logo-black.svg" alt="Shorthand" loading="lazy" style="filter:invert(0.88) brightness(1.06);"><span class="rl-fb"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="#15181D">Shorthand</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Product Lead <span class="org">— Shorthand</span></h4>
         <ul>
@@ -885,7 +905,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
     <div class="role" data-reveal>
       <div class="role-yr">2014<span class="dur">—2015</span></div>
-      <div class="role-logo" title="Immersive"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="#15181D">Immersive</text></svg></div>
+      <div class="role-logo" title="Immersive"><img class="rl immersive" src="../assets/immersive_logo.jpeg" alt="Immersive" loading="lazy"><span class="rl-fb"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="#15181D">Immersive</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Product Lead <span class="org">— Immersive (later Shorthand Social)</span></h4>
         <ul>
@@ -902,7 +922,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
       <div class="earlier-row"><div class="yr">2011–13</div><div class="desc"><strong>4impact — Delivery Manager.</strong> Assurance governance of solution delivery engagements; managed client &amp; consultant participation.</div></div>
       <div class="earlier-row"><div class="yr">2010–11</div><div class="desc"><strong>4impact — Solution Architect.</strong> Pre-sales bid architect on the RACQ Insurance claims-management engagement — at the time the largest in 4impact's history.</div></div>
       <div class="earlier-row"><div class="yr">2009–10</div><div class="desc"><strong>Mastercard — Lead Developer, Payment Gateway.</strong> Built the extended MiGS payment-gateway interface (dynamic currency conversion + 3-D-Secure), shipped PCI-compliant in four months.</div></div>
-      <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
+      <div class="earlier-row"><div class="yr">2007–08</div><div class="desc"><img class="rl qldt" src="../assets/qld-transport.png" alt="Queensland Transport"><strong>Queensland Transport — Enterprise Solution Architect &amp; Lead Analyst/Developer.</strong> Championed a contemporary SOA across the agency; led analysis on a web-service integration layer for vehicle registration &amp; licensing.</div></div>
       <div class="earlier-row"><div class="yr">2006–07</div><div class="desc"><strong>World travel.</strong> Extended travel sabbatical.<div class="travel-flags" aria-hidden="true"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sg.svg" alt="Singapore"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/my.svg" alt="Malaysia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/th.svg" alt="Thailand"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/vn.svg" alt="Vietnam"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hk.svg" alt="Hong Kong"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ie.svg" alt="Ireland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gb.svg" alt="UK"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/gr.svg" alt="Greece"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/tr.svg" alt="Turkey"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/fr.svg" alt="France"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/nl.svg" alt="Netherlands"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/be.svg" alt="Belgium"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/it.svg" alt="Italy"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hr.svg" alt="Croatia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/hu.svg" alt="Hungary"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/sk.svg" alt="Slovakia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pl.svg" alt="Poland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/de.svg" alt="Germany"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/cz.svg" alt="Czechia"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/at.svg" alt="Austria"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/li.svg" alt="Liechtenstein"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/ch.svg" alt="Switzerland"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/mc.svg" alt="Monaco"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/es.svg" alt="Spain"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/pt.svg" alt="Portugal"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/eg.svg" alt="Egypt"><img src="https://raw.githubusercontent.com/HATScripts/circle-flags/gh-pages/flags/us.svg" alt="USA"></div></div></div>
       <div class="earlier-row"><div class="yr">2005–06</div><div class="desc"><strong>RHE &amp; Associates — Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2004–05</div><div class="desc"><strong>Provenco — Senior Software Engineer (contract).</strong></div></div>
@@ -950,7 +970,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   <!-- ================= FOOTER ================= -->
   <footer class="foot">
     <div class="edu" data-reveal>
-      <strong>Education</strong>
+      <img class="rl otago" src="../assets/university-of-otago.svg" alt="University of Otago" loading="lazy"><strong>Education</strong>
       <p>BCom — Accounting &amp; Finance, University of Otago</p>
       <p>BSc — Computer Science &amp; Information Science, University of Otago</p>
     </div>
