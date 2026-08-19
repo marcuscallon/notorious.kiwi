@@ -99,3 +99,23 @@ AWS_PROFILE=notorious \
   CLOUDFRONT_DISTRIBUTION_ID=E1234567890ABC \
   make deploy
 ```
+
+## GitHub Actions (recommended)
+
+A workflow at `.github/workflows/deploy.yml` deploys automatically on every push
+to `main`.
+
+### Setup
+
+1. Create an IAM user for GitHub Actions and attach
+   `scripts/aws-iam-policy.json`.
+2. Generate an access key for that user.
+3. In the GitHub repo, go to **Settings → Secrets and variables → Actions**
+   and add:
+   - `AWS_ACCESS_KEY_ID`
+   - `AWS_SECRET_ACCESS_KEY`
+
+Pushes to `main` will then build the site and deploy it to S3 / CloudFront.
+
+If you prefer OIDC later, swap the `Configure AWS credentials` step in the
+workflow to use `role-to-assume` instead of access keys.

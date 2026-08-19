@@ -1,0 +1,31 @@
+name: Deploy to notorious.kiwi
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      S3_BUCKET: notorious.kiwi
+      AWS_REGION: us-west-2
+      CLOUDFRONT_DISTRIBUTION_ID: E3QWGWK40OQKWC
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build site
+        run: python3 scripts/build.py --variants
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to S3 + invalidate CloudFront
+        run: bash scripts/deploy.sh
