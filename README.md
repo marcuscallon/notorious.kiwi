@@ -34,15 +34,15 @@ assets/             logos, headshot, pepeha photo, vendored flag icons
 ## Workflow
 
 ```bash
-make site     # content -> website + variants
-make pdf      # website + 2-page PDF (needs node + the pdf skill's playwright)
+just site     # content -> website + variants
+just pdf      # website + 2-page PDF (needs node + the pdf skill's playwright)
 ```
 
 Or directly: `python3 scripts/build.py --variants --pdf`
 
 ## Rules of the road
 
-- Edit only `content/*.md`. Run `make site`. Done.
+- Edit only `content/*.md`. Run `just site`. Done.
 - `src/profile.html` is regenerated on every build — hand edits are lost.
 - Roles auto-sort by end date (`end: present` sorts first).
 - Inline markdown: `**bold**`, `*italic*` (renders as the accent italic in
@@ -60,20 +60,21 @@ The generated site can be synced to the S3 bucket `notorious.kiwi`.
 
 ### One-time setup
 
-1. Install the AWS CLI (e.g. `brew install awscli`) and authenticate:
+1. Install [just](https://just.systems/) and the AWS CLI, then authenticate:
    ```bash
+   brew install just awscli
    aws configure --profile notorious
    # or use SSO / environment variables
    ```
 2. If the bucket is not already configured for static website hosting:
    ```bash
-   AWS_PROFILE=notorious make deploy-setup
+   AWS_PROFILE=notorious just deploy-setup
    ```
 
 ### Normal deploy
 
 ```bash
-AWS_PROFILE=notorious make deploy
+AWS_PROFILE=notorious just deploy
 ```
 
 This:
@@ -97,7 +98,7 @@ Example with a CloudFront invalidation:
 ```bash
 AWS_PROFILE=notorious \
   CLOUDFRONT_DISTRIBUTION_ID=E1234567890ABC \
-  make deploy
+  just deploy
 ```
 
 ## GitHub Actions (recommended)
