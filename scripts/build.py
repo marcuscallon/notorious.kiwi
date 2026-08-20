@@ -550,6 +550,34 @@ out = out.replace('{{CTA_BUTTON}}', cta['button'])
 out = out.replace('{{CTA_HREF}}', cta['href'])
 out = out.replace('{{FOOTER}}', gen_footer(open('content/footer.md').read()))
 
+def inject_print_css(html):
+    """Replace the template's @media print block with the latest print-layout.css."""
+    css_path = os.path.join(ROOT, 'scripts', 'print-layout.css')
+    try:
+        css = open(css_path).read()
+    except FileNotFoundError:
+        return html
+    # Remove the leading @page rule from print-layout.css because we will
+    # place it outside the @media print wrapper (nested @page is invalid).
+    lines = css.splitlines()
+    if lines and lines[0].strip().startswith('@page'):
+        css = '\n'.join(lines[1:]).lstrip('\n')
+    marker = '/* ============================================\n   PRINT / PDF — auto-injected from scripts/print-layout.css\n   ============================================ */'
+    idx = html.find(marker)
+    if idx == -1:
+        return html
+    end = html.find('</style>', idx)
+    if end == -1:
+        return html
+    injected = (
+        marker + '\n'
+        '@page { size: A4 portrait; margin: 7mm 10mm 5mm; }\n'
+        '@media print {\n' + css + '\n}\n'
+        '</style>'
+    )
+    return html[:idx] + injected + html[end + len('</style>'):]
+
+
 def externalize_links(html):
     """Add target=_blank rel=noopener to external http(s) links only."""
     def patch(m):
@@ -570,6 +598,7 @@ leftover = re.findall(r'\{\{[A-Z_]+\}\}', out)
 if leftover:
     print('!! leftover slots:', leftover, file=sys.stderr); sys.exit(1)
 
+out = inject_print_css(out)
 out = externalize_links(out)
 
 open('src/profile.html', 'w').write(out)
