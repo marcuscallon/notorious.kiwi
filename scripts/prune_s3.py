@@ -40,7 +40,7 @@ def list_s3_keys():
 
 def list_src_keys():
     keys = set()
-    for root, _dirs, files in os.walk(SRC):
+    for root, _dirs, files in os.walk(SRC, followlinks=True):
         for name in files:
             path = os.path.join(root, name)
             rel = os.path.relpath(path, SRC)
