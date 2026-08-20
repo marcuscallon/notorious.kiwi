@@ -29,3 +29,7 @@ jobs:
 
       - name: Deploy to S3 + invalidate CloudFront
         run: bash scripts/deploy.sh
+
+      - name: Upload executive PDF
+        run: |
+          aws s3 cp Marcus-Callon-Executive-Profile.pdf s3://${{ env.S3_BUCKET }}/Marcus-Callon-Executive-Profile.pdf --no-progress
