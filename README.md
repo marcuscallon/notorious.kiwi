@@ -35,10 +35,20 @@ assets/             logos, headshot, pepeha photo, vendored flag icons
 
 ```bash
 just site     # content -> website + variants
-just pdf      # website + 2-page PDF (needs node + the pdf skill's playwright)
+just pdf      # website + 2-page print-only PDF (needs node + the pdf skill's playwright)
 ```
 
-Or directly: `python3 scripts/build.py --variants --pdf`
+The PDF is generated from a dedicated print-only stylesheet in
+`scripts/print-layout.css`, which avoids mobile media-query leakage and gives
+a clean, light A4 portrait output. The rendered file is
+`Marcus-Callon-Executive-Profile.pdf`.
+
+Directly (no just):
+
+```bash
+python3 scripts/build.py --variants
+python3 scripts/build-print-direct.py
+```
 
 ## Rules of the road
 

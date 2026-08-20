@@ -11,10 +11,10 @@ _default:
 site:
     python3 scripts/build.py --variants
 
-# Build the 2-page PDF (also rebuilds the site)
-pdf:
-    python3 scripts/build.py --variants --pdf
-    rm -f preview*.png
+# Build the 2-page PDF (also rebuilds the site first)
+pdf: site
+    python3 scripts/build-print-direct.py
+    rm -f v*-pdf-*.png print-pdf-*.png preview*.png
 
 # Build both site and PDF
 all: pdf

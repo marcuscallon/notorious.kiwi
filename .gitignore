@@ -1,6 +1,11 @@
 # Build artefacts — regenerated from src/profile.html
 /Marcus-Callon-Executive-Profile.pdf
 /preview-*.png
+/current-pdf-*.png
+/final-pdf-*.png
+/print-pdf-*.png
+/v*-pdf-*.png
+/previews/
 
 # OS / editor
 .DS_Store
