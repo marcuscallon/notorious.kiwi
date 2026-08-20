@@ -136,6 +136,7 @@ a:hover { color: var(--cream); border-color: var(--cream); }
   padding: 9px 16px; border-radius: 4px; border: none !important;
   font-weight: 500; cursor: pointer; transition: background .2s;
   font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; display: inline-flex; align-items: center;
 }
 .download-btn:hover { background: var(--euc); color: var(--cream) !important; }
 .contact-btn {
@@ -1032,7 +1033,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     <a href="#clients">Clients</a>
     <a href="#contact">Contact</a>
   </div>
-  <button class="download-btn" id="dl" type="button">Download PDF ↓</button>
+  <a class="download-btn" href="Marcus-Callon-Executive-Profile.pdf" download>Download PDF ↓</a>
   <a class="contact-btn" href="#contact">Contact</a>
 </nav>
 
@@ -1253,7 +1254,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
         <p class="lede">Executive leadership of customer and product for a next-generation customer-experience and data-platform business.</p>
         <ul>
           <li>Owns product strategy and commercialisation across the Wondaris data platform.</li>
-          <li>Aligns customer insight, product &amp; offering direction and commercial outcomes across the listed entity.</li>
+          <li>Aligns and steers customer insight, product &amp; offering direction and commercial outcomes across the listed entity.</li>
         </ul>
         <div class="tags"><span>ASX-listed</span><span>Product</span><span>Customer</span></div>
       </div>
@@ -1655,9 +1656,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     });
   });
 
-  // ---- Download button ----
-  var btn = document.getElementById('dl');
-  if (btn) btn.addEventListener('click', function () { window.print(); });
+  // ---- Download button is now a direct link to the generated PDF ----
 })();
 </script>
 

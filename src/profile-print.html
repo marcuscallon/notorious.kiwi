@@ -465,7 +465,7 @@ details.clients-group > div:not(.clients-print) {
     <a href="#clients">Clients</a>
     <a href="#contact">Contact</a>
   </div>
-  <button class="download-btn" id="dl" type="button">Download PDF ↓</button>
+  <a class="download-btn" href="Marcus-Callon-Executive-Profile.pdf" download>Download PDF ↓</a>
   <a class="contact-btn" href="#contact">Contact</a>
 </nav>
 
@@ -1084,9 +1084,7 @@ details.clients-group > div:not(.clients-print) {
     });
   });
 
-  // ---- Download button ----
-  var btn = document.getElementById('dl');
-  if (btn) btn.addEventListener('click', function () { window.print(); });
+  // ---- Download button is now a direct link to the generated PDF ----
 })();
 </script>
 
