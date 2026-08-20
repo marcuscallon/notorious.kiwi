@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Pre-commit hook: rebuild the 2-page executive PDF if source content,
+# templates, or print styles have changed.
+
+set -euo pipefail
+
+RELEVANT_PATTERNS=(
+  '^content/'
+  '^template\.html$'
+  '^scripts/print-layout\.css$'
+  '^scripts/build\.py$'
+  '^scripts/build-print-direct\.py$'
+  '^scripts/build-variants\.py$'
+)
+
+staged_files=$(git diff --cached --name-only --diff-filter=ACMRT)
+[ -z "$staged_files" ] && exit 0
+
+needs_rebuild=false
+for pattern in "${RELEVANT_PATTERNS[@]}"; do
+  if echo "$staged_files" | grep -Eq "$pattern"; then
+    needs_rebuild=true
+    break
+  fi
+done
+
+if [ "$needs_rebuild" != true ]; then
+  exit 0
+fi
+
+if ! command -v just >/dev/null 2>&1; then
+  echo "pre-commit: 'just' not found in PATH. Install it or run 'just pdf' manually." >&2
+  exit 1
+fi
+
+echo "pre-commit: rebuilding executive PDF..."
+just pdf
+
+if [ -f "Marcus-Callon-Executive-Profile.pdf" ]; then
+  git add "Marcus-Callon-Executive-Profile.pdf"
+fi
+if [ -f "src/profile-print.html" ]; then
+  git add "src/profile-print.html"
+fi
+
+echo "pre-commit: PDF regenerated and staged."
+exit 0

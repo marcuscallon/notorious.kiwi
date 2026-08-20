@@ -50,6 +50,16 @@ python3 scripts/build.py --variants
 python3 scripts/build-print-direct.py
 ```
 
+### Automatic PDF rebuild on commit
+
+Install the local git hook once per clone. It will rebuild `just pdf`
+automatically when you commit changes to `content/`, `template.html` or the
+print build scripts, and stage the regenerated PDF for the same commit.
+
+```bash
+bash scripts/install-hooks.sh
+```
+
 ## Rules of the road
 
 - Edit only `content/*.md`. Run `just site`. Done.
