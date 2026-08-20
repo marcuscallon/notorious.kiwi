@@ -12,3 +12,4 @@ node_modules/
 
 # Local assets not for committing (e.g. raw headshot masters)
 assets/raw/
+*.csv
