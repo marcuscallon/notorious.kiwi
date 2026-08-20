@@ -50,7 +50,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  padding-bottom: 46px;
 }
+
+.draft-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: var(--signal); color: #111;
+  text-align: center; padding: 14px 20px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.draft-banner a { color: #111; font-weight: 700; text-decoration: underline; margin-left: 8px; }
+.draft-banner a:hover { text-decoration: none; }
 
 /* atmospheric grain + ambient glow */
 body::before {
@@ -611,7 +621,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
     --euc-2: #1C5A4E;
     --signal: #B5582E;
   }
-  body { background: #fff; font-size: 8pt; line-height: 1.36; overflow: visible; }
+  body { background: #fff; font-size: 8pt; line-height: 1.36; overflow: visible; padding-bottom: 0 !important; }
   body::before, body::after { display: none; }
   .preloader, .topnav, .download-btn, .contact-btn, .scrolly, .hero-mark, .pepeha { display: none !important; }
   .cv { max-width: none; padding: 0; }
@@ -699,6 +709,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .spec { grid-template-columns: repeat(5, 1fr) !important; }
   .spec-cell { border-right: none !important; border-bottom: none !important; grid-column: auto !important; }
   .markets-stat .n.mkts { font-size: 9pt; }
+  .draft-banner { display: none !important; }
 }
 
 /* ---- v3 icon-rich additions (review-culled set) ---- */
@@ -1363,6 +1374,11 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   if (btn) btn.addEventListener('click', function () { window.print(); });
 })();
 </script>
+
+<div class="draft-banner" aria-hidden="false">
+  Draft — feedback welcome.
+  <a href="mailto:marcus.callon@gmail.com?subject=Feedback%20on%20draft%20profile">Email Marcus</a>
+</div>
 
 </body>
 </html>
