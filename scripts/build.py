@@ -19,8 +19,10 @@ def esc(t):
     return html.escape(t, quote=False)
 
 def inline(t, ital_class=None):
-    """**bold** / *italic* inline. No HTML passthrough; raw chars escaped."""
+    """**bold** / *italic* inline. No HTML passthrough; raw chars escaped.
+    {br} forces a line break (useful for deliberate heading wraps)."""
     t = esc(t)
+    t = t.replace('{br}', '<br>')
     t = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
     def ital(m):
         body = m.group(1)

@@ -12,13 +12,11 @@ name_line2: Callon.
 # Each "-" line renders as one animated line of the thesis.
 # *asterisks* = italic eucalyptus. No em dashes - use plain hyphens.
 thesis:
-- The *translator* across product, finance & architecture - a founder-grade advisor and executive leader
-- who brings the customer, commercial and operational lens that boards and executive teams need
-- to validate strategy and accelerate execution.
+- The *translator* across product, finance & architecture - a founder-grade advisor and executive leader who brings the customer, commercial and operational lens that boards and executive teams need to validate strategy and accelerate execution.
 
 # Stats: value unit | label line 1 ; label line 2 [:: feature]
 stats:
-- 4 × | Co-founder across ; publishing, martech & consulting services :: feature
+- 4 × | Co-founder across ; publishing, product & consulting services :: feature
 - 20 + yrs | ·  Executive; · product; · finance; · commercial; · technical; · operations
 - ASX | Listed Chief Customer ; & Product Officer
 
@@ -29,7 +27,7 @@ spec:
 - Location = Brisbane, AU
 - Founded | *4 ventures* ; Holoscribe ; Shorthand ; Immersive ; Focal Labs
 - Stack | *CPO* ; CFO ; COO ; CTO
-- AI-native = pi · Claude Code
+- AI-native = AI Harness · fat and thin skills · tooling 
 - Industries | Publishing ; Martech ; Fintech ; Insurance ; Telco ; Gov
 
 # Contact row: "label = href" entries, then a trailing note.
