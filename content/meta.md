@@ -1,20 +1,20 @@
 # ============================================================
-# HERO — name, eyebrow, thesis, stats, spec strip, contact
+# HERO - name, eyebrow, thesis, stats, spec strip, contact
 # Edit text freely. Format notes at the bottom.
 # ============================================================
 
-title: Marcus Callon — Executive Profile
-eyebrow: Executive Profile — Brisbane, Australia
+title: Marcus Callon - Executive Profile
+eyebrow: Executive Profile - Brisbane, Australia
 
 name_line1: Marcus
 name_line2: Callon.
 
 # Each "-" line renders as one animated line of the thesis.
-# *asterisks* = italic eucalyptus. {mdash} = the clay period-dash.
+# *asterisks* = italic eucalyptus. No em dashes - use plain hyphens.
 thesis:
-- The *translator* across product, finance & architecture {mdash}
-- an operator who leads with product, fluent in customer, P&L and code.
-- Fractional & interim CXO mandates for founders, executive leadership & boards.
+- The *translator* across product, finance & architecture - a founder-grade advisor and executive leader
+- who brings the customer, commercial and operational lens that boards and executive teams need
+- to validate strategy and accelerate execution.
 
 # Stats: value unit | label line 1 ; label line 2 [:: feature]
 stats:
@@ -24,7 +24,7 @@ stats:
 
 # Spec strip cells.
 #   "key | a ; b ; c"  -> bulleted list cell   (*x* = accent)
-#   "key = text"       -> plain single-line cell
+#   "key = text"        -> plain single-line cell
 spec:
 - Location = Brisbane, AU
 - Founded | *4 ventures* ; Holoscribe ; Shorthand ; Immersive ; Focal Labs

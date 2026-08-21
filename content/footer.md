@@ -1,10 +1,10 @@
 # ============================================================
-# FOOTER — education + contact meta
+# FOOTER - education + contact meta
 # ============================================================
 
 edu:
-- BCom — Accounting & Finance, University of Otago
-- BSc — Computer Science & Information Science, University of Otago
+- BCom - Accounting & Finance, University of Otago
+- BSc - Computer Science & Information Science, University of Otago
 
 meta_name: Marcus Callon · Brisbane, Australia
 meta_link_label: marcus.callon@gmail.com
@@ -19,4 +19,4 @@ pepeha:
 - Ko Mata-au te awa.
 - Ko Marcus tōku ingoa.
 pepeha_img: assets/marcus-pepeha.jpg
-pepeha_img_alt: Pepeha — family at Kopuwai maunga by the Mata-au awa
+pepeha_img_alt: Pepeha - family at Kopuwai maunga by the Mata-au awa

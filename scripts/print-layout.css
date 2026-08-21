@@ -232,7 +232,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   margin-bottom: 3px;
 }
 .skill-list li::before {
-  content: '—';
+  content: '·';
   position: absolute;
   left: 0;
   color: var(--euc);

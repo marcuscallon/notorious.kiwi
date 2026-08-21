@@ -109,14 +109,14 @@ def gen_name(meta):
 
 def gen_thesis(meta):
     lines = meta.get('thesis', [])
-    plain = ' '.join(re.sub(r'\*', '', l.replace('{mdash}', '—')) for l in lines)
+    plain = ' '.join(re.sub(r'\*', '', l.replace('{mdash}', '-')) for l in lines)
     out = [f'    <p class="thesis" data-thesis aria-label="{esc(plain)}">']
     for ln in lines:
         ln = ln.replace('{mdash}', '§MDASH§')
         words = []
         for tok in ln.split(' '):
             if tok == '§MDASH§':
-                words.append('<span class="period" style="color:var(--signal)">—</span>')
+                words.append('<span class="period" style="color:var(--signal)">-</span>')
             elif tok.startswith('*') and tok.endswith('*'):
                 words.append(f'<span class="wd"><em>{esc(tok.strip("*"))}</em></span>')
             else:
@@ -335,7 +335,7 @@ def gen_roles():
     out = []
     for r in roles:
         start, end = r['start'], r['end']
-        dur = '—present' if end == 'present' else (end if end == start else f'—{end}')
+        dur = '-present' if end == 'present' else (end if end == start else f'-{end}')
         logo_key = r.get('logo', '')
         title_attr, logo_file, logo_fx, logo_svg = ROLE_LOGOS[logo_key]
         if logo_file and os.path.exists(logo_file):
@@ -357,7 +357,7 @@ def gen_roles():
       <div class="role-yr">{esc(start)}<span class="dur">{esc(dur)}</span></div>
       <div class="role-logo" title="{title_attr}">{inner}</div>
       <div class="role-body">
-        <h4>{inline(r["title"])} <span class="org">— {inline(r["org"])}</span></h4>{lede_html}{bullets_html}{tags_html}
+        <h4>{inline(r["title"])} <span class="org"> - {inline(r["org"])}</span></h4>{lede_html}{bullets_html}{tags_html}
       </div>
     </div>''')
     return '\n\n'.join(out)
@@ -562,7 +562,7 @@ def inject_print_css(html):
     lines = css.splitlines()
     if lines and lines[0].strip().startswith('@page'):
         css = '\n'.join(lines[1:]).lstrip('\n')
-    marker = '/* ============================================\n   PRINT / PDF — auto-injected from scripts/print-layout.css\n   ============================================ */'
+    marker = '/* ============================================\n   PRINT / PDF - auto-injected from scripts/print-layout.css\n   ============================================ */'
     idx = html.find(marker)
     if idx == -1:
         return html

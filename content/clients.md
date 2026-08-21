@@ -1,5 +1,5 @@
 # ============================================================
-# CLIENTS & EMPLOYERS — grouped logo wall.
+# CLIENTS & EMPLOYERS - grouped logo wall.
 # "## Group name" starts a group.
 # "- Name = style +"  -> the name rendered in the named style;
 #   "+" marks it featured (fuller opacity). The used logo-name
@@ -16,7 +16,7 @@ style: marks
 # Display heading for the section (both web and print marquee context)
 heading: Clients & employers
 
-# Print marquee (single line, shown only in the PDF) — order:
+# Print marquee (single line, shown only in the PDF) - order:
 # display names as listed above, then this extra token.
 marquee_extra: Wondaris
 

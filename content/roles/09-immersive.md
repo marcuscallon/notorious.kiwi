@@ -4,7 +4,7 @@ end: 2015
 title: Co-founder & Product Lead
 org: Immersive (later Shorthand Social)
 logo: immersive
-tags: Founder, 0→1, Media
+tags: Founder, 0-1, Media
 ---
 Co-founded and launched an innovative publishing platform for journalists and freelance storytellers.
 

@@ -6,7 +6,7 @@ org: XPON Technologies Group (ASX:XPN)
 logo: xpon
 tags: ASX-listed, Product, Customer
 ---
-Executive leadership of customer and product for a next-generation customer-experience and data-platform business.
+Executive leadership of customer, product and commercial strategy for a next-generation customer-experience and data-platform business.
 
-- Owns product strategy and commercialisation across the Wondaris data platform.
-- Aligns and steers customer insight, product & offering direction and commercial outcomes across the listed entity.
+- Owns the product roadmap and commercialisation for the Wondaris customer-data platform.
+- Connects customer insight, product direction and commercial outcomes across the listed entity.
