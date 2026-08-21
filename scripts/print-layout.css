@@ -196,6 +196,21 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0;
 }
+.tile ul.stack-list { list-style: none; margin: 0; padding: 0; }
+.tile ul.stack-list li {
+  position: relative;
+  font-size: 7.2pt;
+  line-height: 1.25;
+  color: var(--ink-2);
+  padding-left: 9px;
+  margin-bottom: 2px;
+}
+.tile ul.stack-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--euc);
+}
 
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {

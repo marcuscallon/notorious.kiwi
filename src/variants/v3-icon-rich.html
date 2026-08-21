@@ -336,6 +336,17 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .tile h3 .ital { font-style: italic; color: var(--euc); font-weight: 300; }
 .tile p { font-family: var(--serif); font-size: 14.5px; line-height: 1.55; color: var(--cream-2); }
 .tile p em { font-style: italic; color: var(--cream); }
+.tile ul.stack-list { list-style: none; margin: 0; padding: 0; }
+.tile ul.stack-list li {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--cream-2);
+  padding-left: 12px;
+  margin-bottom: 6px;
+}
+.tile ul.stack-list li::before { content: '·'; position: absolute; left: 0; color: var(--euc); }
 .tile .ai { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--euc); border: 1px solid rgba(62,148,131,0.3); padding: 5px 10px; border-radius: 3px; }
 .tile .ai .d { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -806,6 +817,21 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0;
 }
+.tile ul.stack-list { list-style: none; margin: 0; padding: 0; }
+.tile ul.stack-list li {
+  position: relative;
+  font-size: 7.2pt;
+  line-height: 1.25;
+  color: var(--ink-2);
+  padding-left: 9px;
+  margin-bottom: 2px;
+}
+.tile ul.stack-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--euc);
+}
 
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
@@ -1146,25 +1172,41 @@ details.clients-group > div:not(.clients-print) {
         <div class="tag"><span class="num">01</span>Product / CPO</div>
         <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
         <h3>Customer-problem-solution fit <span class="ital">&amp; always-on PMF.</span></h3>
-        <p>Customer-led product strategy that starts with the customer's problem, validates the solution, and builds toward product-market fit. Product-market fit is an always-on discipline, not a milestone, because markets move and what was best-in-class today can be a commodity tomorrow.</p>
+        <ul class="stack-list">
+          <li>Start with the customer's problem, not the solution.</li>
+          <li>Validate before scaling; build-measure-learn fast.</li>
+          <li>Treat product-market fit as always-on, not a milestone.</li>
+        </ul>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">02</span>Finance / CFO</div>
         <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
         <h3>Financial fluency <span class="ital">&amp; commercial alignment.</span></h3>
-        <p>P&amp;L, balance sheet and cashflow as a product and commercial lens: pricing, contracts, billing, retention and go-to-market choices that the business can actually bear. A CFO who sits in the value stream, not the back office.</p>
+        <ul class="stack-list">
+          <li>P&amp;L, balance sheet and cashflow translated into product and pricing decisions.</li>
+          <li>Align contracts, billing, retention and go-to-market to what the business can bear.</li>
+          <li>A CFO who sits in the value stream, not the back office.</li>
+        </ul>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">03</span>Operations / COO</div>
         <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
         <h3>Operating-model design <span class="ital">&amp; delivery.</span></h3>
-        <p>Org design and operating models for the 10-200+ growth-stage moment. Connected metrics across sales, product, delivery and finance, delivered through pragmatic, empathy-led transformation working groups, not directive cost-cutting.</p>
+        <ul class="stack-list">
+          <li>Org design for the 10-200+ growth-stage moment.</li>
+          <li>Connected metrics across sales, product, delivery and finance.</li>
+          <li>Pragmatic, empathy-led transformation working groups - not directive cost-cutting.</li>
+        </ul>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">04</span>Architecture / CTO</div>
         <div class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M9 2v2"/><path d="M9 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/></svg></div>
         <h3>Business-led solution <span class="ital">&amp; architecture.</span></h3>
-        <p>Business-led solution architecture: ask whether the problem matters to the customer before choosing how to solve it. Technical enough to work credibly with engineering and data leaders. AI-native build capability.</p>
+        <ul class="stack-list">
+          <li>Ask whether the problem matters to the customer first.</li>
+          <li>Then choose the simplest architecture and data path to solve it.</li>
+          <li>Technical enough to work credibly with engineering and data leaders.</li>
+        </ul>
         <span class="ai"><span class="d"></span>pi · Claude Code</span>
       </div>
     </div>

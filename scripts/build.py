@@ -182,21 +182,29 @@ def gen_stack(text):
         hm = re.match(r'## (\d+) :: (.+?) *(:: feature)?$', head.strip())
         num, tag, feat = hm.group(1), hm.group(2), bool(hm.group(3))
         feat_cls = ' tile-feature' if feat else ''
-        title = None; paras = []; chip = None
+        title = None; paras = []; items = []; chip = None
         cur = None
         for ln in body:
+            s = ln.strip()
             if ln.startswith('### '):
                 title = ln[4:].strip()
             elif ln.startswith('chip:'):
                 chip = ln[5:].strip()
-            elif ln.strip():
+            elif s.startswith('- '):
+                if cur: paras.append(' '.join(cur)); cur = None
+                items.append(s[2:].strip())
+            elif s:
                 if cur is None: cur = []
-                cur.append(ln.strip())
+                cur.append(s)
             else:
                 if cur: paras.append(' '.join(cur)); cur = None
         if cur: paras.append(' '.join(cur))
         title_html = inline(title, ital_class=True)
         body_html = ''.join(f'\n        <p>{inline(p)}</p>' for p in paras)
+        if items:
+            body_html += '\n        <ul class="stack-list">' + \
+                ''.join(f'\n          <li>{inline(it)}</li>' for it in items) + \
+                '\n        </ul>'
         chip_html = f'\n        <span class="ai"><span class="d"></span>{esc(chip)}</span>' if chip else ''
         out.append(f'''      <div class="tile{feat_cls}" data-reveal>
         <div class="tag"><span class="num">{num}</span>{esc(tag)}</div>

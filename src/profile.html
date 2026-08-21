@@ -336,6 +336,17 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .tile h3 .ital { font-style: italic; color: var(--euc); font-weight: 300; }
 .tile p { font-family: var(--serif); font-size: 14.5px; line-height: 1.55; color: var(--cream-2); }
 .tile p em { font-style: italic; color: var(--cream); }
+.tile ul.stack-list { list-style: none; margin: 0; padding: 0; }
+.tile ul.stack-list li {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--cream-2);
+  padding-left: 12px;
+  margin-bottom: 6px;
+}
+.tile ul.stack-list li::before { content: '·'; position: absolute; left: 0; color: var(--euc); }
 .tile .ai { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--euc); border: 1px solid rgba(62,148,131,0.3); padding: 5px 10px; border-radius: 3px; }
 .tile .ai .d { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -806,6 +817,21 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0;
 }
+.tile ul.stack-list { list-style: none; margin: 0; padding: 0; }
+.tile ul.stack-list li {
+  position: relative;
+  font-size: 7.2pt;
+  line-height: 1.25;
+  color: var(--ink-2);
+  padding-left: 9px;
+  margin-bottom: 2px;
+}
+.tile ul.stack-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--euc);
+}
 
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
@@ -1131,22 +1157,38 @@ details.clients-group > div:not(.clients-print) {
       <div class="tile tile-feature" data-reveal>
         <div class="tag"><span class="num">01</span>Product / CPO</div>
         <h3>Customer-problem-solution fit <span class="ital">&amp; always-on PMF.</span></h3>
-        <p>Customer-led product strategy that starts with the customer's problem, validates the solution, and builds toward product-market fit. Product-market fit is an always-on discipline, not a milestone, because markets move and what was best-in-class today can be a commodity tomorrow.</p>
+        <ul class="stack-list">
+          <li>Start with the customer's problem, not the solution.</li>
+          <li>Validate before scaling; build-measure-learn fast.</li>
+          <li>Treat product-market fit as always-on, not a milestone.</li>
+        </ul>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">02</span>Finance / CFO</div>
         <h3>Financial fluency <span class="ital">&amp; commercial alignment.</span></h3>
-        <p>P&amp;L, balance sheet and cashflow as a product and commercial lens: pricing, contracts, billing, retention and go-to-market choices that the business can actually bear. A CFO who sits in the value stream, not the back office.</p>
+        <ul class="stack-list">
+          <li>P&amp;L, balance sheet and cashflow translated into product and pricing decisions.</li>
+          <li>Align contracts, billing, retention and go-to-market to what the business can bear.</li>
+          <li>A CFO who sits in the value stream, not the back office.</li>
+        </ul>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">03</span>Operations / COO</div>
         <h3>Operating-model design <span class="ital">&amp; delivery.</span></h3>
-        <p>Org design and operating models for the 10-200+ growth-stage moment. Connected metrics across sales, product, delivery and finance, delivered through pragmatic, empathy-led transformation working groups, not directive cost-cutting.</p>
+        <ul class="stack-list">
+          <li>Org design for the 10-200+ growth-stage moment.</li>
+          <li>Connected metrics across sales, product, delivery and finance.</li>
+          <li>Pragmatic, empathy-led transformation working groups - not directive cost-cutting.</li>
+        </ul>
       </div>
       <div class="tile" data-reveal>
         <div class="tag"><span class="num">04</span>Architecture / CTO</div>
         <h3>Business-led solution <span class="ital">&amp; architecture.</span></h3>
-        <p>Business-led solution architecture: ask whether the problem matters to the customer before choosing how to solve it. Technical enough to work credibly with engineering and data leaders. AI-native build capability.</p>
+        <ul class="stack-list">
+          <li>Ask whether the problem matters to the customer first.</li>
+          <li>Then choose the simplest architecture and data path to solve it.</li>
+          <li>Technical enough to work credibly with engineering and data leaders.</li>
+        </ul>
         <span class="ai"><span class="d"></span>pi · Claude Code</span>
       </div>
     </div>

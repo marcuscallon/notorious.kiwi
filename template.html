@@ -336,6 +336,17 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .tile h3 .ital { font-style: italic; color: var(--euc); font-weight: 300; }
 .tile p { font-family: var(--serif); font-size: 14.5px; line-height: 1.55; color: var(--cream-2); }
 .tile p em { font-style: italic; color: var(--cream); }
+.tile ul.stack-list { list-style: none; margin: 0; padding: 0; }
+.tile ul.stack-list li {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--cream-2);
+  padding-left: 12px;
+  margin-bottom: 6px;
+}
+.tile ul.stack-list li::before { content: '·'; position: absolute; left: 0; color: var(--euc); }
 .tile .ai { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--euc); border: 1px solid rgba(62,148,131,0.3); padding: 5px 10px; border-radius: 3px; }
 .tile .ai .d { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
