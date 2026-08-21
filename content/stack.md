@@ -5,7 +5,7 @@
 # Body lines starting with "- " become bullets. Optional "chip:" adds the mono pill.
 # ============================================================
 
-heading: *Product,* finance, *architecture* & operations.
+heading: *Product,* finance, *architecture* & execution.
 
 ## 01 :: Product / CPO :: feature
 ### Customer-problem-solution fit *& always-on PMF.*
@@ -19,8 +19,8 @@ heading: *Product,* finance, *architecture* & operations.
 - Align contracts, billing, retention and go-to-market to what the business can bear.
 - A CFO who sits in the value stream, not the back office.
 
-## 03 :: Operations / COO
-### Operating-model design *& delivery.*
+## 03 :: Strategy & operating rhythm / COO
+### Strategy *& operating rhythm.*
 - Org design for the 10-200+ growth-stage moment.
 - Connected metrics across sales, product, delivery and finance.
 - Pragmatic, empathy-led transformation working groups - not directive cost-cutting.

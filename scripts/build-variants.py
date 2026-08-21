@@ -53,7 +53,7 @@ v3_css = '''
 '''
 v3 = must('</style>', v3_css + '\n</style>', v3, 'style close')
 for num, ico in [('01</span>Product / CPO','compass'), ('02</span>Finance / CFO','trending-up'),
-                 ('03</span>Operations / COO','layers'), ('04</span>Architecture / CTO','cpu')]:
+                 ('03</span>Strategy &amp; operating rhythm / COO','layers'), ('04</span>Architecture / CTO','cpu')]:
     a = f'        <div class="tag"><span class="num">{num}</div>\n'
     v3 = must(a, a + f'        <div class="tile-ico">{ICONS[ico]}</div>\n', v3, 'tile '+num)
 eng = [('<strong>Fractional &amp; interim CXO.</strong>','briefcase'),
