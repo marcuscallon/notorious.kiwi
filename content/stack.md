@@ -5,7 +5,7 @@
 # Body lines starting with "- " become bullets. Optional "chip:" adds the mono pill.
 # ============================================================
 
-heading: *Product-led*{br} strategy across finance, architecture & execution.
+heading: **Product-led strategy**{br} across finance, architecture & execution.
 - finance, architecture & execution.
 
 ## 01 :: Product / CPO :: feature

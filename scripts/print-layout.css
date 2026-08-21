@@ -156,6 +156,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   margin: 0;
 }
 .section-head h2 .ital { font-style: italic; color: var(--euc); }
+.section-head h2 strong { color: var(--euc); font-weight: 600; }
 
 /* ---------- CARDS ---------- */
 .tile, .skill-col, .role, .earlier-row {
