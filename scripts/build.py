@@ -23,6 +23,7 @@ def inline(t, ital_class=None):
     {br} forces a line break (useful for deliberate heading wraps)."""
     t = esc(t)
     t = t.replace('{br}', '<br>')
+    t = t.replace('{sub}', '<span class="sec-sub">').replace('{/sub}', '</span>')
     t = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
     def ital(m):
         body = m.group(1)
