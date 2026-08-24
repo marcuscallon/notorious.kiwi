@@ -16,6 +16,10 @@ pdf: site
     python3 scripts/build-print-direct.py
     rm -f v*-pdf-*.png print-pdf-*.png preview*.png
 
+# Serve the built site locally (auto-opens in browser)
+serve:
+    python3 scripts/serve.py
+
 # Build both site and PDF
 all: pdf
 
