@@ -261,22 +261,23 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 .section-head.stack-head h2 { flex: 1; min-width: 0; }
 .bridge-figure {
   flex-shrink: 0;
-  width: 150px;
+  width: 190px;
   text-align: center;
 }
 .bridge-figure svg { width: 100%; height: auto; }
-.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 1; }
-.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.5; }
-.bridge-figure .node-center { fill: var(--euc); stroke: none; animation: bridge_pulse 3.6s ease-in-out infinite; }
-.bridge-figure text { font-family: var(--sans); font-size: 12px; fill: var(--cream); }
-.bridge-figure .center-label, .bridge-figure .center-label + text { fill: var(--cream-2); }
+.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 1.1; }
+.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.6; }
+.bridge-figure .halo { fill: none; stroke: var(--signal); stroke-dasharray: 4 7; opacity: 0.5; transform-box: view-box; transform-origin: center; animation: bridge_spin 16s linear infinite; }
+.bridge-figure .node-center { fill: var(--signal); stroke: none; }
+.bridge-figure .center-label { fill: var(--paper); font-weight: 600; font-size: 20px; font-family: var(--mono); }
+.bridge-figure text { font-family: var(--sans); font-size: 13px; fill: var(--cream); letter-spacing: 0.04em; }
+.bridge-figure .node-label { font-weight: 500; }
 .bridge-figure text[text-anchor="middle"] { dominant-baseline: central; }
-.bridge-figure .center-label { fill: var(--euc); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
 .bridge-cap {
   font-family: var(--serif); font-style: italic; font-size: 12px; line-height: 1.45;
-  color: var(--cream-2); max-width: 260px; margin: 8px auto 0;
+  color: var(--cream-2); max-width: 290px; margin: 10px auto 0;
 }
-@keyframes bridge_pulse { 0%,100%{opacity:1} 50%{opacity:.55} }
+@keyframes bridge_spin { to { transform: rotate(360deg); } }
 .section-head .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--euc); white-space: nowrap; }
 .section-head h2 {
   font-family: var(--serif); font-weight: 400;

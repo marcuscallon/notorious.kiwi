@@ -193,27 +193,27 @@ def gen_bridge(meta):
     caption = _s(meta.get('bridge_caption', ''))
     caption_html = f'\n      <p class="bridge-cap">{inline(caption, ital_class=True)}</p>' if caption else ''
     return f'''<aside class="bridge-figure" role="img" aria-label="Coach & advisor sits between {left}, {top} and {right}">
-      <svg viewBox="0 0 260 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <!-- triangle edges -->
-        <line class="edge" x1="130" y1="40" x2="55" y2="165"/>
-        <line class="edge" x1="130" y1="40" x2="205" y2="165"/>
-        <line class="edge" x1="55" y1="165" x2="205" y2="165"/>
+        <line class="edge" x1="160" y1="30" x2="60" y2="210"/>
+        <line class="edge" x1="160" y1="30" x2="260" y2="210"/>
+        <line class="edge" x1="60" y1="210" x2="260" y2="210"/>
         <!-- spokes from centre -->
-        <line class="spoke" x1="130" y1="40" x2="130" y2="126"/>
-        <line class="spoke" x1="55" y1="165" x2="130" y2="126"/>
-        <line class="spoke" x1="205" y1="165" x2="130" y2="126"/>
-        <!-- top node -->
-        <circle class="node" cx="130" cy="40" r="18"/>
-        <text class="node-label" x="130" y="10" text-anchor="middle">{top}</text>
-        <!-- bottom left node -->
-        <circle class="node" cx="55" cy="165" r="18"/>
-        <text class="node-label" x="55" y="195" text-anchor="middle">{left}</text>
-        <!-- bottom right node -->
-        <circle class="node" cx="205" cy="165" r="18"/>
-        <text class="node-label" x="205" y="195" text-anchor="middle">{right}</text>
-        <!-- centre node -->
-        <circle class="node node-center" cx="130" cy="126" r="16"/>
-        <text class="center-label" x="130" y="130" text-anchor="middle">{center}</text>
+        <line class="spoke" x1="160" y1="30" x2="160" y2="138"/>
+        <line class="spoke" x1="60" y1="210" x2="160" y2="138"/>
+        <line class="spoke" x1="260" y1="210" x2="160" y2="138"/>
+        <!-- dashed halo around centre node -->
+        <circle class="halo" cx="160" cy="138" r="34"/>
+        <!-- perimeter nodes -->
+        <circle class="node" cx="160" cy="30" r="18"/>
+        <text class="node-label" x="160" y="8" text-anchor="middle">{top}</text>
+        <circle class="node" cx="60" cy="210" r="18"/>
+        <text class="node-label" x="60" y="242" text-anchor="middle">{left}</text>
+        <circle class="node" cx="260" cy="210" r="18"/>
+        <text class="node-label" x="260" y="242" text-anchor="middle">{right}</text>
+        <!-- centre node (M for Marcus) -->
+        <circle class="node-center" cx="160" cy="138" r="22"/>
+        <text class="center-label" x="160" y="147" text-anchor="middle">M</text>
       </svg>{caption_html}
     </aside>'''
 
