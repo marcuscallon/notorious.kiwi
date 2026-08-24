@@ -6,6 +6,11 @@
 # ============================================================
 
 heading: **Product-led strategy**{br}{sub}across finance, architecture & execution.{/sub}
+bridge_top: Finance
+bridge_left: Product
+bridge_right: Sales
+bridge_center: Coach & advisor
+bridge_caption: Product-led counsel sits at the intersection of customer truth, commercial discipline and closing work.
 - finance, architecture & execution.
 
 ## 01 :: Product / CPO :: feature

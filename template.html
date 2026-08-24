@@ -253,6 +253,30 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 .section-body.collapsed { display: none; }
 .section-head.no-collapse { cursor: default; pointer-events: none; padding-right: 0; display: block; }
 .section-head.no-collapse::after { display: none; }
+
+/* Stack head hosts the coach/advisor bridge diagram on the right */
+.section-head.stack-head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.section-head.stack-head h2 { flex: 1; min-width: 0; }
+.bridge-figure {
+  flex-shrink: 0;
+  width: 150px;
+  text-align: center;
+}
+.bridge-figure svg { width: 100%; height: auto; }
+.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 1; }
+.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.5; }
+.bridge-figure .node-center { fill: var(--euc); stroke: none; animation: bridge_pulse 3.6s ease-in-out infinite; }
+.bridge-figure text { font-family: var(--sans); font-size: 12px; fill: var(--cream); }
+.bridge-figure .center-label, .bridge-figure .center-label + text { fill: var(--cream-2); }
+.bridge-figure text[text-anchor="middle"] { dominant-baseline: central; }
+.bridge-figure .center-label { fill: var(--euc); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.bridge-cap {
+  font-family: var(--serif); font-style: italic; font-size: 12px; line-height: 1.45;
+  color: var(--cream-2); max-width: 260px; margin: 8px auto 0;
+}
+@keyframes bridge_pulse { 0%,100%{opacity:1} 50%{opacity:.55} }
 .section-head .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--euc); white-space: nowrap; }
 .section-head h2 {
   font-family: var(--serif); font-weight: 400;
@@ -1058,8 +1082,9 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 
   <!-- ================= THE STACK ================= -->
   <section class="section" id="stack">
-    <div class="section-head no-collapse" data-reveal>
+    <div class="section-head no-collapse stack-head" data-reveal>
       <h2>{{STACK_TITLE}}</h2>
+      {{STACK_HEADING_EXTRA}}
     </div>
 {{STACK}}
 

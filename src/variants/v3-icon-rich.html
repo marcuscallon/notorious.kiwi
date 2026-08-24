@@ -253,6 +253,30 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 .section-body.collapsed { display: none; }
 .section-head.no-collapse { cursor: default; pointer-events: none; padding-right: 0; display: block; }
 .section-head.no-collapse::after { display: none; }
+
+/* Stack head hosts the coach/advisor bridge diagram on the right */
+.section-head.stack-head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.section-head.stack-head h2 { flex: 1; min-width: 0; }
+.bridge-figure {
+  flex-shrink: 0;
+  width: 150px;
+  text-align: center;
+}
+.bridge-figure svg { width: 100%; height: auto; }
+.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 1; }
+.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.5; }
+.bridge-figure .node-center { fill: var(--euc); stroke: none; animation: bridge_pulse 3.6s ease-in-out infinite; }
+.bridge-figure text { font-family: var(--sans); font-size: 12px; fill: var(--cream); }
+.bridge-figure .center-label, .bridge-figure .center-label + text { fill: var(--cream-2); }
+.bridge-figure text[text-anchor="middle"] { dominant-baseline: central; }
+.bridge-figure .center-label { fill: var(--euc); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.bridge-cap {
+  font-family: var(--serif); font-style: italic; font-size: 12px; line-height: 1.45;
+  color: var(--cream-2); max-width: 260px; margin: 8px auto 0;
+}
+@keyframes bridge_pulse { 0%,100%{opacity:1} 50%{opacity:.55} }
 .section-head .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--euc); white-space: nowrap; }
 .section-head h2 {
   font-family: var(--serif); font-weight: 400;
@@ -845,6 +869,31 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--euc);
 }
 
+/* ---------- STACK BRIDGE DIAGRAM ---------- */
+.bridge-figure {
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-top: -6px;
+  width: 32mm;
+  text-align: center;
+}
+.bridge-figure svg { width: 100%; height: auto; }
+.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 0.9; }
+.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.2; }
+.bridge-figure .node-center { fill: var(--euc); stroke: none; }
+.bridge-figure text {
+  font-family: var(--sans);
+  font-size: 10px;
+  fill: var(--ink);
+}
+.bridge-figure .center-label {
+  fill: var(--euc);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.bridge-cap { display: none !important; }
+
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
   display: grid;
@@ -1174,8 +1223,33 @@ details.clients-group > div:not(.clients-print) {
 
   <!-- ================= THE STACK ================= -->
   <section class="section" id="stack">
-    <div class="section-head no-collapse" data-reveal>
+    <div class="section-head no-collapse stack-head" data-reveal>
       <h2><strong>Product-led strategy</strong><br><span class="sec-sub">across finance, architecture &amp; execution.</span></h2>
+      <aside class="bridge-figure" role="img" aria-label="Coach & advisor sits between Product, Finance and Sales">
+      <svg viewBox="0 0 260 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <!-- triangle edges -->
+        <line class="edge" x1="130" y1="40" x2="55" y2="165"/>
+        <line class="edge" x1="130" y1="40" x2="205" y2="165"/>
+        <line class="edge" x1="55" y1="165" x2="205" y2="165"/>
+        <!-- spokes from centre -->
+        <line class="spoke" x1="130" y1="40" x2="130" y2="126"/>
+        <line class="spoke" x1="55" y1="165" x2="130" y2="126"/>
+        <line class="spoke" x1="205" y1="165" x2="130" y2="126"/>
+        <!-- top node -->
+        <circle class="node" cx="130" cy="40" r="18"/>
+        <text class="node-label" x="130" y="10" text-anchor="middle">Finance</text>
+        <!-- bottom left node -->
+        <circle class="node" cx="55" cy="165" r="18"/>
+        <text class="node-label" x="55" y="195" text-anchor="middle">Product</text>
+        <!-- bottom right node -->
+        <circle class="node" cx="205" cy="165" r="18"/>
+        <text class="node-label" x="205" y="195" text-anchor="middle">Sales</text>
+        <!-- centre node -->
+        <circle class="node node-center" cx="130" cy="126" r="16"/>
+        <text class="center-label" x="130" y="130" text-anchor="middle">Coach &amp; advisor</text>
+      </svg>
+      <p class="bridge-cap">finance, architecture &amp; execution.</p>
+    </aside>
     </div>
     <div class="stack">
       <div class="tile tile-feature" data-reveal>

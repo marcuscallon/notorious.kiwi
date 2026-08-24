@@ -218,6 +218,31 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--euc);
 }
 
+/* ---------- STACK BRIDGE DIAGRAM ---------- */
+.bridge-figure {
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-top: -6px;
+  width: 32mm;
+  text-align: center;
+}
+.bridge-figure svg { width: 100%; height: auto; }
+.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 0.9; }
+.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.2; }
+.bridge-figure .node-center { fill: var(--euc); stroke: none; }
+.bridge-figure text {
+  font-family: var(--sans);
+  font-size: 10px;
+  fill: var(--ink);
+}
+.bridge-figure .center-label {
+  fill: var(--euc);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.bridge-cap { display: none !important; }
+
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
   display: grid;

@@ -178,6 +178,46 @@ def gen_hero_facts(meta):
 {os.linesep.join(cells)}
     </div>'''
 
+def gen_bridge(meta):
+    """Generate the inline SVG diagram that sits at the top-right of the stack heading.
+    Keys expected in meta: bridge_top, bridge_left, bridge_right, bridge_center, bridge_caption.
+    """
+    if not any(k in meta for k in ('bridge_top','bridge_left','bridge_right','bridge_center')):
+        return ''
+    def _s(v):
+        return ' '.join(v) if isinstance(v, list) else (v or '')
+    top = esc(_s(meta.get('bridge_top', 'Finance')))
+    left = esc(_s(meta.get('bridge_left', 'Product')))
+    right = esc(_s(meta.get('bridge_right', 'Sales')))
+    center = esc(_s(meta.get('bridge_center', 'Coach & advisor')))
+    caption = _s(meta.get('bridge_caption', ''))
+    caption_html = f'\n      <p class="bridge-cap">{inline(caption, ital_class=True)}</p>' if caption else ''
+    return f'''<aside class="bridge-figure" role="img" aria-label="Coach & advisor sits between {left}, {top} and {right}">
+      <svg viewBox="0 0 260 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <!-- triangle edges -->
+        <line class="edge" x1="130" y1="40" x2="55" y2="165"/>
+        <line class="edge" x1="130" y1="40" x2="205" y2="165"/>
+        <line class="edge" x1="55" y1="165" x2="205" y2="165"/>
+        <!-- spokes from centre -->
+        <line class="spoke" x1="130" y1="40" x2="130" y2="126"/>
+        <line class="spoke" x1="55" y1="165" x2="130" y2="126"/>
+        <line class="spoke" x1="205" y1="165" x2="130" y2="126"/>
+        <!-- top node -->
+        <circle class="node" cx="130" cy="40" r="18"/>
+        <text class="node-label" x="130" y="10" text-anchor="middle">{top}</text>
+        <!-- bottom left node -->
+        <circle class="node" cx="55" cy="165" r="18"/>
+        <text class="node-label" x="55" y="195" text-anchor="middle">{left}</text>
+        <!-- bottom right node -->
+        <circle class="node" cx="205" cy="165" r="18"/>
+        <text class="node-label" x="205" y="195" text-anchor="middle">{right}</text>
+        <!-- centre node -->
+        <circle class="node node-center" cx="130" cy="126" r="16"/>
+        <text class="center-label" x="130" y="130" text-anchor="middle">{center}</text>
+      </svg>{caption_html}
+    </aside>'''
+
+
 def gen_stack(text):
     _, blocks = parse_sections(text)
     out = ['    <div class="stack">']
@@ -543,8 +583,12 @@ out = out.replace('{{NAME}}', gen_name(meta_kv))
 out = out.replace('{{THESIS}}', gen_thesis(meta_kv))
 out = out.replace('{{CONTACT}}', gen_contact(meta_kv))
 out = out.replace('{{HERO_FACTS}}', gen_hero_facts(meta_kv))
-out = out.replace('{{STACK_TITLE}}', section_heading('content/stack.md', 'Product, finance, architecture *& operations.*'))
-out = out.replace('{{STACK}}', gen_stack(open('content/stack.md').read()))
+stack_text = open('content/stack.md').read()
+stack_meta_lines, _ = parse_sections(stack_text)
+stack_meta = parse_keyvals(stack_meta_lines)
+out = out.replace('{{STACK_TITLE}}', heading_from_text(stack_text, 'Product, finance, architecture *& operations.*'))
+out = out.replace('{{STACK_HEADING_EXTRA}}', gen_bridge(stack_meta))
+out = out.replace('{{STACK}}', gen_stack(stack_text))
 out = out.replace('{{COMPETENCIES_TITLE}}', section_heading('content/competencies.md', 'Executive competencies, *what I own at C-level.*'))
 out = out.replace('{{COMPETENCIES}}', gen_competencies(open('content/competencies.md').read()))
 out = out.replace('{{CLIENTS}}', gen_clients(open('content/clients.md').read()))
