@@ -110,6 +110,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0 0 6px;
 }
+.hero .thesis .ln { display: block !important; }
 .hero .contact {
   font-family: var(--mono);
   font-size: 7pt;
@@ -257,10 +258,11 @@ details.signature-group, .tile .ai, .role-body .tags {
 
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 7px;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 7px !important;
 }
+.skill-col { display: block !important; }
 .skill-col {
   padding: 8px 10px;
   border-left: 2px solid var(--euc);
@@ -524,11 +526,11 @@ details.clients-group > div:not(.clients-print) {
       <span class="ln" aria-hidden="true"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
       <span class="ln" aria-hidden="true"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">o</span><span class="ch">n</span><span class="period">.</span></span>
     </h1>
-    <p class="thesis" data-thesis aria-label="The connector across product, finance &amp; architecture a founder-grade advisor and executive leader who joins strategy to execution, and customer insight to commercial outcomes. Fractional &amp; interim CXO mandates for founders, executive leadership &amp; boards.">
+    <p class="thesis" data-thesis aria-label="The connector across product, finance &amp; architecture a founder-grade advisor and executive leader who joins strategy to execution and customer insight to commercial outcomes Fractional &amp; interim CXO mandates for founders, executive leadership &amp; boards">
       <span class="ln" aria-hidden="true"><span class="wd">The</span> <span class="wd"><em>connector</em></span> <span class="wd">across</span> <span class="wd">product,</span> <span class="wd">finance</span> <span class="wd">&amp;</span> <span class="wd">architecture</span></span>
-      <span class="ln" aria-hidden="true"><span class="wd">a</span> <span class="wd">founder-grade</span> <span class="wd">advisor</span> <span class="wd">and</span> <span class="wd">executive</span> <span class="wd">leader</span> <span class="wd">who</span> <span class="wd">joins</span> <span class="wd">strategy</span> <span class="wd">to</span> <span class="wd">execution,</span></span>
-      <span class="ln" aria-hidden="true"><span class="wd">and</span> <span class="wd">customer</span> <span class="wd">insight</span> <span class="wd">to</span> <span class="wd">commercial</span> <span class="wd">outcomes.</span></span>
-      <span class="ln" aria-hidden="true"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders,</span> <span class="wd">executive</span> <span class="wd">leadership</span> <span class="wd">&amp;</span> <span class="wd">boards.</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">a</span> <span class="wd">founder-grade</span> <span class="wd">advisor</span> <span class="wd">and</span> <span class="wd">executive</span> <span class="wd">leader</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">who</span> <span class="wd">joins</span> <span class="wd">strategy</span> <span class="wd">to</span> <span class="wd">execution</span> <span class="wd">and</span> <span class="wd">customer</span> <span class="wd">insight</span> <span class="wd">to</span> <span class="wd">commercial</span> <span class="wd">outcomes</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders,</span> <span class="wd">executive</span> <span class="wd">leadership</span> <span class="wd">&amp;</span> <span class="wd">boards</span></span>
     </p>
     <div class="contact" data-reveal>
       <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
@@ -968,212 +970,11 @@ details.clients-group > div:not(.clients-print) {
 </article>
 
 <!-- ================= SCRIPTS: GSAP + Lenis + SplitText ================= -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script>
-(function () {
-  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Preloader: gate the hero intro on its completion ----
-  var preloaderDone = false;
-  function hidePreloader() {
-    if (preloaderDone) return;
-    preloaderDone = true;
-    var p = document.getElementById('preloader');
-    if (p) p.classList.add('done');
-    runHeroIntro();
-  }
-  var heroIntroStarted = false;
-  function runHeroIntro() { /* defined below; preloader fires it */ }
-  document.addEventListener('DOMContentLoaded', function () {
-    var minDwell = new Promise(function (r) { setTimeout(r, 900); });
-    var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    Promise.all([minDwell, fontsReady]).then(hidePreloader);
-  });
-  // Safety fallback
-  setTimeout(hidePreloader, 4000);
 
-  if (prefersReduced) {
-    // Show everything, no motion
-    document.querySelectorAll('[data-reveal]').forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
-    return;
-  }
 
-  gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  // ---- Lenis smooth scroll ----
-  var lenis = null;
-  if (typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true,
-    });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-    window.__lenis = lenis; /* exposed for print hooks and test harnesses */
-  }
 
-  // Initial state for reveal elements (so they're hidden before animating)
-  gsap.set('[data-reveal]', { opacity: 0, y: 24 });
-
-  // ---- Hero kinetic name + thesis: gated on preloader completion ----
-  var introChars = null, introWords = null;
-  (function prepIntro() {
-    var heroName = document.querySelector('[data-kinetic]');
-    if (heroName) {
-      introChars = heroName.querySelectorAll('.ch, .period');
-      gsap.set(introChars, { yPercent: 120, opacity: 0, rotate: function () { return gsap.utils.random(-9, 9); } });
-    }
-    var thesis = document.querySelector('[data-thesis]');
-    if (thesis) {
-      introWords = thesis.querySelectorAll('.wd');
-      gsap.set(introWords, { yPercent: 115, opacity: 0 });
-    }
-  })();
-  runHeroIntro = function () {
-    if (heroIntroStarted) return; heroIntroStarted = true;
-    if (introChars) {
-      gsap.to(introChars, {
-        yPercent: 0, opacity: 1, rotate: 0,
-        duration: 0.9, ease: 'back.out(1.7)',
-        stagger: { each: 0.035, from: 'start' }
-      });
-    }
-    if (introWords) {
-      gsap.to(introWords, {
-        yPercent: 0, opacity: 1,
-        duration: 0.8, ease: 'expo.out',
-        stagger: 0.012,
-        delay: 0.45
-      });
-    }
-  };
-
-  // ---- Section collapsers (default expanded) ----
-  (function() {
-    document.querySelectorAll('.section').forEach(function(sec) {
-      var head = sec.querySelector('.section-head');
-      if (!head || head.classList.contains('no-collapse')) return;
-      var body = document.createElement('div');
-      body.className = 'section-body';
-      while (head.nextElementSibling) { body.appendChild(head.nextElementSibling); }
-      sec.appendChild(body);
-      head.addEventListener('click', function() {
-        var isCollapsed = body.classList.toggle('collapsed');
-        head.classList.toggle('collapsed', isCollapsed);
-        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-      });
-    });
-  })();
-
-  // ---- Smooth-scroll anchor links via Lenis ----
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var id = a.getAttribute('href');
-      var target = id.length > 1 ? document.querySelector(id) : null;
-      if (target && typeof __lenis !== 'undefined') {
-        e.preventDefault();
-        __lenis.scrollTo(target, { offset: -90, duration: 1.2 });
-      }
-    });
-  });
-
-  // ---- Hero mark: subtle parallax on scroll ----
-  var heroMark = document.querySelector('.hero-mark');
-  if (heroMark) {
-    gsap.to(heroMark, {
-      yPercent: -30,
-      ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-    });
-  }
-
-  // ---- ScrollTrigger reveals for [data-reveal] ----
-  gsap.utils.toArray('[data-reveal]').forEach(function (el) {
-    // Skip hero-internal items already handled, but they're not data-reveal so fine
-    gsap.to(el, {
-      opacity: 1, y: 0,
-      duration: 0.9, ease: 'expo.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        once: true
-      }
-    });
-  });
-
-  // ---- Section headings: SplitText line mask reveal ----
-  gsap.utils.toArray('.section-head h2').forEach(function (h) {
-    // wrap each in a mask line via SplitText lines
-    var split = new SplitText(h, { type: 'lines', linesClass: 'mask-line-inner' });
-    gsap.set(split.lines, { overflow: 'hidden' });
-    // wrap line content for masking
-    split.lines.forEach(function (ln) {
-      gsap.set(ln, { overflow: 'hidden', display: 'block' });
-    });
-    gsap.from(split.lines, {
-      yPercent: 110,
-      opacity: 0,
-      duration: 1, ease: 'expo.out',
-      stagger: 0.08,
-      scrollTrigger: { trigger: h, start: 'top 85%', once: true }
-    });
-  });
-
-  // ---- PDF print handling: kill Lenis, flatten all motion ----
-  var printing = false;
-  function beforePrint() {
-    if (printing) return; printing = true;
-    if (lenis) lenis.stop();
-    // Reveal everything
-    gsap.set('[data-reveal]', { opacity: 1, y: 0, clearProps: 'transform' });
-    gsap.set('.hero h1 .ln .ch, .hero .thesis .ln .wd', { yPercent: 0, opacity: 1, rotate: 0, clearProps: 'all' });
-    document.querySelectorAll('.mask-line-inner').forEach(function (ln) { ln.style.transform = 'none'; ln.style.opacity = '1'; });
-    // Open details and expand collapsed section bodies
-    document.querySelectorAll('details').forEach(function (d) { d.dataset.wasopen = d.open; d.open = true; });
-    document.querySelectorAll('.section-body.collapsed').forEach(function (b) { b.classList.remove('collapsed'); });
-    // flag for signature-group hidden via CSS in print
-    ScrollTrigger.refresh();
-  }
-  function afterPrint() {
-    if (!printing) return; printing = false;
-    document.querySelectorAll('details').forEach(function (d) { if (d.dataset.wasopen === 'false') d.open = false; });
-    if (lenis) lenis.start();
-  }
-  window.addEventListener('beforeprint', beforePrint);
-  window.addEventListener('afterprint', afterPrint);
-  // matchMedia print (Playwright emulateMedia)
-  if (window.matchMedia) {
-    var mq = window.matchMedia('print');
-    var cb = function (e) { if (e.matches) beforePrint(); else afterPrint(); };
-    if (mq.addEventListener) mq.addEventListener('change', cb);
-    else if (mq.addListener) mq.addListener(cb);
-  }
-
-  // ---- Details open/close shifts layout: refresh ScrollTrigger measurements ----
-  document.querySelectorAll('details').forEach(function (d) {
-    d.addEventListener('toggle', function () { ScrollTrigger.refresh(); });
-  });
-
-  // ---- Smooth nav anchors through Lenis ----
-  document.querySelectorAll('.topnav .links a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var id = a.getAttribute('href');
-      var target = id.length > 1 ? document.querySelector(id) : null;
-      if (!target) return;
-      e.preventDefault();
-      if (lenis) lenis.scrollTo(target, { offset: -60 });
-      else target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // ---- Download button is now a direct link to the generated PDF ----
-})();
-</script>
 
 <div class="draft-banner" aria-hidden="false">
   Draft - feedback welcome.

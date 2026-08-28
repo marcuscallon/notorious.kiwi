@@ -97,6 +97,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0 0 6px;
 }
+.hero .thesis .ln { display: block !important; }
 .hero .contact {
   font-family: var(--mono);
   font-size: 7pt;
@@ -244,10 +245,11 @@ details.signature-group, .tile .ai, .role-body .tags {
 
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 7px;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 7px !important;
 }
+.skill-col { display: block !important; }
 .skill-col {
   padding: 8px 10px;
   border-left: 2px solid var(--euc);

@@ -191,8 +191,8 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 
 .hero .thesis {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(20px, 2.2vw, 26px); line-height: 1.4;
-  max-width: 32em; color: var(--cream-2);
+  font-size: clamp(19px, 2vw, 24px); line-height: 1.42;
+  max-width: 44em; color: var(--cream-2);
   margin-bottom: 40px;
   font-variation-settings: "opsz" 60;
 }
@@ -749,6 +749,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0 0 6px;
 }
+.hero .thesis .ln { display: block !important; }
 .hero .contact {
   font-family: var(--mono);
   font-size: 7pt;
@@ -896,10 +897,11 @@ details.signature-group, .tile .ai, .role-body .tags {
 
 /* ---------- COMPETENCIES ---------- */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 7px;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 7px !important;
 }
+.skill-col { display: block !important; }
 .skill-col {
   padding: 8px 10px;
   border-left: 2px solid var(--euc);
@@ -1163,11 +1165,11 @@ details.clients-group > div:not(.clients-print) {
       <span class="ln" aria-hidden="true"><span class="ch">M</span><span class="ch">a</span><span class="ch">r</span><span class="ch">c</span><span class="ch">u</span><span class="ch">s</span></span>
       <span class="ln" aria-hidden="true"><span class="ch">C</span><span class="ch">a</span><span class="ch">l</span><span class="ch">l</span><span class="ch">o</span><span class="ch">n</span><span class="period">.</span></span>
     </h1>
-    <p class="thesis" data-thesis aria-label="The connector across product, finance &amp; architecture a founder-grade advisor and executive leader who joins strategy to execution, and customer insight to commercial outcomes. Fractional &amp; interim CXO mandates for founders, executive leadership &amp; boards.">
+    <p class="thesis" data-thesis aria-label="The connector across product, finance &amp; architecture a founder-grade advisor and executive leader who joins strategy to execution and customer insight to commercial outcomes Fractional &amp; interim CXO mandates for founders, executive leadership &amp; boards">
       <span class="ln" aria-hidden="true"><span class="wd">The</span> <span class="wd"><em>connector</em></span> <span class="wd">across</span> <span class="wd">product,</span> <span class="wd">finance</span> <span class="wd">&amp;</span> <span class="wd">architecture</span></span>
-      <span class="ln" aria-hidden="true"><span class="wd">a</span> <span class="wd">founder-grade</span> <span class="wd">advisor</span> <span class="wd">and</span> <span class="wd">executive</span> <span class="wd">leader</span> <span class="wd">who</span> <span class="wd">joins</span> <span class="wd">strategy</span> <span class="wd">to</span> <span class="wd">execution,</span></span>
-      <span class="ln" aria-hidden="true"><span class="wd">and</span> <span class="wd">customer</span> <span class="wd">insight</span> <span class="wd">to</span> <span class="wd">commercial</span> <span class="wd">outcomes.</span></span>
-      <span class="ln" aria-hidden="true"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders,</span> <span class="wd">executive</span> <span class="wd">leadership</span> <span class="wd">&amp;</span> <span class="wd">boards.</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">a</span> <span class="wd">founder-grade</span> <span class="wd">advisor</span> <span class="wd">and</span> <span class="wd">executive</span> <span class="wd">leader</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">who</span> <span class="wd">joins</span> <span class="wd">strategy</span> <span class="wd">to</span> <span class="wd">execution</span> <span class="wd">and</span> <span class="wd">customer</span> <span class="wd">insight</span> <span class="wd">to</span> <span class="wd">commercial</span> <span class="wd">outcomes</span></span>
+      <span class="ln" aria-hidden="true"><span class="wd">Fractional</span> <span class="wd">&amp;</span> <span class="wd">interim</span> <span class="wd">CXO</span> <span class="wd">mandates</span> <span class="wd">for</span> <span class="wd">founders,</span> <span class="wd">executive</span> <span class="wd">leadership</span> <span class="wd">&amp;</span> <span class="wd">boards</span></span>
     </p>
     <div class="contact" data-reveal>
       <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>

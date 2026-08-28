@@ -18,6 +18,9 @@ head_before, rest = html.split('<style>', 1)
 _, head_after = rest.split('</style>', 1)
 
 print_html = head_before + '<style>\n' + CSS + '\n</style>' + head_after
+# Strip scripts so GSAP/Lenis/etc don't hide data-reveal elements before print.
+print_html = re.sub(r'<script\b[^>]*>.*?</script>', '', print_html, flags=re.DOTALL)
+print_html = re.sub(r'<script\b[^>]*/>', '', print_html, flags=re.DOTALL)
 out_html = os.path.join(ROOT, 'src', 'profile-print.html')
 open(out_html, 'w').write(print_html)
 

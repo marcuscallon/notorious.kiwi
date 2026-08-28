@@ -13,9 +13,9 @@ name_line2: Callon.
 # *asterisks* = italic eucalyptus. No em dashes - use plain hyphens.
 thesis:
 - The *connector* across product, finance & architecture
-- a founder-grade advisor and executive leader who joins strategy to execution,
-- and customer insight to commercial outcomes.
-- Fractional & interim CXO mandates for founders, executive leadership & boards.
+- a founder-grade advisor and executive leader
+- who joins strategy to execution and customer insight to commercial outcomes
+- Fractional & interim CXO mandates for founders, executive leadership & boards
 
 # Stats: value unit | label line 1 ; label line 2 [:: feature]
 stats:
