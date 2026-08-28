@@ -35,6 +35,17 @@
   transform: none !important;
 }
 
+/* Never print a GSAP/ScrollTrigger hidden state (covers live-page Cmd+P too) */
+[data-reveal],
+.hero h1 .ln .ch,
+.hero .thesis .ln .wd,
+.mask-line .wd {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  clip-path: none !important;
+}
+
 html, body {
   margin: 0; padding: 0;
   background: var(--paper);
