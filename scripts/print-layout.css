@@ -288,19 +288,19 @@ details.signature-group, .tile .ai, .role-body .tags {
 }
 
 /* ---------- CLIENTS ---------- */
-details.clients-group {
+.clients-group {
   display: block !important;
   border-top: 1px solid var(--rule);
   padding-top: 6px;
   margin-top: 7px;
   break-inside: avoid;
 }
-details.clients-group > summary,
-details.clients-group .logo-grid,
-details.clients-group .logo-cat,
-details.clients-group .logo-row,
-details.clients-group .logo,
-details.clients-group > div:not(.clients-print) {
+.clients-group > .earlier-cap,
+.clients-group .logo-grid,
+.clients-group .logo-cat,
+.clients-group .logo-row,
+.clients-group .logo,
+.clients-group > div:not(.clients-print) {
   display: none !important;
 }
 .clients-print {
@@ -411,23 +411,38 @@ details.clients-group > div:not(.clients-print) {
 .role:nth-child(n+5) ul li:nth-child(n+3) { display: none; }
 .role:nth-child(n+6) ul li:nth-child(n+2) { display: none; }
 
-/* ---------- EARLIER ROLES (compact title-only strip) ---------- */
+/* ---------- EARLIER ROLES (two-column date/title list, no descriptions) ---------- */
 .earlier {
   display: block !important;
-  margin-top: 6px;
+  margin-top: 7px;
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
   break-inside: avoid;
+  column-count: 2;
+  column-gap: 8mm;
 }
-.earlier summary { display: none !important; }
+.earlier-cap {
+  column-span: all;
+  font-family: var(--mono);
+  font-size: 5.8pt;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 3px;
+}
 .travel-flags, .travel-flags img { display: none !important; }
 .earlier-row {
-  display: inline-flex;
+  display: flex;
   align-items: baseline;
-  gap: 4px;
-  padding: 2px 6px;
-  margin: 0 2px 2px 0;
-  border-left: 2px solid var(--euc-2);
+  gap: 6px;
+  padding: 1.6px 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  break-inside: avoid;
 }
 .earlier-row .yr {
+  flex: 0 0 10mm;
   font-family: var(--mono);
   font-size: 5.4pt;
   color: var(--signal);
@@ -436,10 +451,10 @@ details.clients-group > div:not(.clients-print) {
 .earlier-row .desc { font-size: 0; }
 .earlier-row .desc strong {
   font-family: var(--sans);
-  font-size: 6pt;
+  font-size: 6.2pt;
   font-weight: 500;
   color: var(--ink);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 /* ---------- FOOTER ---------- */

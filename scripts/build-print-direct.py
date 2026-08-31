@@ -21,6 +21,12 @@ print_html = head_before + '<style>\n' + CSS + '\n</style>' + head_after
 # Strip scripts so GSAP/Lenis/etc don't hide data-reveal elements before print.
 print_html = re.sub(r'<script\b[^>]*>.*?</script>', '', print_html, flags=re.DOTALL)
 print_html = re.sub(r'<script\b[^>]*/>', '', print_html, flags=re.DOTALL)
+# Closed <details> never lay out their children in print; flatten them to divs.
+# (.pepeha stays display:none in print; .earlier must render.)
+print_html = re.sub(r'<details\b([^>]*)>', r'<div\1>', print_html)
+print_html = print_html.replace('</details>', '</div>')
+print_html = re.sub(r'<summary\b([^>]*)>', r'<div class="earlier-cap"\1>', print_html)
+print_html = print_html.replace('</summary>', '</div>')
 out_html = os.path.join(ROOT, 'src', 'profile-print.html')
 open(out_html, 'w').write(print_html)
 

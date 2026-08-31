@@ -301,19 +301,19 @@ details.signature-group, .tile .ai, .role-body .tags {
 }
 
 /* ---------- CLIENTS ---------- */
-details.clients-group {
+.clients-group {
   display: block !important;
   border-top: 1px solid var(--rule);
   padding-top: 6px;
   margin-top: 7px;
   break-inside: avoid;
 }
-details.clients-group > summary,
-details.clients-group .logo-grid,
-details.clients-group .logo-cat,
-details.clients-group .logo-row,
-details.clients-group .logo,
-details.clients-group > div:not(.clients-print) {
+.clients-group > .earlier-cap,
+.clients-group .logo-grid,
+.clients-group .logo-cat,
+.clients-group .logo-row,
+.clients-group .logo,
+.clients-group > div:not(.clients-print) {
   display: none !important;
 }
 .clients-print {
@@ -424,23 +424,38 @@ details.clients-group > div:not(.clients-print) {
 .role:nth-child(n+5) ul li:nth-child(n+3) { display: none; }
 .role:nth-child(n+6) ul li:nth-child(n+2) { display: none; }
 
-/* ---------- EARLIER ROLES (compact title-only strip) ---------- */
+/* ---------- EARLIER ROLES (two-column date/title list, no descriptions) ---------- */
 .earlier {
   display: block !important;
-  margin-top: 6px;
+  margin-top: 7px;
+  padding-top: 4px;
+  border-top: 1px solid var(--rule);
   break-inside: avoid;
+  column-count: 2;
+  column-gap: 8mm;
 }
-.earlier summary { display: none !important; }
+.earlier-cap {
+  column-span: all;
+  font-family: var(--mono);
+  font-size: 5.8pt;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 3px;
+}
 .travel-flags, .travel-flags img { display: none !important; }
 .earlier-row {
-  display: inline-flex;
+  display: flex;
   align-items: baseline;
-  gap: 4px;
-  padding: 2px 6px;
-  margin: 0 2px 2px 0;
-  border-left: 2px solid var(--euc-2);
+  gap: 6px;
+  padding: 1.6px 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  break-inside: avoid;
 }
 .earlier-row .yr {
+  flex: 0 0 10mm;
   font-family: var(--mono);
   font-size: 5.4pt;
   color: var(--signal);
@@ -449,10 +464,10 @@ details.clients-group > div:not(.clients-print) {
 .earlier-row .desc { font-size: 0; }
 .earlier-row .desc strong {
   font-family: var(--sans);
-  font-size: 6pt;
+  font-size: 6.2pt;
   font-weight: 500;
   color: var(--ink);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 /* ---------- FOOTER ---------- */
@@ -688,8 +703,8 @@ details.clients-group > div:not(.clients-print) {
   </section>
 
   <!-- ================= CLIENTS (optional) ================= -->
-  <details class="signature-group clients-group" id="clients" open>
-    <summary>Clients &amp; employers</summary>
+  <div class="signature-group clients-group" id="clients" open>
+    <div class="earlier-cap">Clients &amp; employers</div>
     <div class="clients-print" aria-hidden="true">BBC &middot; the Guardian &middot; ESPN &middot; The Times &middot; Financial Times &middot; HEARST &middot; Mastercard &middot; RACQ &middot; XPON &middot; Queensland Transport &middot; EQC &middot; Shorthand &middot; Holoscribe &middot; Immersive &middot; FOCAL LABS &middot; University of Otago &middot; Wondaris</div>
     <div class="logo-grid mode-marks" data-reveal>
       <div class="logo-cat">
@@ -739,7 +754,7 @@ details.clients-group > div:not(.clients-print) {
         </div>
       </div>
     </div>
-  </details>
+  </div>
   <!-- ================= EXPERIENCE (sorted by end date desc) ================= -->
   <section class="section" id="experience">
     <div class="section-head" data-reveal>
@@ -886,8 +901,8 @@ details.clients-group > div:not(.clients-print) {
       </div>
     </div>
 
-    <details class="earlier" data-reveal>
-      <summary class="cg-k">Earlier - architecture, build &amp; world travel (2000-2013)</summary>
+    <div class="earlier" data-reveal>
+      <div class="earlier-cap" class="cg-k">Earlier - architecture, build &amp; world travel (2000-2013)</div>
 
       <div class="earlier-row"><div class="yr">2011-13</div><div class="desc"><strong>4impact - Head of Delivery.</strong> Assurance governance and leadership of the solution delivery function for a portfolio of clients and executive sponsor across key customer engagements.</div></div>
       <div class="earlier-row"><div class="yr">2010-11</div><div class="desc"><strong>4impact - Solution Architect.</strong> Pre-sales bid architect and lead architect on the RACQ Insurance claims-management engagement - at the time the largest in 4impact's history.</div></div>
@@ -899,7 +914,7 @@ details.clients-group > div:not(.clients-print) {
       <div class="earlier-row"><div class="yr">2004</div><div class="desc"><strong>AXA New Zealand - Senior Software Engineer (contract).</strong></div></div>
       <div class="earlier-row"><div class="yr">2002-03</div><div class="desc"><strong>Good Technology (London, UK) - Software Engineer.</strong></div></div>
       <div class="earlier-row"><div class="yr">2000-02</div><div class="desc"><strong>Open Telecommunications - Software Engineer.</strong></div></div>
-    </details>
+    </div>
   </section>
 
   <!-- ================= HOW I ENGAGE (commented out for now) =================
@@ -934,8 +949,8 @@ details.clients-group > div:not(.clients-print) {
       </div>
     </div>
   </section>
-<details class="pepeha">
-    <summary>Pepeha<span class="pp-what" aria-hidden="true">A Pepeha is a traditional Māori way of introducing yourself by connecting your identity to your ancestral landmarks, rivers, and origins.</span></summary>
+<div class="pepeha">
+    <div class="earlier-cap">Pepeha<span class="pp-what" aria-hidden="true">A Pepeha is a traditional Māori way of introducing yourself by connecting your identity to your ancestral landmarks, rivers, and origins.</span></div>
     <div class="pp-body">
       <div class="pp-lines" tabindex="0">
           <span>Ko Kopuwai te maunga.</span>
@@ -944,7 +959,7 @@ details.clients-group > div:not(.clients-print) {
       </div>
       <div class="pp-imgwrap" aria-hidden="true"><img src="assets/marcus-pepeha.jpg" alt="Pepeha - family at Kopuwai maunga by the Mata-au awa"></div>
     </div>
-  </details>
+  </div>
   <footer class="foot">
     <div class="meta" style="grid-column: 1 / -1; text-align: center; justify-self: center;">
       Marcus Callon · Brisbane, Australia &middot;
