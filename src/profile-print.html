@@ -201,6 +201,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   grid-template-columns: repeat(2, 1fr);
   gap: 7px;
   margin-bottom: 2px;
+  position: relative;
 }
 .tile {
   padding: 8px 10px;
@@ -243,31 +244,22 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--euc);
 }
 
-/* ---------- STACK BRIDGE DIAGRAM ---------- */
-.bridge-figure {
-  flex-shrink: 0;
-  margin-left: auto;
-  margin-top: -8px;
-  width: 46mm;
-  text-align: center;
+/* ---------- STACK HUB (connector mark) ---------- */
+.stack-hub {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 4;
 }
-.bridge-figure svg { width: 100%; height: auto; }
-.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 1; }
-.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.3; }
-.bridge-figure .halo { fill: none; stroke: var(--signal); stroke-dasharray: 3 6; opacity: 0.55; }
-.bridge-figure .node-center { fill: var(--signal); stroke: none; }
-.bridge-figure .center-label { fill: var(--paper); font-weight: 600; font-size: 18px; font-family: var(--mono); }
-.bridge-figure text {
-  font-family: var(--sans);
-  font-size: 11px;
-  fill: var(--ink);
-  letter-spacing: 0.03em;
-}
-.bridge-figure .node-label { font-weight: 500; }
-.bridge-figure text[text-anchor="middle"] { dominant-baseline: central; }
-.bridge-cap { display: none !important; }
+.stack-hub svg { width: 22mm; height: auto; }
+.stack-hub .hub-halo { display: none; }
+.stack-hub .hub-spoke { stroke: var(--euc); stroke-width: 1.6; }
+.stack-hub .hub-disc { fill: var(--signal); stroke: none; }
+.stack-hub .hub-m { fill: var(--paper); font-family: var(--mono); font-weight: 600; font-size: 32px; }
 
-/* ---------- COMPETENCIES ---------- */
+/* ---------- COMPETENCIES */
 .skills-grid {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
@@ -586,33 +578,8 @@ details.clients-group > div:not(.clients-print) {
 
   <!-- ================= THE STACK ================= -->
   <section class="section" id="stack">
-    <div class="section-head no-collapse stack-head" data-reveal>
+    <div class="section-head no-collapse" data-reveal>
       <h2><strong>Product-led strategy</strong><br><span class="sec-sub">across finance, architecture &amp; execution.</span></h2>
-      <aside class="bridge-figure" role="img" aria-label="Coach & advisor sits between Product, Finance and Sales">
-      <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <!-- triangle edges -->
-        <line class="edge" x1="160" y1="30" x2="60" y2="210"/>
-        <line class="edge" x1="160" y1="30" x2="260" y2="210"/>
-        <line class="edge" x1="60" y1="210" x2="260" y2="210"/>
-        <!-- spokes from centre -->
-        <line class="spoke" x1="160" y1="30" x2="160" y2="138"/>
-        <line class="spoke" x1="60" y1="210" x2="160" y2="138"/>
-        <line class="spoke" x1="260" y1="210" x2="160" y2="138"/>
-        <!-- dashed halo around centre node -->
-        <circle class="halo" cx="160" cy="138" r="34"/>
-        <!-- perimeter nodes -->
-        <circle class="node" cx="160" cy="30" r="18"/>
-        <text class="node-label" x="160" y="8" text-anchor="middle">Finance</text>
-        <circle class="node" cx="60" cy="210" r="18"/>
-        <text class="node-label" x="60" y="242" text-anchor="middle">Product</text>
-        <circle class="node" cx="260" cy="210" r="18"/>
-        <text class="node-label" x="260" y="242" text-anchor="middle">Sales</text>
-        <!-- centre node (M for Marcus) -->
-        <circle class="node-center" cx="160" cy="138" r="22"/>
-        <text class="center-label" x="160" y="147" text-anchor="middle">M</text>
-      </svg>
-      <p class="bridge-cap">finance, architecture &amp; execution.</p>
-    </aside>
     </div>
     <div class="stack">
       <div class="tile tile-feature" data-reveal>
@@ -651,6 +618,22 @@ details.clients-group > div:not(.clients-print) {
           <li>Technical enough to work credibly with engineering and data leaders.</li>
         </ul>
         <span class="ai"><span class="d"></span>pi.dev · devops · AI</span>
+      </div>
+      <div class="stack-hub" aria-hidden="true">
+        <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <defs>
+            <marker id="hub-arrow" markerWidth="8" markerHeight="8" viewBox="0 0 10 10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#3E9483"/>
+            </marker>
+          </defs>
+          <circle class="hub-halo" cx="130" cy="130" r="46"/>
+          <line class="hub-spoke" x1="97" y1="97" x2="78" y2="78" marker-end="url(#hub-arrow)"/>
+          <line class="hub-spoke" x1="163" y1="97" x2="182" y2="78" marker-end="url(#hub-arrow)"/>
+          <line class="hub-spoke" x1="97" y1="163" x2="78" y2="182" marker-end="url(#hub-arrow)"/>
+          <line class="hub-spoke" x1="163" y1="163" x2="182" y2="182" marker-end="url(#hub-arrow)"/>
+          <circle class="hub-disc" cx="130" cy="130" r="30"/>
+          <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">M</text>
+        </svg>
       </div>
     </div>
 

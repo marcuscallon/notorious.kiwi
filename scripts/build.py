@@ -178,44 +178,22 @@ def gen_hero_facts(meta):
 {os.linesep.join(cells)}
     </div>'''
 
-def gen_bridge(meta):
-    """Generate the inline SVG diagram that sits at the top-right of the stack heading.
-    Keys expected in meta: bridge_top, bridge_left, bridge_right, bridge_center, bridge_caption.
-    """
-    if not any(k in meta for k in ('bridge_top','bridge_left','bridge_right','bridge_center')):
-        return ''
-    def _s(v):
-        return ' '.join(v) if isinstance(v, list) else (v or '')
-    top = esc(_s(meta.get('bridge_top', 'Finance')))
-    left = esc(_s(meta.get('bridge_left', 'Product')))
-    right = esc(_s(meta.get('bridge_right', 'Sales')))
-    center = esc(_s(meta.get('bridge_center', 'Coach & advisor')))
-    caption = _s(meta.get('bridge_caption', ''))
-    caption_html = f'\n      <p class="bridge-cap">{inline(caption, ital_class=True)}</p>' if caption else ''
-    return f'''<aside class="bridge-figure" role="img" aria-label="Coach & advisor sits between {left}, {top} and {right}">
-      <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <!-- triangle edges -->
-        <line class="edge" x1="160" y1="30" x2="60" y2="210"/>
-        <line class="edge" x1="160" y1="30" x2="260" y2="210"/>
-        <line class="edge" x1="60" y1="210" x2="260" y2="210"/>
-        <!-- spokes from centre -->
-        <line class="spoke" x1="160" y1="30" x2="160" y2="138"/>
-        <line class="spoke" x1="60" y1="210" x2="160" y2="138"/>
-        <line class="spoke" x1="260" y1="210" x2="160" y2="138"/>
-        <!-- dashed halo around centre node -->
-        <circle class="halo" cx="160" cy="138" r="34"/>
-        <!-- perimeter nodes -->
-        <circle class="node" cx="160" cy="30" r="18"/>
-        <text class="node-label" x="160" y="8" text-anchor="middle">{top}</text>
-        <circle class="node" cx="60" cy="210" r="18"/>
-        <text class="node-label" x="60" y="242" text-anchor="middle">{left}</text>
-        <circle class="node" cx="260" cy="210" r="18"/>
-        <text class="node-label" x="260" y="242" text-anchor="middle">{right}</text>
-        <!-- centre node (M for Marcus) -->
-        <circle class="node-center" cx="160" cy="138" r="22"/>
-        <text class="center-label" x="160" y="147" text-anchor="middle">M</text>
-      </svg>{caption_html}
-    </aside>'''
+STACK_HUB = '''      <div class="stack-hub" aria-hidden="true">
+        <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <defs>
+            <marker id="hub-arrow" markerWidth="8" markerHeight="8" viewBox="0 0 10 10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#3E9483"/>
+            </marker>
+          </defs>
+          <circle class="hub-halo" cx="130" cy="130" r="46"/>
+          <line class="hub-spoke" x1="97" y1="97" x2="78" y2="78" marker-end="url(#hub-arrow)"/>
+          <line class="hub-spoke" x1="163" y1="97" x2="182" y2="78" marker-end="url(#hub-arrow)"/>
+          <line class="hub-spoke" x1="97" y1="163" x2="78" y2="182" marker-end="url(#hub-arrow)"/>
+          <line class="hub-spoke" x1="163" y1="163" x2="182" y2="182" marker-end="url(#hub-arrow)"/>
+          <circle class="hub-disc" cx="130" cy="130" r="30"/>
+          <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">M</text>
+        </svg>
+      </div>'''
 
 
 def gen_stack(text):
@@ -253,6 +231,7 @@ def gen_stack(text):
         <div class="tag"><span class="num">{num}</span>{esc(tag)}</div>
         <h3>{title_html}</h3>{body_html}{chip_html}
       </div>''')
+    out.append(STACK_HUB)
     out.append('    </div>')
     return '\n'.join(out)
 
@@ -587,7 +566,6 @@ stack_text = open('content/stack.md').read()
 stack_meta_lines, _ = parse_sections(stack_text)
 stack_meta = parse_keyvals(stack_meta_lines)
 out = out.replace('{{STACK_TITLE}}', heading_from_text(stack_text, 'Product, finance, architecture *& operations.*'))
-out = out.replace('{{STACK_HEADING_EXTRA}}', gen_bridge(stack_meta))
 out = out.replace('{{STACK}}', gen_stack(stack_text))
 out = out.replace('{{COMPETENCIES_TITLE}}', section_heading('content/competencies.md', 'Executive competencies, *what I own at C-level.*'))
 out = out.replace('{{COMPETENCIES}}', gen_competencies(open('content/competencies.md').read()))

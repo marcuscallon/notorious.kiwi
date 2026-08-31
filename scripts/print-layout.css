@@ -188,6 +188,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   grid-template-columns: repeat(2, 1fr);
   gap: 7px;
   margin-bottom: 2px;
+  position: relative;
 }
 .tile {
   padding: 8px 10px;
@@ -230,31 +231,22 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--euc);
 }
 
-/* ---------- STACK BRIDGE DIAGRAM ---------- */
-.bridge-figure {
-  flex-shrink: 0;
-  margin-left: auto;
-  margin-top: -8px;
-  width: 46mm;
-  text-align: center;
+/* ---------- STACK HUB (connector mark) ---------- */
+.stack-hub {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 4;
 }
-.bridge-figure svg { width: 100%; height: auto; }
-.bridge-figure .edge, .bridge-figure .spoke { stroke: var(--rule); stroke-width: 1; }
-.bridge-figure .node { fill: none; stroke: var(--euc); stroke-width: 1.3; }
-.bridge-figure .halo { fill: none; stroke: var(--signal); stroke-dasharray: 3 6; opacity: 0.55; }
-.bridge-figure .node-center { fill: var(--signal); stroke: none; }
-.bridge-figure .center-label { fill: var(--paper); font-weight: 600; font-size: 18px; font-family: var(--mono); }
-.bridge-figure text {
-  font-family: var(--sans);
-  font-size: 11px;
-  fill: var(--ink);
-  letter-spacing: 0.03em;
-}
-.bridge-figure .node-label { font-weight: 500; }
-.bridge-figure text[text-anchor="middle"] { dominant-baseline: central; }
-.bridge-cap { display: none !important; }
+.stack-hub svg { width: 22mm; height: auto; }
+.stack-hub .hub-halo { display: none; }
+.stack-hub .hub-spoke { stroke: var(--euc); stroke-width: 1.6; }
+.stack-hub .hub-disc { fill: var(--signal); stroke: none; }
+.stack-hub .hub-m { fill: var(--paper); font-family: var(--mono); font-weight: 600; font-size: 32px; }
 
-/* ---------- COMPETENCIES ---------- */
+/* ---------- COMPETENCIES */
 .skills-grid {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
