@@ -180,7 +180,7 @@ def gen_hero_facts(meta):
 
 STACK_HUB = '''      <div class="stack-hub" aria-hidden="true">
         <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <circle class="hub-halo" cx="130" cy="130" r="54"/>
+          <circle class="hub-halo" cx="130" cy="130" r="47"/>
           <circle class="hub-disc" cx="130" cy="130" r="38"/>
           <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">MC</text>
         </svg>
