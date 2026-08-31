@@ -242,9 +242,8 @@ details.signature-group, .tile .ai, .role-body .tags {
 }
 .stack-hub svg { width: 22mm; height: auto; }
 .stack-hub .hub-halo { display: none; }
-.stack-hub .hub-spoke { stroke: var(--euc); stroke-width: 1.6; }
 .stack-hub .hub-disc { fill: var(--signal); stroke: none; }
-.stack-hub .hub-m { fill: var(--paper); font-family: var(--mono); font-weight: 600; font-size: 32px; }
+.stack-hub .hub-m { fill: var(--paper); font-family: var(--mono); font-weight: 600; font-size: 26px; letter-spacing: 0.02em; }
 
 /* ---------- COMPETENCIES */
 .skills-grid {

@@ -180,18 +180,9 @@ def gen_hero_facts(meta):
 
 STACK_HUB = '''      <div class="stack-hub" aria-hidden="true">
         <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <defs>
-            <marker id="hub-arrow" markerWidth="8" markerHeight="8" viewBox="0 0 10 10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#3E9483"/>
-            </marker>
-          </defs>
-          <circle class="hub-halo" cx="130" cy="130" r="46"/>
-          <line class="hub-spoke" x1="97" y1="97" x2="78" y2="78" marker-end="url(#hub-arrow)"/>
-          <line class="hub-spoke" x1="163" y1="97" x2="182" y2="78" marker-end="url(#hub-arrow)"/>
-          <line class="hub-spoke" x1="97" y1="163" x2="78" y2="182" marker-end="url(#hub-arrow)"/>
-          <line class="hub-spoke" x1="163" y1="163" x2="182" y2="182" marker-end="url(#hub-arrow)"/>
-          <circle class="hub-disc" cx="130" cy="130" r="30"/>
-          <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">M</text>
+          <circle class="hub-halo" cx="130" cy="130" r="54"/>
+          <circle class="hub-disc" cx="130" cy="130" r="38"/>
+          <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">MC</text>
         </svg>
       </div>'''
 

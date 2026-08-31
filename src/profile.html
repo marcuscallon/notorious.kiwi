@@ -124,9 +124,9 @@ a:hover { color: var(--cream); border-color: var(--cream); }
 }
 .topnav .brand { display: flex; align-items: center; gap: 10px; color: var(--cream); font-weight: 500; }
 .topnav .brand .mark {
-  width: 24px; height: 24px; border: 1px solid var(--cream);
+  height: 24px; padding: 0 6px; border: 1px solid var(--cream);
   display: grid; place-items: center; font-family: var(--serif);
-  font-style: italic; font-weight: 400; font-size: 13px; border-radius: 4px;
+  font-style: italic; font-weight: 400; font-size: 11.5px; border-radius: 4px;
 }
 .topnav .links { display: flex; gap: 26px; }
 .topnav .links a { color: var(--cream-2); border: none; }
@@ -325,9 +325,8 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .stack-hub svg { width: 240px; height: auto; }
 .stack-hub .hub-halo { fill: none; stroke: var(--signal); stroke-width: 1.2; stroke-dasharray: 3 6; opacity: 0.45; transform-box: fill-box; transform-origin: center; animation: hub_spin 18s linear infinite; }
 @keyframes hub_spin { to { transform: rotate(360deg); } }
-.stack-hub .hub-spoke { stroke: var(--euc); stroke-width: 2.2; }
 .stack-hub .hub-disc { fill: var(--signal); stroke: none; }
-.stack-hub .hub-m { fill: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 32px; }
+.stack-hub .hub-m { fill: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 26px; letter-spacing: 0.02em; }
 .tile {
   background: var(--ink-2); border: 1px solid var(--rule);
   padding: 32px 28px 30px; position: relative; overflow: hidden;
@@ -879,9 +878,8 @@ details.signature-group, .tile .ai, .role-body .tags {
 }
 .stack-hub svg { width: 22mm; height: auto; }
 .stack-hub .hub-halo { display: none; }
-.stack-hub .hub-spoke { stroke: var(--euc); stroke-width: 1.6; }
 .stack-hub .hub-disc { fill: var(--signal); stroke: none; }
-.stack-hub .hub-m { fill: var(--paper); font-family: var(--mono); font-weight: 600; font-size: 32px; }
+.stack-hub .hub-m { fill: var(--paper); font-family: var(--mono); font-weight: 600; font-size: 26px; letter-spacing: 0.02em; }
 
 /* ---------- COMPETENCIES */
 .skills-grid {
@@ -1132,7 +1130,7 @@ details.clients-group > div:not(.clients-print) {
 
 <!-- ================= TOP NAV ================= -->
 <nav class="topnav" aria-label="Primary">
-  <div class="brand"><div class="mark">M</div> Marcus Callon</div>
+  <div class="brand"><div class="mark">MC</div> Marcus Callon</div>
   <div class="links">
     <a href="#stack">Stack</a>
     <a href="#experience">Experience</a>
@@ -1245,18 +1243,9 @@ details.clients-group > div:not(.clients-print) {
       </div>
       <div class="stack-hub" aria-hidden="true">
         <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <defs>
-            <marker id="hub-arrow" markerWidth="8" markerHeight="8" viewBox="0 0 10 10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#3E9483"/>
-            </marker>
-          </defs>
-          <circle class="hub-halo" cx="130" cy="130" r="46"/>
-          <line class="hub-spoke" x1="97" y1="97" x2="78" y2="78" marker-end="url(#hub-arrow)"/>
-          <line class="hub-spoke" x1="163" y1="97" x2="182" y2="78" marker-end="url(#hub-arrow)"/>
-          <line class="hub-spoke" x1="97" y1="163" x2="78" y2="182" marker-end="url(#hub-arrow)"/>
-          <line class="hub-spoke" x1="163" y1="163" x2="182" y2="182" marker-end="url(#hub-arrow)"/>
-          <circle class="hub-disc" cx="130" cy="130" r="30"/>
-          <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">M</text>
+          <circle class="hub-halo" cx="130" cy="130" r="54"/>
+          <circle class="hub-disc" cx="130" cy="130" r="38"/>
+          <text class="hub-m" x="130" y="130" text-anchor="middle" dominant-baseline="central">MC</text>
         </svg>
       </div>
     </div>
