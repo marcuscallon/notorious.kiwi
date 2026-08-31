@@ -385,6 +385,7 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    CLIENT LOGO GRID
    ============================================ */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.logo-grid:not(.mode-marks) .logo-cat:last-child { grid-column: span 2; } /* 5 groups -> fill the 3x2 wall */
 /* marks mode: uniform logomark tiles, org name revealed on hover */
 .logo-grid.mode-marks .logo-cat { padding: 20px 20px 22px; }
 .logo-grid.mode-marks .logo-row { gap: 12px; }
@@ -1360,53 +1361,67 @@ details.signature-group, .tile .ai, .role-body .tags {
 
   <!-- ================= CLIENTS (optional) ================= -->
   <details class="signature-group clients-group" id="clients" open>
-    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients &amp; employers</summary>
-    <div class="clients-print" aria-hidden="true">BBC &middot; the Guardian &middot; ESPN &middot; The Times &middot; Financial Times &middot; HEARST &middot; Mastercard &middot; RACQ &middot; XPON &middot; Queensland Transport &middot; EQC &middot; Shorthand &middot; Holoscribe &middot; Immersive &middot; FOCAL LABS &middot; University of Otago &middot; Wondaris</div>
-    <div class="logo-grid mode-marks" data-reveal>
+    <summary><span class="summary-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients I've worked with</summary>
+    <div class="clients-print" aria-hidden="true">BAFTA &middot; BBC &middot; Blind Eye Films &middot; Endemol &middot; ESPN &middot; Hearst Magazines &middot; The Financial Times &middot; The Global Mail &middot; The Guardian &middot; The Times &middot; Trinity Mirror &middot; Virgin Media &middot; Action Against Hunger &middot; Amnesty International &middot; Barnardos &middot; Inspire &middot; Oxfam &middot; Save the Children &middot; St. Paul's Church &middot; WaterAid &middot; Bright Innovation &middot; Greenroom Digital &middot; Hearis &middot; Open Telecommunications &middot; Perform / Rapp Ltd &middot; Provenco &middot; AXA Insurance &middot; EQC &middot; Mastercard &middot; NTI &middot; RACQ &middot; Audi UK &middot; Petronas &middot; Queensland Transport &middot; University of the Sunshine Coast (UniSC)</div>
+    <div class="logo-grid" data-reveal>
       <div class="logo-cat">
-        <div class="cg-k">Media &amp; publishing</div>
+        <div class="cg-k">Media, Publishing &amp; Entertainment</div>
         <div class="logo-row">
-          <span class="logo feat" title="BBC" tabindex="0"><svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></g><g fill="#15181C" font-family="Arial,sans-serif" font-weight="700" font-size="14" text-anchor="middle"><text x="13" y="21">B</text><text x="45" y="21">B</text><text x="77" y="21">C</text></g></svg><span class="lg-name">BBC</span></span>
-          <span class="logo" title="the Guardian" tabindex="0"><span class="wm serif">the Guardian</span><span class="lg-name">the Guardian</span></span>
-          <span class="logo espn" title="ESPN" tabindex="0"><span class="wm sans">ESPN</span><span class="lg-name">ESPN</span></span>
-          <span class="logo" title="The Times" tabindex="0"><span class="wm serif-up">The Times</span><span class="lg-name">The Times</span></span>
-          <span class="logo" title="Financial Times" tabindex="0"><svg viewBox="0 0 44 30" fill="none" aria-label="Financial Times"><rect x="1" y="1" width="42" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/><text x="22" y="21" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="15" fill="currentColor">FT</text></svg><span class="lg-name">Financial Times</span></span>
-          <span class="logo" title="HEARST" tabindex="0"><span class="wm sans-track">HEARST</span><span class="lg-name">HEARST</span></span>
+          <span class="logo feat" title="BAFTA" tabindex="0"><span class="wm sans">BAFTA</span></span>
+          <span class="logo feat" title="BBC" tabindex="0"><svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor"><rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/><rect x="64" y="0" width="26" height="30" rx="1"/></g><g fill="#15181C" font-family="Arial,sans-serif" font-weight="700" font-size="14" text-anchor="middle"><text x="13" y="21">B</text><text x="45" y="21">B</text><text x="77" y="21">C</text></g></svg></span>
+          <span class="logo" title="Blind Eye Films" tabindex="0"><span class="wm serif">Blind Eye Films</span></span>
+          <span class="logo" title="Endemol" tabindex="0"><span class="wm sans">Endemol</span></span>
+          <span class="logo espn feat" title="ESPN" tabindex="0"><span class="wm sans">ESPN</span></span>
+          <span class="logo" title="Hearst Magazines" tabindex="0"><span class="wm sans-track">Hearst Magazines</span></span>
+          <span class="logo feat" title="The Financial Times" tabindex="0"><svg viewBox="0 0 44 30" fill="none" aria-label="Financial Times"><rect x="1" y="1" width="42" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/><text x="22" y="21" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="15" fill="currentColor">FT</text></svg></span>
+          <span class="logo" title="The Global Mail" tabindex="0"><span class="wm serif">The Global Mail</span></span>
+          <span class="logo" title="The Guardian" tabindex="0"><span class="wm serif">The Guardian</span></span>
+          <span class="logo" title="The Times" tabindex="0"><span class="wm serif-up">The Times</span></span>
+          <span class="logo" title="Trinity Mirror" tabindex="0"><span class="wm sans">Trinity Mirror</span></span>
+          <span class="logo" title="Virgin Media" tabindex="0"><span class="wm sans">Virgin Media</span></span>
         </div>
       </div>
       <div class="logo-cat">
-        <div class="cg-k">Financial services</div>
+        <div class="cg-k">Charity, Non-Profit &amp; Community</div>
         <div class="logo-row">
-          <span class="logo feat" title="Mastercard" tabindex="0"><svg viewBox="0 0 48 30" aria-label="Mastercard"><circle cx="18" cy="15" r="11" fill="currentColor" opacity="0.55"/><circle cx="30" cy="15" r="11" fill="currentColor" opacity="0.55" style="mix-blend-mode:screen"/></svg><span class="lg-name">Mastercard</span></span>
+          <span class="logo feat" title="Action Against Hunger" tabindex="0"><span class="wm sans">Action Against Hunger</span></span>
+          <span class="logo feat" title="Amnesty International" tabindex="0"><span class="wm sans">Amnesty International</span></span>
+          <span class="logo" title="Barnardos" tabindex="0"><span class="wm sans">Barnardos</span></span>
+          <span class="logo" title="Inspire" tabindex="0"><span class="wm sans">Inspire</span></span>
+          <span class="logo feat" title="Oxfam" tabindex="0"><span class="wm sans">Oxfam</span></span>
+          <span class="logo" title="Save the Children" tabindex="0"><span class="wm sans">Save the Children</span></span>
+          <span class="logo" title="St. Paul's Church" tabindex="0"><span class="wm serif">St. Paul's Church</span></span>
+          <span class="logo" title="WaterAid" tabindex="0"><span class="wm sans">WaterAid</span></span>
         </div>
       </div>
       <div class="logo-cat">
-        <div class="cg-k">Insurance &amp; listed</div>
+        <div class="cg-k">Marketing, Technology &amp; Telecommunications</div>
         <div class="logo-row">
-          <span class="logo" title="RACQ" tabindex="0"><span class="wm sans">RACQ</span><span class="lg-name">RACQ</span></span>
-          <span class="logo" title="XPON" tabindex="0"><span class="wm sans-track">XPON</span><span class="lg-name">XPON</span></span>
+          <span class="logo" title="Bright Innovation" tabindex="0"><span class="wm sans">Bright Innovation</span></span>
+          <span class="logo" title="Greenroom Digital" tabindex="0"><span class="wm sans">Greenroom Digital</span></span>
+          <span class="logo" title="Hearis" tabindex="0"><span class="wm sans">Hearis</span></span>
+          <span class="logo" title="Open Telecommunications" tabindex="0"><span class="wm sans">Open Telecommunications</span></span>
+          <span class="logo" title="Perform / Rapp Ltd" tabindex="0"><span class="wm sans">Perform / Rapp Ltd</span></span>
+          <span class="logo" title="Provenco" tabindex="0"><span class="wm sans">Provenco</span></span>
         </div>
       </div>
       <div class="logo-cat">
-        <div class="cg-k">Government</div>
+        <div class="cg-k">Finance &amp; Insurance</div>
         <div class="logo-row">
-          <span class="logo" title="Queensland Transport" tabindex="0"><span class="wm serif-up">Queensland Transport</span><span class="lg-name">Queensland Transport</span></span>
-          <span class="logo" title="EQC" tabindex="0"><span class="wm sans-track">EQC</span><span class="lg-name">EQC</span></span>
+          <span class="logo" title="AXA Insurance" tabindex="0"><span class="wm sans">AXA Insurance</span></span>
+          <span class="logo" title="EQC" tabindex="0"><span class="wm sans-track">EQC</span></span>
+          <span class="logo feat" title="Mastercard" tabindex="0"><svg viewBox="0 0 48 30" aria-label="Mastercard"><circle cx="18" cy="15" r="11" fill="currentColor" opacity="0.55"/><circle cx="30" cy="15" r="11" fill="currentColor" opacity="0.55" style="mix-blend-mode:screen"/></svg></span>
+          <span class="logo" title="NTI" tabindex="0"><span class="wm sans">NTI</span></span>
+          <span class="logo" title="RACQ" tabindex="0"><span class="wm sans">RACQ</span></span>
         </div>
       </div>
       <div class="logo-cat">
-        <div class="cg-k">Ventures founded</div>
+        <div class="cg-k">Other</div>
         <div class="logo-row">
-          <span class="logo feat" title="Shorthand" tabindex="0"><span class="wm serif">Shorthand</span><span class="lg-name">Shorthand</span></span>
-          <span class="logo" title="Holoscribe" tabindex="0"><span class="wm sans">Holoscribe</span><span class="lg-name">Holoscribe</span></span>
-          <span class="logo" title="Immersive" tabindex="0"><span class="wm serif">Immersive</span><span class="lg-name">Immersive</span></span>
-          <span class="logo" title="FOCAL LABS" tabindex="0"><span class="wm sans-track">FOCAL LABS</span><span class="lg-name">FOCAL LABS</span></span>
-        </div>
-      </div>
-      <div class="logo-cat">
-        <div class="cg-k">Education</div>
-        <div class="logo-row">
-          <span class="logo" title="University of Otago" tabindex="0"><span class="wm serif-up">University of Otago</span><span class="lg-name">University of Otago</span></span>
+          <span class="logo feat" title="Audi UK" tabindex="0"><span class="wm sans">Audi UK</span></span>
+          <span class="logo" title="Petronas" tabindex="0"><span class="wm sans">Petronas</span></span>
+          <span class="logo" title="Queensland Transport" tabindex="0"><span class="wm serif-up">Queensland Transport</span></span>
+          <span class="logo" title="University of the Sunshine Coast (UniSC)" tabindex="0"><span class="wm sans">University of the Sunshine Coast (UniSC)</span></span>
         </div>
       </div>
     </div>
@@ -1424,8 +1439,8 @@ details.signature-group, .tile .ai, .role-body .tags {
         <h4>Chief Customer &amp; Product Officer <span class="org"> - XPON Technologies Group (ASX:XPN)</span></h4>
         <p class="lede">Executive leadership of customer, product and commercial strategy for a next-generation customer-experience and data-platform business.</p>
         <ul>
-          <li>Owns the product roadmap and commercialisation for the Wondaris customer-data platform.</li>
-          <li>Connects customer insight, product direction and commercial outcomes across the listed entity.</li>
+          <li>Co-owns the product vision, roadmap and commercial offering for the Wondaris customer-data platform.</li>
+          <li>Connects customer insight &amp; experience, product direction and commercial outcomes.</li>
         </ul>
         <div class="tags"><span>ASX-listed</span><span>Product</span><span>Customer</span></div>
       </div>
@@ -1441,7 +1456,7 @@ details.signature-group, .tile .ai, .role-body .tags {
           <li>Built and led the product function from the ground up across Wondaris and Holoscribe.</li>
           <li>Drove product through the company's ASX listing and commercial scale-up phase.</li>
         </ul>
-        <div class="tags"><span>0-1</span><span>Scale-up</span><span>Product</span></div>
+        <div class="tags"><span>0-1</span><span>Product</span><span>Scale-up</span></div>
       </div>
     </div>
 
@@ -1452,7 +1467,7 @@ details.signature-group, .tile .ai, .role-body .tags {
         <h4>Chief Operations &amp; People Officer <span class="org"> - XPON Digital - XPON Technologies Group (ASX:XPN)</span></h4>
         <p class="lede">Led operations and people for XPON Digital, the group's UK-based software solutions and consultancy division, with a distributed team across the UK and Vietnam.</p>
         <ul>
-          <li>Owned gross margin and most operating expense outside of sales on the P&amp;L.</li>
+          <li>Owned gross margin and most operating expenses outside of sales on the P&amp;L.</li>
           <li>Built the operating model from sales through delivery to support, underpinned by a tribe, chapter, squad model and shared culture of excellence.</li>
         </ul>
         <div class="tags"><span>Operations</span><span>People</span><span>Customer Engagement &amp; Delivery</span><span>Distributed Teams</span></div>
@@ -1464,12 +1479,12 @@ details.signature-group, .tile .ai, .role-body .tags {
       <div class="role-logo" title="Focal Labs"><img class="rl fx-blend" src="assets/focal-labs-australia-logo.png" alt="Focal Labs" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Focal Labs"><svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="currentColor">FOCAL LABS</text></svg></span></div>
       <div class="role-body">
         <h4>Co-founder &amp; Chief Product Officer <span class="org"> - Focal Labs</span></h4>
-        <p class="lede">Co-founded a service-based startup enabler supporting MVP development and commercial momentum for early-stage concepts.</p>
+        <p class="lede">Co-founded a service-based startup enabler supporting MVP development and commercial validation for early-stage concepts.</p>
         <ul>
           <li>Held the founding product remit across the Focal Labs ventures (Shorthand, Immersive, Holoscribe).</li>
-          <li>Owned concept-to-MVP-to-launch and commercial validation for portfolio ventures.</li>
+          <li>Owned concept-to-MVP-to-launch and commercial validation.</li>
         </ul>
-        <div class="tags"><span>Founder</span><span>0-1</span><span>Venture studio</span></div>
+        <div class="tags"><span>Founder</span><span>0-1</span><span>Product</span><span>Venture studio</span></div>
       </div>
     </div>
 
@@ -1480,10 +1495,10 @@ details.signature-group, .tile .ai, .role-body .tags {
         <h4>Co-founder &amp; Chief Product Officer <span class="org"> - Holoscribe</span></h4>
         <p class="lede">Co-founded an early-stage digital-publishing and immersive-reality venture from concept through seed funding. Exit 2020 - acquired by XPON Group.</p>
         <ul>
-          <li>Led product, people and innovation across venture-building.</li>
+          <li>Led product, people and innovation for Holoscribe.</li>
           <li>Took the venture from concept through seed funding to acquisition.</li>
         </ul>
-        <div class="tags"><span>Founder</span><span>0-1</span><span>Exit - acquired</span></div>
+        <div class="tags"><span>Founder</span><span>0-1</span><span>Product</span><span>Exit - acquired</span></div>
       </div>
     </div>
 
@@ -1495,9 +1510,9 @@ details.signature-group, .tile .ai, .role-body .tags {
         <ul>
           <li>Member of the transformation working group. Defined and led a progressive growth and turnaround strategy.</li>
           <li>Supported validation and growth of new businesses within the group.</li>
-          <li>Operating-model redesign with empathy, not cost-cutting.</li>
+          <li>Operating-model redesign and leadership, change leader witha pagmatic &amp; empathic balance of change across people, processes and finance.</li>
         </ul>
-        <div class="tags"><span>Transformation</span><span>Org design</span><span>COO</span></div>
+        <div class="tags"><span>Strategy</span><span>Transformation</span><span>Org design</span><span>COO</span></div>
       </div>
     </div>
 
@@ -1507,7 +1522,7 @@ details.signature-group, .tile .ai, .role-body .tags {
       <div class="role-body">
         <h4>Acting Chief Financial Officer <span class="org"> - 4impact</span></h4>
         <ul>
-          <li>Stepped into a cashflow-challenged, superficially profitable business.</li>
+          <li>Interim role for a cashflow-challenged, superficially profitable IT consulting business.</li>
           <li>Rebuilt finance operations as part of the value stream - a CFO/COO hybrid, not a separate back-office.</li>
           <li>Restored cashflow visibility and operating discipline.</li>
         </ul>
@@ -1519,14 +1534,13 @@ details.signature-group, .tile .ai, .role-body .tags {
       <div class="role-yr">2015<span class="dur">-2017</span></div>
       <div class="role-logo" title="EQC New Zealand"><img class="rl fx-screen" src="assets/naturalhazardscommission_logo.jpeg" alt="EQC New Zealand" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="EQC New Zealand"><svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="currentColor">EQC</text></svg></span></div>
       <div class="role-body">
-        <h4>Engagement Project Manager <span class="org"> - Earthquake Commission (EQC, NZ) via 4impact</span></h4>
-        <p class="lede">Led the client stakeholder engagement for an end-to-end claims management system for New Zealand's Earthquake Commission.</p>
+        <h4>Project Manager <span class="org"> - Earthquake Commission (EQC, NZ) via 4impact</span></h4>
+        <p class="lede">Led the client stakeholder engagement and solution delivery for an end-to-end claims management system for New Zealand's Earthquake Commission.</p>
         <ul>
-          <li>Worked with the CIO and Executive General Managers on the claims function; partnered with central NZ government IT.</li>
-          <li>Managed a delivery team across New Zealand, Australia and Manila over an 18 month engagement.</li>
-          <li>Engagement won via competitive tender.</li>
+          <li>Worked with the CIO and Executive General Managers within the claims function at EQC.</li>
+          <li>Managed a delivery team across New Zealand, Australia and Manila over an 18 month engagement from requirements, solution architecture to software development and testing.</li>
         </ul>
-        <div class="tags"><span>Enterprise gov</span><span>Claims system</span><span>Multi-country</span></div>
+        <div class="tags"><span>Project Management</span><span>Enterprise gov</span><span>Multi-country</span></div>
       </div>
     </div>
 
@@ -1534,7 +1548,7 @@ details.signature-group, .tile .ai, .role-body .tags {
       <div class="role-yr">2013<span class="dur">-2015</span></div>
       <div class="role-logo" title="Shorthand"><img class="rl fx-inv-soft" src="assets/shorthand-logo-black.svg" alt="Shorthand" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Shorthand"><svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="currentColor">Shorthand</text></svg></span></div>
       <div class="role-body">
-        <h4>Co-founder &amp; Product Lead <span class="org"> - Shorthand</span></h4>
+        <h4>Co-founder &amp; Product Executive <span class="org"> - Shorthand</span></h4>
         <p class="lede">Co-founded, built the team and led product for an enterprise digital-publishing platform taken from concept to international commercialisation.</p>
         <ul>
           <li>Clients: BBC, Guardian, ESPN, The Times, Financial Times, Hearst and Trinity Mirror across the UK, Europe, Australia and the US.</li>
@@ -1547,13 +1561,13 @@ details.signature-group, .tile .ai, .role-body .tags {
       <div class="role-yr">2014<span class="dur">-2015</span></div>
       <div class="role-logo" title="Immersive"><img class="rl fx-inv fx-rad" src="assets/immersive_logo.jpeg" alt="Immersive" loading="lazy" onerror="this.remove()"><span class="rl-fb" aria-label="Immersive"><svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="currentColor">Immersive</text></svg></span></div>
       <div class="role-body">
-        <h4>Co-founder &amp; Product Lead <span class="org"> - Immersive (later Shorthand Social)</span></h4>
-        <p class="lede">Co-founded and launched an innovative publishing platform for journalists and freelance storytellers.</p>
+        <h4>Co-founder &amp; Product Executive <span class="org"> - Immersive (later Shorthand Social)</span></h4>
+        <p class="lede">Co-founded and launched an innovative publishing platform for independant journalists and freelance storytellers.</p>
         <ul>
           <li>Took the concept from MVP to beta launch in under six months; 1000+ users and 500+ stories in the first six weeks.</li>
           <li>Rebranded as Shorthand Social.</li>
         </ul>
-        <div class="tags"><span>Founder</span><span>0-1</span><span>Media</span></div>
+        <div class="tags"><span>Founder</span><span>0-1</span><span>Digital Publishing</span></div>
       </div>
     </div>
 

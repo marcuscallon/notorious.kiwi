@@ -61,8 +61,8 @@ eng = [('<strong>Fractional &amp; interim CXO.</strong>','briefcase'),
        ('<strong><em>AI-native</em> build-measure-learn.</strong>','bot')]
 for strong, ico in eng:
     v3 = soft_must(strong, f'<span class="eng-ico">{ICONS[ico]}</span>'+strong, v3, 'engage '+ico)
-v3 = must('<summary>Clients &amp; employers</summary>',
-          f'<summary><span class="summary-ico">{ICONS["users"]}</span>Clients &amp; employers</summary>', v3, 'clients summary')
+v3 = must('<summary>Clients I\'ve worked with</summary>',
+          f'<summary><span class="summary-ico">{ICONS["users"]}</span>Clients I\'ve worked with</summary>', v3, 'clients summary')
 v3 = v3.replace('<title>', '<title>[ICON-RICH] ')
 open('src/variants/v3-icon-rich.html','w').write(v3)
 print('v3-icon-rich.html written')

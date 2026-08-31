@@ -385,6 +385,7 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    CLIENT LOGO GRID
    ============================================ */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.logo-grid:not(.mode-marks) .logo-cat:last-child { grid-column: span 2; } /* 5 groups -> fill the 3x2 wall */
 /* marks mode: uniform logomark tiles, org name revealed on hover */
 .logo-grid.mode-marks .logo-cat { padding: 20px 20px 22px; }
 .logo-grid.mode-marks .logo-row { gap: 12px; }
