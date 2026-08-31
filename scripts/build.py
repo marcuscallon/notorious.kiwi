@@ -313,17 +313,17 @@ def gen_clients(text):
 ROLE_LOGOS = {
   'xpon': ('XPON Technologies (ASX:XPN)', 'assets/XPON_logomark_RGB-white@3x.png', '',
            '<svg viewBox="0 0 60 30" fill="currentColor" aria-label="XPON"><text x="30" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-1">XPON</text></svg>'),
-  '4impact': ('4impact', 'assets/4impact_logo.jpeg', 'filter: invert(1) grayscale(1);',
+  '4impact': ('4impact', 'assets/4impact_logo_trans.png', 'fx-inv',
               '<svg viewBox="0 0 70 30" aria-label="4impact"><text x="35" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="22" fill="currentColor">4</text><text x="44" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="20" fill="currentColor">impact</text></svg>'),
-  'eqc': ('EQC New Zealand', 'assets/naturalhazardscommission_logo.jpeg', 'filter: grayscale(1) brightness(1.15); mix-blend-mode: screen;',
+  'eqc': ('EQC New Zealand', 'assets/naturalhazardscommission_logo.jpeg', 'fx-screen',
           '<svg viewBox="0 0 50 30" aria-label="EQC"><rect x="2" y="4" width="46" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="25" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="currentColor">EQC</text></svg>'),
   'holoscribe': ('Holoscribe', 'assets/holoscribe-logo.png', '',
                  '<svg viewBox="0 0 70 24" aria-label="Holoscribe"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="16" fill="currentColor">Holoscribe</text></svg>'),
-  'shorthand': ('Shorthand', 'assets/shorthand-logo-black.svg', 'filter: invert(0.88) grayscale(1);',
+  'shorthand': ('Shorthand', 'assets/shorthand-logo-black.svg', 'fx-inv-soft',
                 '<svg viewBox="0 0 70 24" aria-label="Shorthand"><text x="35" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="17" fill="currentColor">Shorthand</text></svg>'),
-  'immersive': ('Immersive', 'assets/immersive_logo.jpeg', 'filter: invert(1); border-radius: 3px;',
+  'immersive': ('Immersive', 'assets/immersive_logo.jpeg', 'fx-inv fx-rad',
                 '<svg viewBox="0 0 80 24" aria-label="Immersive"><text x="40" y="18" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-style="italic" font-size="18" fill="currentColor">Immersive</text></svg>'),
-  'focallabs': ('Focal Labs', 'assets/focal-labs-australia-logo.png', 'mix-blend-mode: screen;',
+  'focallabs': ('Focal Labs', 'assets/focal-labs-australia-logo.png', 'fx-blend',
                 '<svg viewBox="0 0 80 24" aria-label="Focal Labs"><text x="40" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="currentColor">FOCAL LABS</text></svg>'),
 }
 
@@ -360,8 +360,8 @@ def gen_roles():
         logo_key = r.get('logo', '')
         title_attr, logo_file, logo_fx, logo_svg = ROLE_LOGOS[logo_key]
         if logo_file and os.path.exists(logo_file):
-            inner = (f'<img class="rl" src="{logo_file}"' +
-                     (f' style="{logo_fx}"' if logo_fx else '') +
+            img_cls = 'rl' + (f' {logo_fx}' if logo_fx else '')
+            inner = (f'<img class="{img_cls}" src="{logo_file}"' +
                      f' alt="{title_attr}" loading="lazy"'
                      f' onerror="this.remove()">'
                      f'<span class="rl-fb" aria-label="{title_attr}">{logo_svg}</span>')

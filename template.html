@@ -439,9 +439,22 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
 .role-logo img.rl {
   filter: grayscale(1) contrast(0.95) brightness(1.15);
   max-width: 68px; max-height: 46px; object-fit: contain;
-  transition: filter 0.4s var(--ease);
+  transition: filter 0.4s var(--ease), background 0.4s var(--ease);
 }
-.role:hover .role-logo img.rl { filter: none; }
+/* dark-on-transparent colour marks: inverted at rest, true colour on hover */
+.role-logo img.rl.fx-inv { filter: invert(1) grayscale(1) brightness(1.1) contrast(1.05); }
+.role-logo img.rl.fx-inv-soft { filter: invert(0.88) grayscale(1); }
+.role-logo img.rl.fx-blend { mix-blend-mode: screen; }
+.role-logo img.rl.fx-rad { border-radius: 3px; }
+.role-logo img.rl.fx-screen { filter: grayscale(1) brightness(1.15); mix-blend-mode: screen; }
+.role:hover .role-logo img.rl { filter: none; mix-blend-mode: normal; }
+/* dark-on-light brand marks need a light chip backing for the colour reveal */
+.role:hover .role-logo img.rl.fx-inv,
+.role:hover .role-logo img.rl.fx-inv-soft {
+  background: rgba(255,255,255,0.96);
+  border-radius: 8px;
+  padding: 6px;
+}
 .role-logo .rl-fb { display: none; }
 .role:first-of-type { border-top: none; }
 .role-yr { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--signal); padding-top: 4px; line-height: 1.3; }
