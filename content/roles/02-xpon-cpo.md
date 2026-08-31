@@ -4,7 +4,7 @@ end: 2024
 title: Chief Product Officer
 org: XPON Platforms - XPON Technologies Group (ASX:XPN)
 logo: xpon
-tags: 0-1, Scale-up, Product
+tags: 0-1, Product, Scale-up
 ---
 Product leadership across the group's two growth products - the Wondaris customer-data platform and the Holoscribe digital-publishing platform.
 

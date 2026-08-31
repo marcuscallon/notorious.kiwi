@@ -1,13 +1,12 @@
 ---
 start: 2015
 end: 2017
-title: Engagement Project Manager
+title: Project Manager
 org: Earthquake Commission (EQC, NZ) via 4impact
 logo: eqc
-tags: Enterprise gov, Claims system, Multi-country
+tags: Project Management, Enterprise gov, Multi-country
 ---
-Led the client stakeholder engagement for an end-to-end claims management system for New Zealand's Earthquake Commission.
+Led the client stakeholder engagement and solution delivery for an end-to-end claims management system for New Zealand's Earthquake Commission.
 
-- Worked with the CIO and Executive General Managers on the claims function; partnered with central NZ government IT.
-- Managed a delivery team across New Zealand, Australia and Manila over an 18 month engagement.
-- Engagement won via competitive tender.
+- Worked with the CIO and Executive General Managers within the claims function at EQC.
+- Managed a delivery team across New Zealand, Australia and Manila over an 18 month engagement from requirements, solution architecture to software development and testing.

@@ -8,5 +8,5 @@ tags: ASX-listed, Product, Customer
 ---
 Executive leadership of customer, product and commercial strategy for a next-generation customer-experience and data-platform business.
 
-- Owns the product roadmap and commercialisation for the Wondaris customer-data platform.
-- Connects customer insight, product direction and commercial outcomes across the listed entity.
+- Co-owns the product vision, roadmap and commercial offering for the Wondaris customer-data platform.
+- Connects customer insight & experience, product direction and commercial outcomes.

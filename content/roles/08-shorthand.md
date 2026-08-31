@@ -1,7 +1,7 @@
 ---
 start: 2013
 end: 2015
-title: Co-founder & Product Lead
+title: Co-founder & Product Executive
 org: Shorthand
 logo: shorthand
 tags: Founder, 0-1, Media
