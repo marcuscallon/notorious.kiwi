@@ -45,7 +45,6 @@ heading: Clients I've worked with
 ## Marketing, Technology & Telecommunications
 - Bright Innovation = img:bright-innovation.png
 - Greenroom Digital = img:greenroom.png
-- Hearis = sans
 - Open Telecommunications = sans
 - Perform / Rapp Ltd = img:rapp.png,chip
 - Provenco = sans
