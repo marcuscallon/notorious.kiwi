@@ -49,9 +49,9 @@ heading: Clients I've worked with
 
 ## Finance & Insurance
 - AXA Insurance = img:axa.png
-- EQC = img:eqc.png,chip
+- The Earthquake Commission NZ = img:eqc.png,chip
 - Mastercard = img:mastercard.png +
-- NTI = img:nti.png
+- National Transport Insurance = img:nti.png
 - RACQ = img:racq.png,chip
 
 ## Other
