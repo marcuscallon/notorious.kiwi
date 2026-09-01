@@ -246,16 +246,29 @@ def gen_competencies(text):
     out.append('    </div>')
     return '\n'.join(out)
 
-def client_mark(name, style, feat, marks_mode=False):
+def client_mark(name, style, feat, marks_mode=False, url=None):
     feat_cls = ' feat' if feat else ''
     t = esc(name)
-    label = f'<span class="lg-name">{t}</span>' if marks_mode else ''
+    arrow = ' &#8599;' if url else ''  # NE arrow: hover label signals the tile is a link
+    label = f'<span class="lg-name">{t}{arrow}</span>' if marks_mode else ''
+    # linked tiles emit <a>; static tiles emit <span>
+    if url:
+        al = html.escape(url)
+        open_tag = (f'          <a class="logo logo-img{{FEAT}}" href="{al}" target="_blank" rel="noopener noreferrer"'
+                    f' aria-label="{t} - visit website (opens new tab)" title="{t}">')
+        close_tag = '</a>'
+    else:
+        open_tag = '          <span class="logo logo-img{FEAT}" title="{T}" tabindex="0">'
+        close_tag = '</span>'
+    def tile(inner):
+        op = open_tag.replace('{FEAT}', feat_cls).replace('{T}', t)
+        return f'{op}{inner}{label}{close_tag}'
     if style.startswith('img:'):
         parts = [p.strip() for p in style[4:].split(',')]
         fname = parts[0]
-        mods = ''.join({'chip': ' lm-chip', 'invert': ' lm-inv'}.get(m, '') for m in parts[1:])
+        mods = ''.join({'chip': ' lm-chip', 'invert': ' lm-inv', 'wide': ' lm-wide'}.get(m, '') for m in parts[1:])
         inner = f'<img class="lm{mods}" src="assets/clients/{esc(fname)}" alt="{t}" loading="lazy">'
-        return f'          <span class="logo logo-img{feat_cls}" title="{t}" tabindex="0">{inner}{label}</span>'
+        return tile(inner)
     if style == 'bbc':
         svg = ('<svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor">'
                '<rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/>'
@@ -273,10 +286,10 @@ def client_mark(name, style, feat, marks_mode=False):
                  '<circle cx="18" cy="15" r="11" fill="currentColor" opacity="0.55"/>'
                  '<circle cx="30" cy="15" r="11" fill="currentColor" opacity="0.55" style="mix-blend-mode:screen"/></svg>')
     elif style == 'espn':
-        return f'          <span class="logo espn{feat_cls}" title="{t}" tabindex="0"><span class="wm sans">{t}</span>{label}</span>'
+        return tile(f'<span class="wm sans">{t}</span>')
     else:
-        return f'          <span class="logo{feat_cls}" title="{t}" tabindex="0"><span class="wm {style}">{t}</span>{label}</span>'
-    return f'          <span class="logo{feat_cls}" title="{t}" tabindex="0">{inner}{label}</span>'
+        return tile(f'<span class="wm {style}">{t}</span>')
+    return tile(inner)
 
 def gen_clients(text):
     meta_lines, blocks = parse_sections(text)
@@ -295,8 +308,14 @@ def gen_clients(text):
                 feat = ent.endswith(' +')
                 if feat: ent = ent[:-2].strip()
                 nm, sty = ent.split(' = ', 1) if ' = ' in ent else (ent, 'sans')
+                tokens, keep, url = sty.strip().split(' '), [], None
+                for tk in tokens:
+                    if tk.startswith('url:'):
+                        url = tk[4:]
+                    else:
+                        keep.append(tk)
                 names.append(nm)
-                rows.append(client_mark(nm.strip(), sty.strip(), feat, marks_mode))
+                rows.append(client_mark(nm.strip(), ' '.join(keep), feat, marks_mode, url))
         groups.append(f'''      <div class="logo-cat">
         <div class="cg-k">{esc(gname)}</div>
         <div class="logo-row">
