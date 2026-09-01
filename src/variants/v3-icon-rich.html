@@ -386,6 +386,10 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    ============================================ */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
 .logo-grid:not(.mode-marks) .logo-cat:last-child { grid-column: span 2; } /* 5 groups -> fill the 3x2 wall */
+/* marks mode: 2 big groups half-width on row 1, 3 small groups thirds on row 2 */
+.logo-grid.mode-marks { grid-template-columns: repeat(6, 1fr); }
+.logo-grid.mode-marks .logo-cat:nth-child(-n+2) { grid-column: span 3; }
+.logo-grid.mode-marks .logo-cat:nth-child(n+3) { grid-column: span 2; }
 /* marks mode: uniform logomark tiles, org name revealed on hover */
 .logo-grid.mode-marks .logo-cat { padding: 20px 20px 22px; }
 .logo-grid.mode-marks .logo-row { gap: 12px; }
@@ -625,6 +629,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .stack-hub { display: none; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-grid.mode-marks .logo-cat { grid-column: auto; } /* spans only at desktop widths */
   .logo svg { height: 22px; }
   .logo .wm { font-size: 16px; }
   .logo .wm.serif, .logo.espn .wm { font-size: 19px; }
@@ -1373,7 +1378,7 @@ details.signature-group, .tile .ai, .role-body .tags {
         <div class="logo-row">
           <span class="logo logo-img feat" title="BAFTA" tabindex="0"><img class="lm lm-chip" src="assets/clients/bafta.png" alt="BAFTA" loading="lazy"><span class="lg-name">BAFTA</span></span>
           <span class="logo logo-img feat" title="BBC" tabindex="0"><img class="lm" src="assets/clients/bbc.png" alt="BBC" loading="lazy"><span class="lg-name">BBC</span></span>
-          <span class="logo" title="Blind Eye Films" tabindex="0"><span class="wm serif">Blind Eye Films</span><span class="lg-name">Blind Eye Films</span></span>
+          <span class="logo logo-img" title="Blind Eye Films" tabindex="0"><img class="lm" src="assets/clients/blind-eye-films.png" alt="Blind Eye Films" loading="lazy"><span class="lg-name">Blind Eye Films</span></span>
           <span class="logo logo-img" title="Endemol" tabindex="0"><img class="lm lm-chip" src="assets/clients/endemol.png" alt="Endemol" loading="lazy"><span class="lg-name">Endemol</span></span>
           <span class="logo logo-img feat" title="ESPN" tabindex="0"><img class="lm" src="assets/clients/espn.png" alt="ESPN" loading="lazy"><span class="lg-name">ESPN</span></span>
           <span class="logo logo-img" title="Hearst Magazines" tabindex="0"><img class="lm" src="assets/clients/hearst.png" alt="Hearst Magazines" loading="lazy"><span class="lg-name">Hearst Magazines</span></span>
@@ -1421,7 +1426,7 @@ details.signature-group, .tile .ai, .role-body .tags {
         <div class="logo-row">
           <span class="logo logo-img feat" title="Audi UK" tabindex="0"><img class="lm lm-chip" src="assets/clients/audi.png" alt="Audi UK" loading="lazy"><span class="lg-name">Audi UK</span></span>
           <span class="logo logo-img" title="Petronas" tabindex="0"><img class="lm" src="assets/clients/petronas.png" alt="Petronas" loading="lazy"><span class="lg-name">Petronas</span></span>
-          <span class="logo" title="Queensland Transport" tabindex="0"><span class="wm serif-up">Queensland Transport</span><span class="lg-name">Queensland Transport</span></span>
+          <span class="logo logo-img" title="Queensland Transport" tabindex="0"><img class="lm lm-chip" src="assets/clients/queensland-transport.png" alt="Queensland Transport" loading="lazy"><span class="lg-name">Queensland Transport</span></span>
           <span class="logo logo-img" title="University of the Sunshine Coast (UniSC)" tabindex="0"><img class="lm lm-chip" src="assets/clients/unisc.png" alt="University of the Sunshine Coast (UniSC)" loading="lazy"><span class="lg-name">University of the Sunshine Coast (UniSC)</span></span>
         </div>
       </div>

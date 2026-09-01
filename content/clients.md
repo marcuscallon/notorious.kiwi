@@ -21,7 +21,7 @@ heading: Clients I've worked with
 ## Media, Publishing & Entertainment
 - BAFTA = img:bafta.png,chip +
 - BBC = img:bbc.png +
-- Blind Eye Films = serif
+- Blind Eye Films = img:blind-eye-films.png
 - Endemol = img:endemol.png,chip
 - ESPN = img:espn.png +
 - Hearst Magazines = img:hearst.png
@@ -57,5 +57,5 @@ heading: Clients I've worked with
 ## Other
 - Audi UK = img:audi.png,chip +
 - Petronas = img:petronas.png
-- Queensland Transport = serif-up
+- Queensland Transport = img:queensland-transport.png,chip
 - University of the Sunshine Coast (UniSC) = img:unisc.png,chip

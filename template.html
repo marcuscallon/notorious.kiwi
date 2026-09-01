@@ -386,6 +386,10 @@ details.signature-group > summary, .signature .sig-quote cite, .signature .stren
    ============================================ */
 .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
 .logo-grid:not(.mode-marks) .logo-cat:last-child { grid-column: span 2; } /* 5 groups -> fill the 3x2 wall */
+/* marks mode: 2 big groups half-width on row 1, 3 small groups thirds on row 2 */
+.logo-grid.mode-marks { grid-template-columns: repeat(6, 1fr); }
+.logo-grid.mode-marks .logo-cat:nth-child(-n+2) { grid-column: span 3; }
+.logo-grid.mode-marks .logo-cat:nth-child(n+3) { grid-column: span 2; }
 /* marks mode: uniform logomark tiles, org name revealed on hover */
 .logo-grid.mode-marks .logo-cat { padding: 20px 20px 22px; }
 .logo-grid.mode-marks .logo-row { gap: 12px; }
@@ -625,6 +629,7 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .stack-hub { display: none; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-grid.mode-marks .logo-cat { grid-column: auto; } /* spans only at desktop widths */
   .logo svg { height: 22px; }
   .logo .wm { font-size: 16px; }
   .logo .wm.serif, .logo.espn .wm { font-size: 19px; }
