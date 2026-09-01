@@ -21,7 +21,7 @@ heading: Clients I've worked with
 
 ## Media, Publishing & Entertainment
 - BAFTA = img:bafta.png,chip url:https://www.bafta.org
-- BBC = img:bbc.png url:https://www.bbc.com
+- BBC = img:bbc.png,chip url:https://www.bbc.com
 - Blind Eye Films = img:blind-eye-films.png url:https://blindeyefilms.net
 - Endemol = img:endemol.png,chip url:https://en.wikipedia.org/wiki/Endemol_Shine_Group
 - ESPN = img:espn.png url:https://www.espn.co.uk/
@@ -31,15 +31,15 @@ heading: Clients I've worked with
 - The Guardian = img:guardian.png,invert url:https://www.theguardian.com
 - The Times = img:the-times.png,invert url:https://www.thetimes.co.uk
 - Trinity Mirror = img:trinity-mirror.png,invert url:https://reachplc.com
-- Virgin Media = img:virgin-media.png url:https://www.virginmedia.com
+- Virgin Media = img:virgin-media.png,chip url:https://www.virginmedia.com
 
 ## Charity, Non-Profit & Community
 - Action Against Hunger = img:action-against-hunger.png url:https://www.actionagainsthunger.org
 - Amnesty International = img:amnesty.png,chip url:https://www.amnesty.org
 - Barnardos = img:barnardos.png,chip url:https://www.barnardos.org.au
 - Inspire Education = img:inspire.png,chip url:https://inspire-ebp.org.uk/
-- Oxfam = img:oxfam.png url:https://www.oxfam.org
-- Save the Children = img:save-the-children.png url:https://www.savethechildren.org.uk
+- Oxfam = img:oxfam.png,chip url:https://www.oxfam.org
+- Save the Children = img:save-the-children.png,chip url:https://www.savethechildren.org.uk
 - WaterAid = img:wateraid.png,chip url:https://www.wateraid.org
 
 ## Marketing, Technology & Telecommunications
@@ -48,7 +48,7 @@ heading: Clients I've worked with
 - Perform / Rapp Ltd = img:rapp.png,chip url:https://rapp.com
 
 ## Finance & Insurance
-- AXA Insurance = img:axa.png url:https://www.amp.co.nz/nz/about/amp-history
+- AXA NZ = img:axa.png,chip url:https://www.amp.co.nz/nz/about/amp-history
 - The Earthquake Commission NZ = img:eqc.png,chip url:https://www.eqc.govt.nz
 - Mastercard = img:mastercard.png url:https://www.mastercard.com
 - National Transport Insurance = img:nti.png url:https://www.nti.com.au
