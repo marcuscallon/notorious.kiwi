@@ -25,7 +25,7 @@ heading: Clients I've worked with
 - Endemol = img:endemol.png,chip
 - ESPN = img:espn.png +
 - Hearst Magazines = img:hearst.png
-- The Financial Times = img:ft.png +
+- The Financial Times = img:ft.png,chip,wide +
 - The Global Mail = img:global-mail.png,invert
 - The Guardian = img:guardian.png,invert
 - The Times = img:the-times.png,invert
