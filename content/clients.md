@@ -24,7 +24,7 @@ heading: Clients I've worked with
 - BBC = img:bbc.png url:https://www.bbc.com
 - Blind Eye Films = img:blind-eye-films.png url:https://blindeyefilms.net
 - Endemol = img:endemol.png,chip url:https://en.wikipedia.org/wiki/Endemol_Shine_Group
-- ESPN = img:espn.png url:https://www.espn.com
+- ESPN = img:espn.png url:https://www.espn.co.uk/
 - Hearst Magazines = img:hearst.png url:https://www.hearstmagazines.com
 - The Financial Times = img:ft.png,chip,wide url:https://www.ft.com +
 - The Global Mail = img:global-mail.png,invert url:https://en.wikipedia.org/wiki/The_Global_Mail
