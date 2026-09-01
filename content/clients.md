@@ -26,7 +26,7 @@ heading: Clients I've worked with
 - ESPN = img:espn.png +
 - Hearst Magazines = img:hearst.png
 - The Financial Times = img:ft.png +
-- The Global Mail = serif
+- The Global Mail = img:global-mail.png,invert
 - The Guardian = img:guardian.png,invert
 - The Times = img:the-times.png,invert
 - Trinity Mirror = img:trinity-mirror.png,invert
@@ -36,11 +36,11 @@ heading: Clients I've worked with
 - Action Against Hunger = img:action-against-hunger.png +
 - Amnesty International = img:amnesty.png,chip +
 - Barnardos = img:barnardos.png,chip
-- Inspire Education = sans
+- Inspire Education = img:inspire.png,chip
 - Oxfam = img:oxfam.png +
 - Save the Children = img:save-the-children.png
 - St. Paul's Church = img:st-pauls.png,chip
-- WaterAid = sans
+- WaterAid = img:wateraid.png,chip
 
 ## Marketing, Technology & Telecommunications
 - Bright Innovation = img:bright-innovation.png
