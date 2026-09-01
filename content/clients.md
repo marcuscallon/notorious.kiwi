@@ -36,7 +36,7 @@ heading: Clients I've worked with
 - Action Against Hunger = img:action-against-hunger.png +
 - Amnesty International = img:amnesty.png,chip +
 - Barnardos = img:barnardos.png,chip
-- Inspire = sans
+- Inspire Education = sans
 - Oxfam = img:oxfam.png +
 - Save the Children = img:save-the-children.png
 - St. Paul's Church = img:st-pauls.png,chip
@@ -45,9 +45,7 @@ heading: Clients I've worked with
 ## Marketing, Technology & Telecommunications
 - Bright Innovation = img:bright-innovation.png
 - Greenroom Digital = img:greenroom.png
-- Open Telecommunications = sans
 - Perform / Rapp Ltd = img:rapp.png,chip
-- Provenco = sans
 
 ## Finance & Insurance
 - AXA Insurance = img:axa.png
