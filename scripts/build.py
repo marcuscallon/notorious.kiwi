@@ -250,6 +250,12 @@ def client_mark(name, style, feat, marks_mode=False):
     feat_cls = ' feat' if feat else ''
     t = esc(name)
     label = f'<span class="lg-name">{t}</span>' if marks_mode else ''
+    if style.startswith('img:'):
+        parts = [p.strip() for p in style[4:].split(',')]
+        fname = parts[0]
+        mods = ''.join({'chip': ' lm-chip', 'invert': ' lm-inv'}.get(m, '') for m in parts[1:])
+        inner = f'<img class="lm{mods}" src="assets/clients/{esc(fname)}" alt="{t}" loading="lazy">'
+        return f'          <span class="logo logo-img{feat_cls}" title="{t}" tabindex="0">{inner}{label}</span>'
     if style == 'bbc':
         svg = ('<svg viewBox="0 0 90 30" aria-label="BBC"><g fill="currentColor">'
                '<rect x="0" y="0" width="26" height="30" rx="1"/><rect x="32" y="0" width="26" height="30" rx="1"/>'
