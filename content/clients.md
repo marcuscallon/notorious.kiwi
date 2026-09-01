@@ -40,7 +40,6 @@ heading: Clients I've worked with
 - Inspire Education = img:inspire.png,chip url:https://inspireeducation.net.au
 - Oxfam = img:oxfam.png url:https://www.oxfam.org
 - Save the Children = img:save-the-children.png url:https://www.savethechildren.org.uk
-- St. Paul's Church = img:st-pauls.png,chip
 - WaterAid = img:wateraid.png,chip url:https://www.wateraid.org
 
 ## Marketing, Technology & Telecommunications
