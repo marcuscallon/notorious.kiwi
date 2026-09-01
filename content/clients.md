@@ -23,7 +23,7 @@ heading: Clients I've worked with
 - BAFTA = img:bafta.png,chip url:https://www.bafta.org
 - BBC = img:bbc.png url:https://www.bbc.com
 - Blind Eye Films = img:blind-eye-films.png url:https://blindeyefilms.net
-- Endemol = img:endemol.png,chip url:https://www.endemolshine.com
+- Endemol = img:endemol.png,chip url:https://en.wikipedia.org/wiki/Endemol_Shine_Group
 - ESPN = img:espn.png url:https://www.espn.com
 - Hearst Magazines = img:hearst.png url:https://www.hearstmagazines.com
 - The Financial Times = img:ft.png,chip,wide url:https://www.ft.com +
@@ -37,18 +37,18 @@ heading: Clients I've worked with
 - Action Against Hunger = img:action-against-hunger.png url:https://www.actionagainsthunger.org
 - Amnesty International = img:amnesty.png,chip url:https://www.amnesty.org
 - Barnardos = img:barnardos.png,chip url:https://www.barnardos.org.au
-- Inspire Education = img:inspire.png,chip url:https://inspireeducation.net.au
+- Inspire Education = img:inspire.png,chip url:https://inspire-ebp.org.uk/
 - Oxfam = img:oxfam.png url:https://www.oxfam.org
 - Save the Children = img:save-the-children.png url:https://www.savethechildren.org.uk
 - WaterAid = img:wateraid.png,chip url:https://www.wateraid.org
 
 ## Marketing, Technology & Telecommunications
 - Bright Innovation = img:bright-innovation.png url:https://www.brightinnovation.co.uk
-- Greenroom Digital = img:greenroom.png url:https://greenroomdigital.com.au
+- Greenroom Digital = img:greenroom.png url:https://greenroom.digital/
 - Perform / Rapp Ltd = img:rapp.png,chip url:https://rapp.com
 
 ## Finance & Insurance
-- AXA Insurance = img:axa.png url:https://www.axa.co.uk
+- AXA Insurance = img:axa.png url:https://www.amp.co.nz/nz/about/amp-history
 - The Earthquake Commission NZ = img:eqc.png,chip url:https://www.eqc.govt.nz
 - Mastercard = img:mastercard.png url:https://www.mastercard.com
 - National Transport Insurance = img:nti.png url:https://www.nti.com.au
