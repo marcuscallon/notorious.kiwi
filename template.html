@@ -36,7 +36,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; } /* Lenis handles smooth scroll */
+html { scroll-behavior: auto; overflow-x: hidden; } /* Lenis handles smooth scroll */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
@@ -622,8 +622,11 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
    ============================================ */
 @media (max-width: 820px) {
   .cv { padding: 0 24px; }
-  .topnav { padding: 16px 24px; }
+  .topnav { padding: 12px 20px; gap: 10px; }
+  .topnav .brand { font-size: 0; } /* collapse 'Marcus Callon' wordmark; .mark keeps its size */
   .topnav .links { display: none; }
+  .download-btn, .contact-btn { font-size: 9.5px; padding: 8px 12px; white-space: nowrap; letter-spacing: 0.1em; }
+  .contact-btn { margin-left: 0; }
   .hero { padding: 100px 0 40px; }
   .section { padding: 64px 0; }
   .section-head { grid-template-columns: 1fr; gap: 10px; margin-bottom: 40px; }
@@ -635,15 +638,24 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
   .spec-cell:last-child { grid-column: 1 / -1; }
   .stack { grid-template-columns: 1fr; }
   .stack-hub { display: none; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-  .logo-grid { grid-template-columns: repeat(2, 1fr); }
-  .logo-grid.mode-marks .logo-cat { grid-column: auto; } /* spans only at desktop widths */
+  .skills-grid { grid-template-columns: 1fr; } /* one capability card per row */
+  .logo-grid { grid-template-columns: 1fr !important; }   /* one client group per row; base sheet has mode-marks 6col */
+  .logo-grid.mode-marks { grid-template-columns: 1fr; }
+  .logo-grid.mode-marks .logo-cat { grid-column: auto; min-width: 0; } /* spans only at desktop widths */
+  .logo-cat, .logo-row { min-width: 0; }
+  .mode-marks .logo { max-width: 100%; box-sizing: border-box; }
+  .mode-marks .logo img.lm { max-width: 100px; max-height: 26px; }
+  .mode-marks .logo img.lm.lm-wide { max-width: 74vw; max-height: 40px; }
   .logo svg { height: 22px; }
   .logo .wm { font-size: 16px; }
   .logo .wm.serif, .logo.espn .wm { font-size: 19px; }
   .logo-row { gap: 16px 20px; }
   .role { grid-template-columns: 76px 1fr; gap: 14px; }
-  .role-logo { display: none; }
+  .role-yr { grid-column: 1; grid-row: 1; }
+  .role-logo { display: grid; grid-column: 1; grid-row: 2; width: 48px; height: 42px; padding: 6px; margin-top: 4px; }
+  .role-logo img.rl { max-width: 100%; max-height: 28px; }
+  .role-logo svg { max-height: 26px; }
+  .role-body { grid-column: 2; grid-row: 1 / span 3; }
   .role-body h4 .meta { display: block; margin-left: 0; margin-top: 4px; }
   .signature { grid-template-columns: 1fr; gap: 24px; }
   .foot { grid-template-columns: 1fr; }
@@ -651,8 +663,9 @@ details.signature-group[open] > summary::before, details.clients-group[open] > s
 }
 @media (max-width: 480px) {
   .hero h1 { font-size: 56px; }
-  .role { grid-template-columns: 1fr; gap: 4px; }
+  .role { grid-template-columns: 62px 1fr; gap: 4px 10px; }
   .role-yr { padding-top: 0; }
+  .role-logo { width: 40px; height: 34px; }
 }
 
 /* reduced motion */
