@@ -556,11 +556,14 @@ def gen_cta(text):
     body = inline(kv.get('cta_body', ''), ital_class=True)
     btn = esc(kv.get('cta_button', 'Email'))
     href = esc(kv.get('cta_href', 'mailto:marcus.callon@gmail.com'))
+    # plain address for the copy-to-clipboard line (mailto: and any ?query stripped)
+    email = esc(re.sub(r'\?.*$', '', href.split('mailto:')[-1])) if 'mailto:' in href else ''
     return {
         'heading': heading,
         'body': body,
         'button': btn,
         'href': href,
+        'email': email,
     }
 
 
@@ -609,6 +612,7 @@ out = out.replace('{{CTA_HEADING}}', cta['heading'])
 out = out.replace('{{CTA_BODY}}', cta['body'])
 out = out.replace('{{CTA_BUTTON}}', cta['button'])
 out = out.replace('{{CTA_HREF}}', cta['href'])
+out = out.replace('{{CTA_EMAIL}}', cta['email'])
 out = out.replace('{{FOOTER}}', gen_footer(read_content('content/footer.md')))
 
 def inject_print_css(html):
