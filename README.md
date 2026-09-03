@@ -63,6 +63,11 @@ bash scripts/install-hooks.sh
 ## Rules of the road
 
 - Edit only `content/*.md`. Run `just site`. Done.
+- Comments: any line starting with `//` (indentation allowed) is ignored by
+  the build - use it to disable entries or leave notes. Markdown has no
+  native line comment; we use `//` instead of the noisy `<!-- -->`.
+  Inline/trailing comments are not supported. Note `chip:` lines in
+  stack.md are content, not comments.
 - `src/profile.html` is regenerated on every build — hand edits are lost.
 - Roles auto-sort by end date (`end: present` sorts first).
 - Inline markdown: `**bold**`, `*italic*` (renders as the accent italic in

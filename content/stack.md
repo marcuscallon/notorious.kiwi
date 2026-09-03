@@ -30,4 +30,4 @@ heading: **Product-led strategy**{br}{sub}across finance, architecture & executi
 - Ask whether the problem matters to the customer first.
 - Then choose the best architecture and path to solve and validate it.
 - Technical enough to work credibly with engineering and data leaders.
-chip: pi.dev · devops · AI  
+// chip: pi.dev · devops · AI  

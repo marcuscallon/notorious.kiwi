@@ -62,9 +62,21 @@ def parse_sections(text):
         blocks.append(('## ' + lines[0], lines[1:]))
     return meta_lines, blocks
 
+def strip_comments(text):
+    """Drop whole-line comments: any line whose first non-space chars are '//'.
+    Markdown has no native line comment (<!-- --> is the standard alternative,
+    but noisy); this pipeline uses '//' at the start of a line instead.
+    Inline trailing comments are NOT supported - '//' must start the line."""
+    return '\n'.join(ln for ln in text.split('\n')
+                     if not ln.lstrip().startswith('//'))
+
+def read_content(path):
+    """Read a content markdown file with '//' whole-line comments stripped."""
+    return strip_comments(open(path).read())
+
 def section_heading(path, default=''):
     """Read the 'heading:' key from a markdown content file, inline-format it."""
-    return heading_from_text(open(os.path.join(ROOT, path)).read(), default)
+    return heading_from_text(read_content(os.path.join(ROOT, path)), default)
 
 def heading_from_text(text, default=''):
     """Find first 'heading:' line and inline-format it."""
@@ -353,7 +365,7 @@ ROLE_LOGOS = {
 }
 
 def parse_role(path):
-    s = open(path).read()
+    s = read_content(path)
     m = re.match(r'^---\n(.*?)\n---\n(.*)$', s, re.S)
     fm, body = m.group(1), m.group(2).strip()
     meta = {}
@@ -554,7 +566,7 @@ def gen_cta(text):
 
 
 tpl = open('template.html').read()
-meta_txt = open('content/meta.md').read()
+meta_txt = read_content('content/meta.md')
 mlines = meta_txt.splitlines()
 meta_kv = {}
 cur_key = None
@@ -578,26 +590,26 @@ out = out.replace('{{NAME}}', gen_name(meta_kv))
 out = out.replace('{{THESIS}}', gen_thesis(meta_kv))
 out = out.replace('{{CONTACT}}', gen_contact(meta_kv))
 out = out.replace('{{HERO_FACTS}}', gen_hero_facts(meta_kv))
-stack_text = open('content/stack.md').read()
+stack_text = read_content('content/stack.md')
 stack_meta_lines, _ = parse_sections(stack_text)
 stack_meta = parse_keyvals(stack_meta_lines)
 out = out.replace('{{STACK_TITLE}}', heading_from_text(stack_text, 'Product, finance, architecture *& operations.*'))
 out = out.replace('{{STACK}}', gen_stack(stack_text))
 out = out.replace('{{COMPETENCIES_TITLE}}', section_heading('content/competencies.md', 'Executive competencies, *what I own at C-level.*'))
-out = out.replace('{{COMPETENCIES}}', gen_competencies(open('content/competencies.md').read()))
-out = out.replace('{{CLIENTS}}', gen_clients(open('content/clients.md').read()))
+out = out.replace('{{COMPETENCIES}}', gen_competencies(read_content('content/competencies.md')))
+out = out.replace('{{CLIENTS}}', gen_clients(read_content('content/clients.md')))
 out = out.replace('{{EXPERIENCE_TITLE}}', section_heading('content/experience.md', 'Experience'))
 out = out.replace('{{ROLES}}', gen_roles())
-out = out.replace('{{EARLIER_ROWS}}', gen_earlier(open('content/earlier.md').read()))
+out = out.replace('{{EARLIER_ROWS}}', gen_earlier(read_content('content/earlier.md')))
 out = out.replace('{{ENGAGE_TITLE}}', section_heading('content/engage.md', 'How I engage'))
-out = out.replace('{{ENGAGE_UL}}', gen_engage(open('content/engage.md').read()))
+out = out.replace('{{ENGAGE_UL}}', gen_engage(read_content('content/engage.md')))
 # signature section removed in v13.
-cta = gen_cta(open('content/cta.md').read())
+cta = gen_cta(read_content('content/cta.md'))
 out = out.replace('{{CTA_HEADING}}', cta['heading'])
 out = out.replace('{{CTA_BODY}}', cta['body'])
 out = out.replace('{{CTA_BUTTON}}', cta['button'])
 out = out.replace('{{CTA_HREF}}', cta['href'])
-out = out.replace('{{FOOTER}}', gen_footer(open('content/footer.md').read()))
+out = out.replace('{{FOOTER}}', gen_footer(read_content('content/footer.md')))
 
 def inject_print_css(html):
     """Replace the template's @media print block with the latest print-layout.css."""
