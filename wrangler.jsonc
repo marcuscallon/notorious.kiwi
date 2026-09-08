@@ -6,5 +6,10 @@
   // Assets-only Worker: Wrangler uploads dist/ (staged by scripts/prepare-cloudflare.sh)
   "assets": {
     "directory": "./dist"
-  }
+  },
+
+  // Cloudflare Pages reads wrangler configs during its build too (BETA);
+  // without this it logs a 'config not valid' warning. Matches the
+  // dashboard's Build output directory: dist.
+  "pages_build_output_dir": "./dist"
 }

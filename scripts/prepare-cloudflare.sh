@@ -34,7 +34,8 @@ fi
 echo "==> Staging dist/ ..."
 rm -rf dist
 mkdir -p dist
-cp -R src/. dist/
+cp -RL src/. dist/   # -L dereferences symlinks (src/assets -> ../assets);
+                     # Pages rejects output dirs containing links outside it
 cp src/profile.html dist/index.html
 cp Marcus-Callon-Executive-Profile.pdf dist/
 
