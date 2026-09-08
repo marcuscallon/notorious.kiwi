@@ -30,3 +30,9 @@ deploy: site
 # One-time S3/CloudFront bucket setup
 deploy-setup:
     bash scripts/deploy-setup.sh
+
+# Deploy to Cloudflare (Workers static assets) - first run may ask you to
+# `npx wrangler login` once; after that it's one command.
+cf-deploy:
+    bash scripts/prepare-cloudflare.sh --build
+    npx wrangler deploy

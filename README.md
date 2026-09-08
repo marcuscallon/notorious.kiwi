@@ -162,6 +162,11 @@ repo, then set:
   committed artifacts exactly as-is)
 - Deploy command: `npx wrangler deploy` (pre-filled default)
 
+Local deploy (after the dashboard project exists):
+```bash
+just cf-deploy   # first run: `npx wrangler login` (browser OAuth), then this
+```
+
 Direct upload from CI (optional, alternative to Git connection): add a
 step to the workflow running
 `bash scripts/prepare-cloudflare.sh --build && npx wrangler deploy`
