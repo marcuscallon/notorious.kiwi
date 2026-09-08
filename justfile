@@ -31,8 +31,9 @@ deploy: site
 deploy-setup:
     bash scripts/deploy-setup.sh
 
-# Deploy to Cloudflare (Workers static assets) - first run may ask you to
+# Deploy to Cloudflare Pages (direct upload to the notorious-kiwi project -
+# same project the Git dashboard flow deploys to). First run may ask you to
 # `npx wrangler login` once; after that it's one command.
 cf-deploy:
     bash scripts/prepare-cloudflare.sh --build
-    npx wrangler deploy
+    npx wrangler pages deploy dist --project-name=notorious-kiwi

@@ -146,29 +146,33 @@ Pushes to `main` will then build the site and deploy it to S3 / CloudFront.
 If you prefer OIDC later, swap the `Configure AWS credentials` step in the
 workflow to use `role-to-assume` instead of access keys.
 
-## Cloudflare (Workers static assets / Pages)
+## Cloudflare Pages
 
-The repo supports Cloudflare as a second host (or replacement for S3).
+The repo supports Cloudflare Pages as a second host (or replacement for S3).
 
 Files:
-- `wrangler.jsonc` - assets-only config; points Wrangler at `./dist`.
 - `scripts/prepare-cloudflare.sh` - stages `dist/` (committed `src/` +
-  `index.html` copy + the PDF at the web root). `--build` rebuilds first.
+  `index.html` copy + the PDF at the web root). `--build` rebuilds from
+  content/ first; the Cloudflare build image has Python 3 preinstalled.
+- `wrangler.jsonc` - only used if you ever run `npx wrangler deploy`
+  (the Workers static-assets flow). Not needed for Pages.
 
-Dashboard (Git-connected, zero secrets): Workers & Pages → Create → the
-repo, then set:
+Dashboard (Git-connected, zero secrets): Workers & Pages → Create
+application → Pages tab → connect the repo, then set:
+- Framework preset: None
 - Build command: `bash scripts/prepare-cloudflare.sh --build`
-  (the build image has Python 3 preinstalled; drop `--build` to ship the
-  committed artifacts exactly as-is)
-- Deploy command: `npx wrangler deploy` (pre-filled default)
+  (drop `--build` to ship the committed artifacts exactly as-is)
+- Build output directory: `dist`
+- Project name / production branch: `notorious-kiwi` / `main`
+- Site serves at https://notorious-kiwi.pages.dev
 
-Local deploy (after the dashboard project exists):
+Local deploy (same project, direct upload - after the project exists):
 ```bash
 just cf-deploy   # first run: `npx wrangler login` (browser OAuth), then this
 ```
 
 Direct upload from CI (optional, alternative to Git connection): add a
 step to the workflow running
-`bash scripts/prepare-cloudflare.sh --build && npx wrangler deploy`
-with `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets
-(scoped token: account-level Workers Scripts:Edit).
+`bash scripts/prepare-cloudflare.sh --build && npx wrangler pages deploy dist --project-name=notorious-kiwi`
+with `CLOUDFLARE_API_TOKEN` (Pages:Edit scope) and `CLOUDFLARE_ACCOUNT_ID`
+repo secrets.
