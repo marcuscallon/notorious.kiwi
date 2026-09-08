@@ -145,3 +145,25 @@ Pushes to `main` will then build the site and deploy it to S3 / CloudFront.
 
 If you prefer OIDC later, swap the `Configure AWS credentials` step in the
 workflow to use `role-to-assume` instead of access keys.
+
+## Cloudflare (Workers static assets / Pages)
+
+The repo supports Cloudflare as a second host (or replacement for S3).
+
+Files:
+- `wrangler.jsonc` - assets-only config; points Wrangler at `./dist`.
+- `scripts/prepare-cloudflare.sh` - stages `dist/` (committed `src/` +
+  `index.html` copy + the PDF at the web root). `--build` rebuilds first.
+
+Dashboard (Git-connected, zero secrets): Workers & Pages → Create → the
+repo, then set:
+- Build command: `bash scripts/prepare-cloudflare.sh --build`
+  (the build image has Python 3 preinstalled; drop `--build` to ship the
+  committed artifacts exactly as-is)
+- Deploy command: `npx wrangler deploy` (pre-filled default)
+
+Direct upload from CI (optional, alternative to Git connection): add a
+step to the workflow running
+`bash scripts/prepare-cloudflare.sh --build && npx wrangler deploy`
+with `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets
+(scoped token: account-level Workers Scripts:Edit).

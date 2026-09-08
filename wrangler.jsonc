@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/config-schema.json",
+  "name": "notorious-kiwi",
+  "compatibility_date": "2026-09-08",
+
+  // Assets-only Worker: Wrangler uploads dist/ (staged by scripts/prepare-cloudflare.sh)
+  "assets": {
+    "directory": "./dist"
+  }
+}

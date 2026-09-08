@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probe A — Editorial Publication</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #14110C;
+  --paper: #F1ECE0;
+  --paper-2: #E8E1D1;
+  --rule: #C9C0AC;
+  --euc: #1A4D42;
+  --euc-deep: #0F3329;
+  --slate: #6B6557;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+
+/* paper grain texture */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.page{max-width:1100px;margin:0 auto;padding:40px 56px 64px;position:relative;z-index:2}
+
+/* ---- brand bar ---- */
+.brandbar{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.brandbar .euc{color:var(--euc)}
+
+/* ---- masthead ---- */
+.masthead{display:grid;grid-template-columns:5px 1fr 240px;gap:32px;padding-top:36px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.accent-stripe{background:var(--euc);width:5px;height:100%}
+.mast-main h1{font-family:var(--serif);font-weight:400;font-size:96px;line-height:.92;letter-spacing:-.045em;font-variation-settings:"opsz" 144;margin-bottom:24px}
+.mast-main h1 .em{font-style:italic;color:var(--euc);font-weight:300}
+.mast-main .standfirst{font-family:var(--serif);font-size:22px;font-weight:300;line-height:1.42;max-width:30em;color:var(--ink)}
+.mast-main .standfirst .lead{font-variation-settings:"opsz" 60}
+.mast-main .contact{margin-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--slate)}
+.mast-main .contact a{color:var(--slate);text-decoration:none;border-bottom:1px solid var(--rule)}
+.mast-main .contact .sep{color:var(--rule);margin:0 8px}
+
+.portrait{position:relative}
+.portrait .frame{position:absolute;inset:0;border:1px solid var(--ink);transform:translate(10px,10px)}
+.portrait .img{position:relative;width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#E8E1D1,#C9C0AC);overflow:hidden;display:grid;place-items:center}
+.portrait .img::after{content:'PORTRAIT';font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--slate)}
+
+/* ---- contents line ---- */
+.contents{display:flex;gap:28px;padding:14px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.contents span{display:flex;align-items:center;gap:6px}
+.contents span::before{content:'';width:6px;height:6px;background:var(--euc);border-radius:50%}
+
+/* ---- editorial figures ---- */
+.figures{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.fig{padding:22px 20px 20px;border-right:1px solid var(--rule)}
+.fig:last-child{border-right:none}
+.fig .n{font-family:var(--serif);font-weight:300;font-size:58px;line-height:.95;letter-spacing:-.04em;font-variation-settings:"opsz" 144;color:var(--ink)}
+.fig .n .u{font-size:30px;font-weight:400;color:var(--euc);margin-left:2px}
+.fig .l{margin-top:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);line-height:1.4}
+.fig:nth-child(1) .n .u{color:var(--euc)}
+
+/* ---- section opener ---- */
+.section-opener{margin-top:44px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline}
+.section-opener .n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--euc)}
+.section-opener h2{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.05;letter-spacing:-.025em;font-variation-settings:"opsz" 96}
+.section-opener h2 em{font-style:italic;color:var(--euc);font-weight:300}
+
+/* ---- body with drop cap ---- */
+.body-col{margin-top:18px;max-width:42em}
+.body-col p{font-family:var(--serif);font-size:16px;font-weight:400;line-height:1.62;font-variation-settings:"opsz" 24}
+.body-col p:first-child::first-letter{
+  font-family:var(--serif);font-weight:500;float:left;font-size:74px;line-height:.82;
+  padding:6px 12px 0 0;color:var(--euc);font-variation-settings:"opsz" 144;
+}
+
+@media(max-width:760px){
+  .page{padding:28px 22px 44px}
+  .masthead{grid-template-columns:5px 1fr;gap:20px}
+  .portrait{order:-1;grid-column:1/-1;max-width:260px;margin-bottom:8px}
+  .mast-main h1{font-size:56px}
+  .mast-main .standfirst{font-size:18px}
+  .figures{grid-template-columns:repeat(2,1fr)}
+  .fig{border-bottom:1px solid var(--rule)}
+  .fig:nth-child(3),.fig:nth-child(4){border-bottom:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brandbar">
+    <span><span class="euc">●</span> Executive Profile</span>
+    <span>Nº 01 — Brisbane, AU</span>
+    <span>2026</span>
+  </div>
+
+  <header class="masthead">
+    <div class="accent-stripe" aria-hidden="true"></div>
+    <div class="mast-main">
+      <h1>Marcus<br>Callon<span class="em">.</span></h1>
+      <p class="standfirst">
+        <span class="lead">The translator across finance, product and architecture —</span>
+        an operator fluent in P&amp;L, customer and code. Fractional and interim
+        CXO mandates for founders and boards who need senior alignment across
+        the commercial, product and technical stack.
+      </p>
+      <div class="contact">
+        <a href="mailto:marcus.callon@gmail.com">marcus.callon@gmail.com</a>
+        <span class="sep">·</span>
+        <a href="https://notorious.kiwi">notorious.kiwi</a>
+        <span class="sep">·</span>
+        <a href="#">linkedin</a>
+        <span class="sep">·</span>
+        Brisbane, Australia
+      </div>
+      <div class="contents">
+        <span>The Stack</span><span>Experience</span><span>Clients</span><span>Engage</span>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="frame" aria-hidden="true"></div>
+      <div class="img"></div>
+    </div>
+  </header>
+
+  <section class="figures">
+    <div class="fig"><div class="n">4<span class="u">×</span></div><div class="l">Co-founder across<br>publishing &amp; martech</div></div>
+    <div class="fig"><div class="n">20<span class="u">+ yrs</span></div><div class="l">Building software,<br>teams &amp; products</div></div>
+    <div class="fig"><div class="n">ASX</div><div class="l">Listed Chief Customer<br>&amp; Product Officer</div></div>
+    <div class="fig"><div class="n">AU<span class="u"> · UK</span></div><div class="l">Markets served</div></div>
+  </section>
+
+  <div class="section-opener">
+    <div class="n">Nº 02 — The Stack</div>
+    <h2>Three languages, <em>one operator.</em></h2>
+  </div>
+  <div class="body-col">
+    <p>
+      Most leaders are strong in one register — finance, product, or technology.
+      Marcus holds all three. He has sat as interim CFO for a cashflow-challenged
+      business, served as ASX-listed Chief Customer &amp; Product Officer, and
+      built payment gateways for Mastercard. Today he orchestrates AI-native
+      agents (pi, Claude Code) across the same stack — executing, not advising.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

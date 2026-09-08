@@ -5,6 +5,7 @@
 /print-pdf-*.png
 /v*-pdf-*.png
 /previews/
+/dist/  # staged for Cloudflare deploys by scripts/prepare-cloudflare.sh
 
 # OS / editor
 .DS_Store

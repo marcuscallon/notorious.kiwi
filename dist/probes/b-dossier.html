@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probe B — Brutalist Dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1116;
+  --paper:#F4F1EA;
+  --concrete:#1A1D22;
+  --rule:#0E1116;
+  --signal:#E2542C;       /* warm signal — the one accent */
+  --slate:#6B6E74;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Fraunces',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--mono);-webkit-font-smoothing:antialiased}
+
+.page{max-width:1100px;margin:0 auto;padding:0 0 64px}
+
+/* ---- top status bar ---- */
+.statusbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--ink);color:var(--paper);padding:10px 24px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.statusbar .l{display:flex;align-items:center;gap:8px}
+.statusbar .dot{width:8px;height:8px;background:var(--signal);border-radius:50%;display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.statusbar .c{color:var(--signal)}
+.statusbar .r{text-align:right;color:rgba(244,241,234,.6)}
+
+/* ---- dossier frame ---- */
+.dossier{padding:48px 56px 0;border-bottom:2px solid var(--ink)}
+.monogram-row{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:28px;border-bottom:1px solid var(--ink)}
+.monogram{font-family:var(--mono);font-weight:700;font-size:84px;line-height:.8;letter-spacing:-.06em;color:var(--ink);position:relative}
+.monogram::after{content:'';position:absolute;right:-14px;top:6px;width:10px;height:10px;background:var(--signal)}
+.stamps{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.stamp{border:1.5px solid var(--ink);padding:6px 12px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.stamp.signal{border-color:var(--signal);color:var(--signal)}
+.stamp.filled{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---- name block ---- */
+.nameblock{padding:36px 0 28px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.nameblock h1{font-family:var(--mono);font-weight:700;font-size:128px;line-height:.84;letter-spacing:-.07em;color:var(--ink)}
+.nameblock h1 .ac{color:var(--signal)}
+.nameblock .role-card{border:1.5px solid var(--ink);padding:14px 18px;max-width:240px;background:var(--paper)}
+.nameblock .role-card .k{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:4px}
+.nameblock .role-card .v{font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.25;color:var(--ink)}
+
+/* ---- thesis line ---- */
+.thesis{padding:28px 0 36px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.thesis .tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--signal);border-top:1.5px solid var(--signal);padding-top:8px;writing-mode:vertical-rl;transform:rotate(180deg);align-self:stretch}
+.thesis .t{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.35;letter-spacing:-.01em}
+.thesis .t em{font-style:italic;color:var(--signal)}
+
+/* ---- spec table ---- */
+.spec{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.spec-row{display:grid;grid-template-columns:140px 1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--ink)}
+.spec-row:last-child{border-bottom:none}
+.spec-cell{padding:16px 18px;border-right:1px solid var(--ink)}
+.spec-cell:last-child{border-right:none}
+.spec-cell .k{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.spec-cell .v{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3}
+.spec-cell .v .ac{color:var(--signal)}
+
+/* ---- meta strip ---- */
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0;border-bottom:1px solid var(--ink)}
+.meta .c{padding:24px 18px;border-right:1px solid var(--ink)}
+.meta .c:last-child{border-right:none}
+.meta .c .big{font-family:var(--mono);font-weight:700;font-size:46px;line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.meta .c .big .u{font-size:24px;color:var(--signal);font-weight:500}
+.meta .c .l{margin-top:8px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);line-height:1.4}
+
+/* ---- signature footer ---- */
+.sig{padding:32px 56px 0;display:flex;justify-content:space-between;align-items:end;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.sig .mc{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);letter-spacing:.04em}
+
+@media(max-width:760px){
+  .statusbar{grid-template-columns:1fr;font-size:9px;text-align:center;gap:4px}
+  .statusbar .r{text-align:center}
+  .dossier{padding:32px 22px 0}
+  .monogram{font-size:60px}
+  .nameblock{grid-template-columns:1fr;gap:20px}
+  .nameblock h1{font-size:72px}
+  .thesis{grid-template-columns:1fr;gap:14px}
+  .thesis .tag{writing-mode:initial;transform:none;border-top:1.5px solid var(--signal);border-left:none;padding:8px 0 0;width:fit-content}
+  .thesis .t{font-size:20px}
+  .spec-row{grid-template-columns:1fr 1fr}
+  .spec-cell{border-bottom:1px solid var(--ink)}
+  .spec-cell:nth-child(2){border-right:none}
+  .meta{grid-template-columns:1fr}
+  .meta .c{border-right:none;border-bottom:1px solid var(--ink)}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="statusbar">
+    <div class="l"><span class="dot"></span> AVAILABLE — FRACTIONAL &amp; INTERIM CXO</div>
+    <div class="c">/// DOSSIER</div>
+    <div class="r">M.CALLON — BRISBANE / AU</div>
+  </div>
+
+  <div class="dossier">
+    <div class="monogram-row">
+      <div class="monogram">MC</div>
+      <div class="stamps">
+        <div class="stamp signal">Verified — 2026</div>
+        <div class="stamp filled">ASX:XPN CCPO</div>
+        <div class="stamp">4× Founder</div>
+      </div>
+    </div>
+
+    <div class="nameblock">
+      <h1>MARCUS<br>CALLON<span class="ac">_</span></h1>
+      <div class="role-card">
+        <div class="k">Operator class</div>
+        <div class="v">CFO / CPO / CTO — bilingual in P&amp;L &amp; code</div>
+      </div>
+    </div>
+
+    <div class="thesis">
+      <div class="tag">Thesis</div>
+      <div class="t">
+        The translator across finance, product and architecture —
+        an operator fluent in P&amp;L, customer and code. <em>One person across three seats,</em>
+        orchestrating AI-native agents (pi, Claude Code) that execute the build
+        loop, not just advise.
+      </div>
+    </div>
+  </div>
+
+  <table class="spec" style="width:100%;border-collapse:collapse">
+    <tr class="spec-row">
+      <td class="spec-cell"><div class="k">Location</div><div class="v">Brisbane, AU</div></td>
+      <td class="spec-cell"><div class="k">Stack</div><div class="v"><span class="ac">CFO</span> · CPO · CTO</div></td>
+      <td class="spec-cell"><div class="k">AI-native</div><div class="v">pi · Claude Code</div></td>
+      <td class="spec-cell"><div class="k">Markets</div><div class="v">AU · UK · NZ</div></td>
+    </tr>
+  </table>
+
+  <div class="meta">
+    <div class="c"><div class="big">20<span class="u">+ yrs</span></div><div class="l">Building software,<br>teams &amp; products</div></div>
+    <div class="c"><div class="big">4<span class="u">×</span></div><div class="l">Co-founder — publishing<br>&amp; martech ventures</div></div>
+    <div class="c"><div class="big">8<span class="u">+ roles</span></div><div class="l">Founder · CXO · architect<br>· lead developer</div></div>
+  </div>
+
+  <div class="sig">
+    <div>File ref: MC-EP-2026.01 — confidential</div>
+    <div class="mc">M.C</div>
+  </div>
+
+</div>
+</body>
+</html>
