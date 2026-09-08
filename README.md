@@ -152,10 +152,11 @@ The repo supports Cloudflare Pages as a second host (or replacement for S3).
 
 Files:
 - `scripts/prepare-cloudflare.sh` - stages `dist/` (committed `src/` +
-  `index.html` copy + the PDF at the web root). `--build` rebuilds from
-  content/ first; the Cloudflare build image has Python 3 preinstalled.
-- `wrangler.jsonc` - only used if you ever run `npx wrangler deploy`
-  (the Workers static-assets flow). Not needed for Pages.
+  `index.html` copy + the PDF at the web root; symlink-free, Pages
+  rejects symlinks pointing outside the output dir). `--build` rebuilds
+  from content/ first; the Cloudflare build image has Python 3 preinstalled.
+- no wrangler config: a Pages project rejects a config containing the
+  Workers-side `assets` key, and the dashboard settings alone are enough.
 
 Dashboard (Git-connected, zero secrets): Workers & Pages → Create
 application → Pages tab → connect the repo, then set:
