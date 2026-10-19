@@ -29,7 +29,7 @@ stats:
 spec:
 - Location = Brisbane, AU
 - Founded | *4 ventures* ; Holoscribe ; Shorthand ; Immersive ; Focal Labs
-- Stack | *CPO* ; CFO ; COO ; CTO
+- Stack | *CPO* ; CFO ; COO ; Technical bridge
 - AI-native = AI Harness · fat and thin skills · tooling 
 - Industries | Publishing ; Martech ; Fintech ; Insurance ; Telco ; Gov
 

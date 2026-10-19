@@ -25,9 +25,9 @@ heading: **Product-led strategy**{br}{sub}across finance, architecture & executi
 - Connected goals & metrics across sales, product, delivery and finance.
 - Pragmatic, empathy-led transformation working and advisory groups - not directive based cost-cutting.
 
-## 04 :: Architecture / CTO
-### Business-led solution *& architecture.*
-- Ask whether the problem matters to the customer first.
-- Then choose the best architecture and path to solve and validate it.
+## 04 :: Architecture / Bridge
+### The bridge *between strategy & engineering.*
+- Development and solution-architecture experience - fluent in the build, not just the budget.
+- Ask whether the problem matters to the customer first; then choose the best architecture and path to solve and validate it.
 - Technical enough to work credibly with engineering and data leaders.
 // chip: pi.dev · devops · AI  
