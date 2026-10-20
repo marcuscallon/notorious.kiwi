@@ -15,7 +15,8 @@ for hook in "$SOURCE_DIR"/*; do
 
   # Remove any existing hook before linking
   rm -f "$target"
-  ln -s "$hook" "$target"
+  # relative symlink so the repo can move without breaking hooks
+  ln -s "../../scripts/hooks/$name" "$target"
   chmod +x "$target"
   echo "installed $name hook"
 done
