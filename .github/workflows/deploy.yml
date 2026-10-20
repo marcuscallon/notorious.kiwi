@@ -12,7 +12,8 @@ jobs:
     env:
       S3_BUCKET: notorious.kiwi
       AWS_REGION: us-west-2
-      CLOUDFRONT_DISTRIBUTION_ID: E3QWGWK40OQKWC
+      # CloudFront invalidation removed: distribution E3QWGWK40OQKWC was
+      # deleted when DNS moved to Cloudflare Pages (Oct 2026).
     steps:
       - name: Checkout
         uses: actions/checkout@v4
