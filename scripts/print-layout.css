@@ -108,7 +108,10 @@ details.signature-group, .tile .ai, .role-body .tags {
   color: var(--ink-2);
   margin: 0 0 6px;
 }
-.hero .thesis .ln { display: block !important; }
+/* Flow the four web lines into one paragraph: natural wrap gives ~2 lines
+   spanning the same width as the rule above. */
+.hero .thesis .ln { display: inline !important; }
+.hero .thesis .ln::after { content: " "; }
 .hero .contact {
   font-family: var(--mono);
   font-size: 7pt;
@@ -151,7 +154,7 @@ details.signature-group, .tile .ai, .role-body .tags {
 }
 
 /* ---------- SECTION HEAD ---------- */
-.section { padding: 0; margin-bottom: 6px; }
+.section { padding: 0; margin-bottom: 14px; }
 .section-head {
   display: flex;
   align-items: baseline;
@@ -291,9 +294,19 @@ details.signature-group, .tile .ai, .role-body .tags {
 .clients-group {
   display: block !important;
   border-top: 1px solid var(--rule);
-  padding-top: 6px;
-  margin-top: 7px;
+  padding-top: 8px;
+  margin-top: 12px;
   break-inside: avoid;
+}
+.clients-group::before {
+  content: "Clients I've worked with";
+  display: block;
+  font-family: var(--serif);
+  font-size: 11.5pt;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 6px;
 }
 .clients-group > .earlier-cap,
 .clients-group .logo-grid,
@@ -317,7 +330,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   page-break-before: always;
   padding-top: 0;
 }
-#experience .section-head { margin-bottom: 8px; }
+#experience .section-head { margin-bottom: 10px; }
 
 .role {
   display: grid;
@@ -325,7 +338,7 @@ details.signature-group, .tile .ai, .role-body .tags {
   grid-template-rows: auto auto 1fr;
   gap: 0 8px;
   padding: 6px 9px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
   border-left: 2px solid var(--euc);
 }
 .role:last-child { margin-bottom: 0; }
@@ -414,8 +427,8 @@ details.signature-group, .tile .ai, .role-body .tags {
 /* ---------- EARLIER ROLES (two-column date/title list, no descriptions) ---------- */
 .earlier {
   display: block !important;
-  margin-top: 7px;
-  padding-top: 4px;
+  margin-top: 12px;
+  padding-top: 6px;
   border-top: 1px solid var(--rule);
   break-inside: avoid;
   column-count: 2;
