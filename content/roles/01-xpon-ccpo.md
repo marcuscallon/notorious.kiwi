@@ -1,6 +1,6 @@
 ---
 start: 2024
-end: present
+end: 2026
 title: Chief Customer & Product Officer
 org: XPON Technologies Group (ASX:XPN)
 logo: xpon
@@ -10,3 +10,4 @@ Executive leadership of customer, product and commercial strategy for a next-gen
 
 - Co-owns the product vision, roadmap and commercial offering for the Wondaris customer-data platform.
 - Connects customer insight & experience, product direction and commercial outcomes.
+- Concluded October 2026 with the sale of the business to Incubeta and the transition to new ownership.
