@@ -541,6 +541,7 @@ def gen_footer(text):
     <div class="meta" style="grid-column: 1 / -1; text-align: center; justify-self: center;">
       {esc(kv.get('meta_name',''))} &middot;
       <a href="{esc(kv.get('meta_link_href',''))}">{esc(kv.get('meta_link_label',''))}</a>
+      &middot; <a href="/privacy.html">Privacy</a>
     </div>
   </footer>'''
 
