@@ -12,7 +12,7 @@ name_line2: Callon.
 # Each "-" line renders as one animated line of the thesis.
 # *asterisks* = italic eucalyptus. No em dashes - use plain hyphens.
 thesis:
-- The *connector* across product, finance & architecture
+- The *connector* across product, architecture & finance
 - a founder-grade advisor and executive leader
 - who joins strategy to execution and customer insight to commercial outcomes
 - Fractional & interim CXO mandates for founders, executive leadership & boards
