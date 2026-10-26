@@ -184,12 +184,16 @@ details.signature-group, .tile .ai, .role-body .tags {
   margin: 0;
 }
 .section-head h2 .ital { font-style: italic; color: var(--euc); }
-.section-head h2 strong { color: var(--euc); font-weight: 600; }
+/* Unified head system: main phrase ink, qualifier/tagline same line in euc
+   italic. Stack's {br} split and green strong are web-only flourishes. */
+.section-head h2 strong { color: var(--ink); font-weight: 400; }
+.section-head h2 br { display: none; }
 .section-head h2 .sec-sub {
   font-weight: 400;
   font-style: italic;
-  color: var(--ink-2);
+  color: var(--euc);
 }
+.section-head h2 .sec-sub::before { content: ", "; }
 
 /* ---------- CARDS ---------- */
 .tile, .skill-col, .role, .earlier-row {
@@ -319,7 +323,9 @@ details.signature-group, .tile .ai, .role-body .tags {
   font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--ink);
+  padding-bottom: 4px;
   margin-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
 }
 .clients-group > .earlier-cap,
 .clients-group .logo-grid,
@@ -343,15 +349,15 @@ details.signature-group, .tile .ai, .role-body .tags {
   page-break-before: always;
   padding-top: 0;
 }
-#experience .section-head { margin-bottom: 10px; }
+#experience .section-head { margin-bottom: 12px; }
 
 .role {
   display: grid;
   grid-template-columns: 34px 1fr;
   grid-template-rows: auto auto 1fr;
   gap: 0 8px;
-  padding: 6px 9px;
-  margin-bottom: 7px;
+  padding: 7px 9px;
+  margin-bottom: 9px;
   border-left: 2px solid var(--euc);
 }
 .role:last-child { margin-bottom: 0; }
@@ -440,7 +446,7 @@ details.signature-group, .tile .ai, .role-body .tags {
 /* ---------- EARLIER ROLES (two-column date/title list, no descriptions) ---------- */
 .earlier {
   display: block !important;
-  margin-top: 12px;
+  margin-top: 14px;
   padding-top: 6px;
   border-top: 1px solid var(--rule);
   break-inside: avoid;
@@ -496,8 +502,8 @@ details.signature-group, .tile .ai, .role-body .tags {
   gap: 8px;
   border: none;
   border-top: 1px solid var(--rule);
-  margin-top: 5px;
-  padding: 6px 0 0;
+  margin-top: 8px;
+  padding: 8px 0 0;
 }
 .edu-sec .cg-k { display: none; }
 .edu-row {
